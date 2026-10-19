@@ -1,0 +1,14 @@
+# 相依套件與建置輸出
+node_modules/
+dist/
+
+# 環境變數
+.env
+.env.local
+
+# 原始程式（唯讀參考，不納入版本控制）
+_legacy/
+
+# 記錄檔與系統檔
+*.log
+.DS_Store
