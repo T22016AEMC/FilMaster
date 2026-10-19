@@ -1,0 +1,6085 @@
+{
+  "presets": [
+    {
+      "id": "test_soc_1pt",
+      "input": {
+        "resinType": "SOC",
+        "spinSpeed": 2000,
+        "spinTime": 30,
+        "targetThickness": 220,
+        "tolerancePercent": null,
+        "measuredPoints": [
+          {
+            "id": "preset-pt-0",
+            "solidsContent": 8,
+            "thickness": 180,
+            "note": "現場測量批次 A1 (S=8.0%, h=180nm)"
+          }
+        ]
+      },
+      "prediction": {
+        "targetThickness": 220,
+        "recommendedSolids": 9.187419703605842,
+        "tolerancePercent": 5,
+        "lowerThickness": 209,
+        "lowerSolids": 8.868098854085508,
+        "upperThickness": 231,
+        "upperSolids": 9.501821469310133,
+        "spinSpeed": 2000,
+        "spinTime": 30,
+        "calibration": {
+          "mode": "single_point_shift",
+          "modeLabel": "單點平移校正 (1 數據點)",
+          "theoreticalC": 85,
+          "calibratedC": 625.414934549009,
+          "theoreticalAlpha": 1.45,
+          "calibratedAlpha": 1.45,
+          "beta": 0.48,
+          "gamma": 0.18,
+          "scaleFactor": 7.357822759400106,
+          "rSquared": 1,
+          "pointsCount": 1
+        },
+        "resin": {
+          "id": "SOC",
+          "name": "SOC 填平層",
+          "fullName": "Spin-on Carbon Planarization Layer",
+          "modelName": "High-Viscosity Flow & Evaporation 模型",
+          "recommendedThicknessRange": [
+            50,
+            500
+          ],
+          "alpha": 1.45,
+          "beta": 0.48,
+          "gamma": 0.18,
+          "defaultC": 85,
+          "description": "高碳含量填平材料，具備高黏度與自平坦化特性，為圖案轉移之重要硬遮罩底層。",
+          "typicalSolvents": [
+            "PGMEA",
+            "Cyclohexanone",
+            "Propylene Glycol"
+          ]
+        }
+      },
+      "curvePoints": [
+        {
+          "solidsContent": 0.5,
+          "theoreticalThickness": 0.439,
+          "calibratedThickness": 3.231,
+          "diffNm": 2.792,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 1,
+          "theoreticalThickness": 1.2,
+          "calibratedThickness": 8.827,
+          "diffNm": 7.627,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 1.5,
+          "theoreticalThickness": 2.16,
+          "calibratedThickness": 15.89,
+          "diffNm": 13.73,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 2,
+          "theoreticalThickness": 3.277,
+          "calibratedThickness": 24.115,
+          "diffNm": 20.837,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 3,
+          "theoreticalThickness": 5.9,
+          "calibratedThickness": 43.413,
+          "diffNm": 37.513,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 4,
+          "theoreticalThickness": 8.954,
+          "calibratedThickness": 65.884,
+          "diffNm": 56.93,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 5,
+          "theoreticalThickness": 12.375,
+          "calibratedThickness": 91.054,
+          "diffNm": 78.679,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 6,
+          "theoreticalThickness": 16.12,
+          "calibratedThickness": 118.607,
+          "diffNm": 102.487,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 7,
+          "theoreticalThickness": 20.157,
+          "calibratedThickness": 148.315,
+          "diffNm": 128.157,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 8,
+          "theoreticalThickness": 24.464,
+          "calibratedThickness": 180,
+          "diffNm": 155.536,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 9,
+          "theoreticalThickness": 29.02,
+          "calibratedThickness": 213.523,
+          "diffNm": 184.503,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 10,
+          "theoreticalThickness": 33.81,
+          "calibratedThickness": 248.767,
+          "diffNm": 214.957,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 12,
+          "theoreticalThickness": 44.041,
+          "calibratedThickness": 324.045,
+          "diffNm": 280.004,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 14,
+          "theoreticalThickness": 55.072,
+          "calibratedThickness": 405.208,
+          "diffNm": 350.136,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 16,
+          "theoreticalThickness": 66.837,
+          "calibratedThickness": 491.774,
+          "diffNm": 424.938,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 18,
+          "theoreticalThickness": 79.284,
+          "calibratedThickness": 583.361,
+          "diffNm": 504.076,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 20,
+          "theoreticalThickness": 92.371,
+          "calibratedThickness": 679.65,
+          "diffNm": 587.279,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 22,
+          "theoreticalThickness": 106.061,
+          "calibratedThickness": 780.378,
+          "diffNm": 674.317,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 25,
+          "theoreticalThickness": 127.66,
+          "calibratedThickness": 939.302,
+          "diffNm": 811.641,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 28,
+          "theoreticalThickness": 150.46,
+          "calibratedThickness": 1107.06,
+          "diffNm": 956.6,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 30,
+          "theoreticalThickness": 166.291,
+          "calibratedThickness": 1223.539,
+          "diffNm": 1057.248,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 35,
+          "theoreticalThickness": 207.942,
+          "calibratedThickness": 1529.997,
+          "diffNm": 1322.056,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 40,
+          "theoreticalThickness": 252.365,
+          "calibratedThickness": 1856.859,
+          "diffNm": 1604.494,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 45,
+          "theoreticalThickness": 299.365,
+          "calibratedThickness": 2202.674,
+          "diffNm": 1903.309,
+          "diffPercent": 635.78
+        },
+        {
+          "solidsContent": 50,
+          "theoreticalThickness": 348.778,
+          "calibratedThickness": 2566.247,
+          "diffNm": 2217.469,
+          "diffPercent": 635.78
+        }
+      ],
+      "denseChartPoints": [
+        {
+          "solids": 0.5,
+          "theoretical": 0.439,
+          "calibrated": 3.231,
+          "lowerTolerance": 3.069,
+          "upperTolerance": 3.392
+        },
+        {
+          "solids": 0.8305,
+          "theoretical": 0.916,
+          "calibrated": 6.743,
+          "lowerTolerance": 6.406,
+          "upperTolerance": 7.08
+        },
+        {
+          "solids": 1.161,
+          "theoretical": 1.49,
+          "calibrated": 10.96,
+          "lowerTolerance": 10.412,
+          "upperTolerance": 11.508
+        },
+        {
+          "solids": 1.4915,
+          "theoretical": 2.142,
+          "calibrated": 15.76,
+          "lowerTolerance": 14.972,
+          "upperTolerance": 16.548
+        },
+        {
+          "solids": 1.822,
+          "theoretical": 2.863,
+          "calibrated": 21.067,
+          "lowerTolerance": 20.013,
+          "upperTolerance": 22.12
+        },
+        {
+          "solids": 2.1525,
+          "theoretical": 3.646,
+          "calibrated": 26.827,
+          "lowerTolerance": 25.486,
+          "upperTolerance": 28.168
+        },
+        {
+          "solids": 2.4831,
+          "theoretical": 4.485,
+          "calibrated": 33.001,
+          "lowerTolerance": 31.351,
+          "upperTolerance": 34.651
+        },
+        {
+          "solids": 2.8136,
+          "theoretical": 5.376,
+          "calibrated": 39.556,
+          "lowerTolerance": 37.578,
+          "upperTolerance": 41.534
+        },
+        {
+          "solids": 3.1441,
+          "theoretical": 6.315,
+          "calibrated": 46.468,
+          "lowerTolerance": 44.145,
+          "upperTolerance": 48.792
+        },
+        {
+          "solids": 3.4746,
+          "theoretical": 7.3,
+          "calibrated": 53.716,
+          "lowerTolerance": 51.03,
+          "upperTolerance": 56.401
+        },
+        {
+          "solids": 3.8051,
+          "theoretical": 8.329,
+          "calibrated": 61.28,
+          "lowerTolerance": 58.216,
+          "upperTolerance": 64.344
+        },
+        {
+          "solids": 4.1356,
+          "theoretical": 9.398,
+          "calibrated": 69.147,
+          "lowerTolerance": 65.689,
+          "upperTolerance": 72.604
+        },
+        {
+          "solids": 4.4661,
+          "theoretical": 10.506,
+          "calibrated": 77.302,
+          "lowerTolerance": 73.437,
+          "upperTolerance": 81.167
+        },
+        {
+          "solids": 4.7966,
+          "theoretical": 11.652,
+          "calibrated": 85.733,
+          "lowerTolerance": 81.446,
+          "upperTolerance": 90.019
+        },
+        {
+          "solids": 5.1271,
+          "theoretical": 12.834,
+          "calibrated": 94.43,
+          "lowerTolerance": 89.708,
+          "upperTolerance": 99.151
+        },
+        {
+          "solids": 5.4576,
+          "theoretical": 14.051,
+          "calibrated": 103.383,
+          "lowerTolerance": 98.214,
+          "upperTolerance": 108.552
+        },
+        {
+          "solids": 5.7881,
+          "theoretical": 15.301,
+          "calibrated": 112.583,
+          "lowerTolerance": 106.954,
+          "upperTolerance": 118.212
+        },
+        {
+          "solids": 6.1186,
+          "theoretical": 16.584,
+          "calibrated": 122.023,
+          "lowerTolerance": 115.922,
+          "upperTolerance": 128.124
+        },
+        {
+          "solids": 6.4492,
+          "theoretical": 17.899,
+          "calibrated": 131.695,
+          "lowerTolerance": 125.111,
+          "upperTolerance": 138.28
+        },
+        {
+          "solids": 6.7797,
+          "theoretical": 19.244,
+          "calibrated": 141.594,
+          "lowerTolerance": 134.514,
+          "upperTolerance": 148.673
+        },
+        {
+          "solids": 7.1102,
+          "theoretical": 20.619,
+          "calibrated": 151.711,
+          "lowerTolerance": 144.126,
+          "upperTolerance": 159.297
+        },
+        {
+          "solids": 7.4407,
+          "theoretical": 22.023,
+          "calibrated": 162.043,
+          "lowerTolerance": 153.941,
+          "upperTolerance": 170.145
+        },
+        {
+          "solids": 7.7712,
+          "theoretical": 23.456,
+          "calibrated": 172.583,
+          "lowerTolerance": 163.954,
+          "upperTolerance": 181.212
+        },
+        {
+          "solids": 8.1017,
+          "theoretical": 24.916,
+          "calibrated": 183.327,
+          "lowerTolerance": 174.161,
+          "upperTolerance": 192.494
+        },
+        {
+          "solids": 8.4322,
+          "theoretical": 26.403,
+          "calibrated": 194.27,
+          "lowerTolerance": 184.557,
+          "upperTolerance": 203.984
+        },
+        {
+          "solids": 8.7627,
+          "theoretical": 27.917,
+          "calibrated": 205.408,
+          "lowerTolerance": 195.138,
+          "upperTolerance": 215.679
+        },
+        {
+          "solids": 9.0932,
+          "theoretical": 29.457,
+          "calibrated": 216.737,
+          "lowerTolerance": 205.9,
+          "upperTolerance": 227.574
+        },
+        {
+          "solids": 9.4237,
+          "theoretical": 31.022,
+          "calibrated": 228.252,
+          "lowerTolerance": 216.84,
+          "upperTolerance": 239.665
+        },
+        {
+          "solids": 9.7542,
+          "theoretical": 32.612,
+          "calibrated": 239.951,
+          "lowerTolerance": 227.953,
+          "upperTolerance": 251.948
+        },
+        {
+          "solids": 10.0847,
+          "theoretical": 34.226,
+          "calibrated": 251.829,
+          "lowerTolerance": 239.238,
+          "upperTolerance": 264.421
+        },
+        {
+          "solids": 10.4153,
+          "theoretical": 35.864,
+          "calibrated": 263.884,
+          "lowerTolerance": 250.69,
+          "upperTolerance": 277.078
+        },
+        {
+          "solids": 10.7458,
+          "theoretical": 37.526,
+          "calibrated": 276.112,
+          "lowerTolerance": 262.307,
+          "upperTolerance": 289.918
+        },
+        {
+          "solids": 11.0763,
+          "theoretical": 39.211,
+          "calibrated": 288.511,
+          "lowerTolerance": 274.086,
+          "upperTolerance": 302.937
+        },
+        {
+          "solids": 11.4068,
+          "theoretical": 40.919,
+          "calibrated": 301.078,
+          "lowerTolerance": 286.024,
+          "upperTolerance": 316.131
+        },
+        {
+          "solids": 11.7373,
+          "theoretical": 42.65,
+          "calibrated": 313.809,
+          "lowerTolerance": 298.118,
+          "upperTolerance": 329.499
+        },
+        {
+          "solids": 12.0678,
+          "theoretical": 44.402,
+          "calibrated": 326.703,
+          "lowerTolerance": 310.367,
+          "upperTolerance": 343.038
+        },
+        {
+          "solids": 12.3983,
+          "theoretical": 46.176,
+          "calibrated": 339.756,
+          "lowerTolerance": 322.768,
+          "upperTolerance": 356.744
+        },
+        {
+          "solids": 12.7288,
+          "theoretical": 47.972,
+          "calibrated": 352.967,
+          "lowerTolerance": 335.319,
+          "upperTolerance": 370.616
+        },
+        {
+          "solids": 13.0593,
+          "theoretical": 49.788,
+          "calibrated": 366.334,
+          "lowerTolerance": 348.017,
+          "upperTolerance": 384.65
+        },
+        {
+          "solids": 13.3898,
+          "theoretical": 51.626,
+          "calibrated": 379.853,
+          "lowerTolerance": 360.861,
+          "upperTolerance": 398.846
+        },
+        {
+          "solids": 13.7203,
+          "theoretical": 53.484,
+          "calibrated": 393.524,
+          "lowerTolerance": 373.848,
+          "upperTolerance": 413.2
+        },
+        {
+          "solids": 14.0508,
+          "theoretical": 55.362,
+          "calibrated": 407.343,
+          "lowerTolerance": 386.976,
+          "upperTolerance": 427.711
+        },
+        {
+          "solids": 14.3814,
+          "theoretical": 57.26,
+          "calibrated": 421.31,
+          "lowerTolerance": 400.245,
+          "upperTolerance": 442.376
+        },
+        {
+          "solids": 14.7119,
+          "theoretical": 59.178,
+          "calibrated": 435.422,
+          "lowerTolerance": 413.651,
+          "upperTolerance": 457.193
+        },
+        {
+          "solids": 15.0424,
+          "theoretical": 61.116,
+          "calibrated": 449.677,
+          "lowerTolerance": 427.193,
+          "upperTolerance": 472.161
+        },
+        {
+          "solids": 15.3729,
+          "theoretical": 63.072,
+          "calibrated": 464.074,
+          "lowerTolerance": 440.87,
+          "upperTolerance": 487.278
+        },
+        {
+          "solids": 15.7034,
+          "theoretical": 65.048,
+          "calibrated": 478.611,
+          "lowerTolerance": 454.68,
+          "upperTolerance": 502.541
+        },
+        {
+          "solids": 16.0339,
+          "theoretical": 67.042,
+          "calibrated": 493.286,
+          "lowerTolerance": 468.622,
+          "upperTolerance": 517.95
+        },
+        {
+          "solids": 16.3644,
+          "theoretical": 69.055,
+          "calibrated": 508.098,
+          "lowerTolerance": 482.693,
+          "upperTolerance": 533.503
+        },
+        {
+          "solids": 16.6949,
+          "theoretical": 71.087,
+          "calibrated": 523.045,
+          "lowerTolerance": 496.893,
+          "upperTolerance": 549.197
+        },
+        {
+          "solids": 17.0254,
+          "theoretical": 73.137,
+          "calibrated": 538.126,
+          "lowerTolerance": 511.22,
+          "upperTolerance": 565.032
+        },
+        {
+          "solids": 17.3559,
+          "theoretical": 75.204,
+          "calibrated": 553.339,
+          "lowerTolerance": 525.672,
+          "upperTolerance": 581.006
+        },
+        {
+          "solids": 17.6864,
+          "theoretical": 77.29,
+          "calibrated": 568.684,
+          "lowerTolerance": 540.249,
+          "upperTolerance": 597.118
+        },
+        {
+          "solids": 18.0169,
+          "theoretical": 79.393,
+          "calibrated": 584.157,
+          "lowerTolerance": 554.949,
+          "upperTolerance": 613.365
+        },
+        {
+          "solids": 18.3475,
+          "theoretical": 81.513,
+          "calibrated": 599.759,
+          "lowerTolerance": 569.771,
+          "upperTolerance": 629.747
+        },
+        {
+          "solids": 18.678,
+          "theoretical": 83.651,
+          "calibrated": 615.488,
+          "lowerTolerance": 584.714,
+          "upperTolerance": 646.263
+        },
+        {
+          "solids": 19.0085,
+          "theoretical": 85.806,
+          "calibrated": 631.343,
+          "lowerTolerance": 599.776,
+          "upperTolerance": 662.91
+        },
+        {
+          "solids": 19.339,
+          "theoretical": 87.977,
+          "calibrated": 647.323,
+          "lowerTolerance": 614.957,
+          "upperTolerance": 679.689
+        },
+        {
+          "solids": 19.6695,
+          "theoretical": 90.166,
+          "calibrated": 663.425,
+          "lowerTolerance": 630.254,
+          "upperTolerance": 696.597
+        },
+        {
+          "solids": 20,
+          "theoretical": 92.371,
+          "calibrated": 679.65,
+          "lowerTolerance": 645.668,
+          "upperTolerance": 713.633
+        }
+      ]
+    },
+    {
+      "id": "thick_500_1000_preset",
+      "input": {
+        "resinType": "THICK_500_1000",
+        "spinSpeed": 2000,
+        "spinTime": 30,
+        "targetThickness": 750,
+        "tolerancePercent": null,
+        "measuredPoints": [
+          {
+            "id": "preset-pt-0",
+            "solidsContent": 15,
+            "thickness": 720,
+            "note": "中厚膜實測 (15.0 wt% -> 720.000 nm)"
+          }
+        ]
+      },
+      "prediction": {
+        "targetThickness": 750,
+        "recommendedSolids": 15.437476383406107,
+        "tolerancePercent": 5,
+        "lowerThickness": 712.5,
+        "lowerSolids": 14.889794513017724,
+        "upperThickness": 787.5,
+        "upperSolids": 15.977114508585442,
+        "spinSpeed": 2000,
+        "spinTime": 30,
+        "calibration": {
+          "mode": "single_point_shift",
+          "modeLabel": "單點平移校正 (1 數據點)",
+          "theoreticalC": 1200,
+          "calibratedC": 1186.1437017661076,
+          "theoreticalAlpha": 1.42,
+          "calibratedAlpha": 1.42,
+          "beta": 0.5,
+          "gamma": 0.16,
+          "scaleFactor": 0.9884530848050896,
+          "rSquared": 1,
+          "pointsCount": 1
+        },
+        "resin": {
+          "id": "THICK_500_1000",
+          "name": "中厚膜光阻 (500~1000nm)",
+          "fullName": "i-Line / Thick Photoresist & Planarization Layer (500 ~ 1000 nm)",
+          "modelName": "Meyerhofer 中厚膜流體揮發模型",
+          "recommendedThicknessRange": [
+            500,
+            1000
+          ],
+          "alpha": 1.42,
+          "beta": 0.5,
+          "gamma": 0.16,
+          "defaultC": 1200,
+          "description": "適用於 i-Line 步進機微影、中厚層絕緣或平坦化塗佈，兼具流動性與成膜均勻性。",
+          "typicalSolvents": [
+            "PGMEA",
+            "Ethyl Lactate",
+            "MAK"
+          ]
+        }
+      },
+      "curvePoints": [
+        {
+          "solidsContent": 0.5,
+          "theoreticalThickness": 5.819,
+          "calibratedThickness": 5.752,
+          "diffNm": -0.067,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 1,
+          "theoreticalThickness": 15.571,
+          "calibratedThickness": 15.392,
+          "diffNm": -0.18,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 1.5,
+          "theoreticalThickness": 27.693,
+          "calibratedThickness": 27.374,
+          "diffNm": -0.32,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 2,
+          "theoreticalThickness": 41.667,
+          "calibratedThickness": 41.186,
+          "diffNm": -0.481,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 3,
+          "theoreticalThickness": 74.104,
+          "calibratedThickness": 73.248,
+          "diffNm": -0.856,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 4,
+          "theoreticalThickness": 111.494,
+          "calibratedThickness": 110.207,
+          "diffNm": -1.287,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 5,
+          "theoreticalThickness": 153.061,
+          "calibratedThickness": 151.294,
+          "diffNm": -1.767,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 6,
+          "theoreticalThickness": 198.29,
+          "calibratedThickness": 196.001,
+          "diffNm": -2.29,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 7,
+          "theoreticalThickness": 246.812,
+          "calibratedThickness": 243.962,
+          "diffNm": -2.85,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 8,
+          "theoreticalThickness": 298.342,
+          "calibratedThickness": 294.897,
+          "diffNm": -3.445,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 9,
+          "theoreticalThickness": 352.656,
+          "calibratedThickness": 348.584,
+          "diffNm": -4.072,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 10,
+          "theoreticalThickness": 409.569,
+          "calibratedThickness": 404.84,
+          "diffNm": -4.729,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 12,
+          "theoreticalThickness": 530.596,
+          "calibratedThickness": 524.47,
+          "diffNm": -6.127,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 14,
+          "theoreticalThickness": 660.433,
+          "calibratedThickness": 652.807,
+          "diffNm": -7.626,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 16,
+          "theoreticalThickness": 798.32,
+          "calibratedThickness": 789.102,
+          "diffNm": -9.218,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 18,
+          "theoreticalThickness": 943.656,
+          "calibratedThickness": 932.76,
+          "diffNm": -10.896,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 20,
+          "theoreticalThickness": 1095.947,
+          "calibratedThickness": 1083.292,
+          "diffNm": -12.655,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 22,
+          "theoreticalThickness": 1254.778,
+          "calibratedThickness": 1240.29,
+          "diffNm": -14.489,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 25,
+          "theoreticalThickness": 1504.533,
+          "calibratedThickness": 1487.16,
+          "diffNm": -17.373,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 28,
+          "theoreticalThickness": 1767.223,
+          "calibratedThickness": 1746.817,
+          "diffNm": -20.406,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 30,
+          "theoreticalThickness": 1949.122,
+          "calibratedThickness": 1926.616,
+          "diffNm": -22.506,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 35,
+          "theoreticalThickness": 2426.071,
+          "calibratedThickness": 2398.057,
+          "diffNm": -28.014,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 40,
+          "theoreticalThickness": 2932.595,
+          "calibratedThickness": 2898.732,
+          "diffNm": -33.862,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 45,
+          "theoreticalThickness": 3466.479,
+          "calibratedThickness": 3426.452,
+          "diffNm": -40.027,
+          "diffPercent": -1.15
+        },
+        {
+          "solidsContent": 50,
+          "theoreticalThickness": 4025.912,
+          "calibratedThickness": 3979.425,
+          "diffNm": -46.487,
+          "diffPercent": -1.15
+        }
+      ],
+      "denseChartPoints": [
+        {
+          "solids": 0.5,
+          "theoretical": 5.819,
+          "calibrated": 5.752,
+          "lowerTolerance": 5.464,
+          "upperTolerance": 6.04
+        },
+        {
+          "solids": 0.8305,
+          "theoretical": 11.962,
+          "calibrated": 11.824,
+          "lowerTolerance": 11.232,
+          "upperTolerance": 12.415
+        },
+        {
+          "solids": 1.161,
+          "theoretical": 19.249,
+          "calibrated": 19.026,
+          "lowerTolerance": 18.075,
+          "upperTolerance": 19.978
+        },
+        {
+          "solids": 1.4915,
+          "theoretical": 27.472,
+          "calibrated": 27.154,
+          "lowerTolerance": 25.797,
+          "upperTolerance": 28.512
+        },
+        {
+          "solids": 1.822,
+          "theoretical": 36.502,
+          "calibrated": 36.081,
+          "lowerTolerance": 34.277,
+          "upperTolerance": 37.885
+        },
+        {
+          "solids": 2.1525,
+          "theoretical": 46.251,
+          "calibrated": 45.717,
+          "lowerTolerance": 43.431,
+          "upperTolerance": 48.002
+        },
+        {
+          "solids": 2.4831,
+          "theoretical": 56.651,
+          "calibrated": 55.997,
+          "lowerTolerance": 53.197,
+          "upperTolerance": 58.797
+        },
+        {
+          "solids": 2.8136,
+          "theoretical": 67.65,
+          "calibrated": 66.869,
+          "lowerTolerance": 63.526,
+          "upperTolerance": 70.213
+        },
+        {
+          "solids": 3.1441,
+          "theoretical": 79.207,
+          "calibrated": 78.293,
+          "lowerTolerance": 74.378,
+          "upperTolerance": 82.207
+        },
+        {
+          "solids": 3.4746,
+          "theoretical": 91.287,
+          "calibrated": 90.233,
+          "lowerTolerance": 85.721,
+          "upperTolerance": 94.744
+        },
+        {
+          "solids": 3.8051,
+          "theoretical": 103.859,
+          "calibrated": 102.66,
+          "lowerTolerance": 97.527,
+          "upperTolerance": 107.793
+        },
+        {
+          "solids": 4.1356,
+          "theoretical": 116.899,
+          "calibrated": 115.549,
+          "lowerTolerance": 109.772,
+          "upperTolerance": 121.327
+        },
+        {
+          "solids": 4.4661,
+          "theoretical": 130.384,
+          "calibrated": 128.879,
+          "lowerTolerance": 122.435,
+          "upperTolerance": 135.323
+        },
+        {
+          "solids": 4.7966,
+          "theoretical": 144.296,
+          "calibrated": 142.63,
+          "lowerTolerance": 135.498,
+          "upperTolerance": 149.761
+        },
+        {
+          "solids": 5.1271,
+          "theoretical": 158.616,
+          "calibrated": 156.784,
+          "lowerTolerance": 148.945,
+          "upperTolerance": 164.624
+        },
+        {
+          "solids": 5.4576,
+          "theoretical": 173.329,
+          "calibrated": 171.328,
+          "lowerTolerance": 162.762,
+          "upperTolerance": 179.894
+        },
+        {
+          "solids": 5.7881,
+          "theoretical": 188.422,
+          "calibrated": 186.246,
+          "lowerTolerance": 176.934,
+          "upperTolerance": 195.559
+        },
+        {
+          "solids": 6.1186,
+          "theoretical": 203.881,
+          "calibrated": 201.527,
+          "lowerTolerance": 191.451,
+          "upperTolerance": 211.603
+        },
+        {
+          "solids": 6.4492,
+          "theoretical": 219.695,
+          "calibrated": 217.158,
+          "lowerTolerance": 206.3,
+          "upperTolerance": 228.016
+        },
+        {
+          "solids": 6.7797,
+          "theoretical": 235.853,
+          "calibrated": 233.13,
+          "lowerTolerance": 221.474,
+          "upperTolerance": 244.787
+        },
+        {
+          "solids": 7.1102,
+          "theoretical": 252.346,
+          "calibrated": 249.432,
+          "lowerTolerance": 236.961,
+          "upperTolerance": 261.904
+        },
+        {
+          "solids": 7.4407,
+          "theoretical": 269.164,
+          "calibrated": 266.056,
+          "lowerTolerance": 252.753,
+          "upperTolerance": 279.359
+        },
+        {
+          "solids": 7.7712,
+          "theoretical": 286.298,
+          "calibrated": 282.992,
+          "lowerTolerance": 268.843,
+          "upperTolerance": 297.142
+        },
+        {
+          "solids": 8.1017,
+          "theoretical": 303.742,
+          "calibrated": 300.235,
+          "lowerTolerance": 285.223,
+          "upperTolerance": 315.246
+        },
+        {
+          "solids": 8.4322,
+          "theoretical": 321.487,
+          "calibrated": 317.775,
+          "lowerTolerance": 301.886,
+          "upperTolerance": 333.663
+        },
+        {
+          "solids": 8.7627,
+          "theoretical": 339.526,
+          "calibrated": 335.606,
+          "lowerTolerance": 318.826,
+          "upperTolerance": 352.386
+        },
+        {
+          "solids": 9.0932,
+          "theoretical": 357.854,
+          "calibrated": 353.722,
+          "lowerTolerance": 336.036,
+          "upperTolerance": 371.408
+        },
+        {
+          "solids": 9.4237,
+          "theoretical": 376.464,
+          "calibrated": 372.117,
+          "lowerTolerance": 353.511,
+          "upperTolerance": 390.723
+        },
+        {
+          "solids": 9.7542,
+          "theoretical": 395.35,
+          "calibrated": 390.785,
+          "lowerTolerance": 371.245,
+          "upperTolerance": 410.324
+        },
+        {
+          "solids": 10.0847,
+          "theoretical": 414.506,
+          "calibrated": 409.72,
+          "lowerTolerance": 389.234,
+          "upperTolerance": 430.206
+        },
+        {
+          "solids": 10.4153,
+          "theoretical": 433.928,
+          "calibrated": 428.918,
+          "lowerTolerance": 407.472,
+          "upperTolerance": 450.364
+        },
+        {
+          "solids": 10.7458,
+          "theoretical": 453.611,
+          "calibrated": 448.373,
+          "lowerTolerance": 425.955,
+          "upperTolerance": 470.792
+        },
+        {
+          "solids": 11.0763,
+          "theoretical": 473.55,
+          "calibrated": 468.082,
+          "lowerTolerance": 444.678,
+          "upperTolerance": 491.486
+        },
+        {
+          "solids": 11.4068,
+          "theoretical": 493.74,
+          "calibrated": 488.039,
+          "lowerTolerance": 463.637,
+          "upperTolerance": 512.441
+        },
+        {
+          "solids": 11.7373,
+          "theoretical": 514.178,
+          "calibrated": 508.24,
+          "lowerTolerance": 482.828,
+          "upperTolerance": 533.652
+        },
+        {
+          "solids": 12.0678,
+          "theoretical": 534.858,
+          "calibrated": 528.682,
+          "lowerTolerance": 502.248,
+          "upperTolerance": 555.116
+        },
+        {
+          "solids": 12.3983,
+          "theoretical": 555.778,
+          "calibrated": 549.36,
+          "lowerTolerance": 521.892,
+          "upperTolerance": 576.828
+        },
+        {
+          "solids": 12.7288,
+          "theoretical": 576.933,
+          "calibrated": 570.272,
+          "lowerTolerance": 541.758,
+          "upperTolerance": 598.785
+        },
+        {
+          "solids": 13.0593,
+          "theoretical": 598.321,
+          "calibrated": 591.412,
+          "lowerTolerance": 561.841,
+          "upperTolerance": 620.983
+        },
+        {
+          "solids": 13.3898,
+          "theoretical": 619.937,
+          "calibrated": 612.779,
+          "lowerTolerance": 582.14,
+          "upperTolerance": 643.417
+        },
+        {
+          "solids": 13.7203,
+          "theoretical": 641.778,
+          "calibrated": 634.368,
+          "lowerTolerance": 602.649,
+          "upperTolerance": 666.086
+        },
+        {
+          "solids": 14.0508,
+          "theoretical": 663.842,
+          "calibrated": 656.176,
+          "lowerTolerance": 623.367,
+          "upperTolerance": 688.985
+        },
+        {
+          "solids": 14.3814,
+          "theoretical": 686.124,
+          "calibrated": 678.201,
+          "lowerTolerance": 644.291,
+          "upperTolerance": 712.111
+        },
+        {
+          "solids": 14.7119,
+          "theoretical": 708.623,
+          "calibrated": 700.44,
+          "lowerTolerance": 665.418,
+          "upperTolerance": 735.462
+        },
+        {
+          "solids": 15.0424,
+          "theoretical": 731.335,
+          "calibrated": 722.89,
+          "lowerTolerance": 686.745,
+          "upperTolerance": 759.034
+        },
+        {
+          "solids": 15.3729,
+          "theoretical": 754.257,
+          "calibrated": 745.548,
+          "lowerTolerance": 708.27,
+          "upperTolerance": 782.825
+        },
+        {
+          "solids": 15.7034,
+          "theoretical": 777.387,
+          "calibrated": 768.411,
+          "lowerTolerance": 729.99,
+          "upperTolerance": 806.832
+        },
+        {
+          "solids": 16.0339,
+          "theoretical": 800.723,
+          "calibrated": 791.477,
+          "lowerTolerance": 751.903,
+          "upperTolerance": 831.051
+        },
+        {
+          "solids": 16.3644,
+          "theoretical": 824.262,
+          "calibrated": 814.744,
+          "lowerTolerance": 774.007,
+          "upperTolerance": 855.481
+        },
+        {
+          "solids": 16.6949,
+          "theoretical": 848.001,
+          "calibrated": 838.209,
+          "lowerTolerance": 796.299,
+          "upperTolerance": 880.12
+        },
+        {
+          "solids": 17.0254,
+          "theoretical": 871.939,
+          "calibrated": 861.87,
+          "lowerTolerance": 818.777,
+          "upperTolerance": 904.964
+        },
+        {
+          "solids": 17.3559,
+          "theoretical": 896.072,
+          "calibrated": 885.725,
+          "lowerTolerance": 841.439,
+          "upperTolerance": 930.011
+        },
+        {
+          "solids": 17.6864,
+          "theoretical": 920.399,
+          "calibrated": 909.772,
+          "lowerTolerance": 864.283,
+          "upperTolerance": 955.26
+        },
+        {
+          "solids": 18.0169,
+          "theoretical": 944.918,
+          "calibrated": 934.007,
+          "lowerTolerance": 887.307,
+          "upperTolerance": 980.708
+        },
+        {
+          "solids": 18.3475,
+          "theoretical": 969.627,
+          "calibrated": 958.431,
+          "lowerTolerance": 910.509,
+          "upperTolerance": 1006.352
+        },
+        {
+          "solids": 18.678,
+          "theoretical": 994.523,
+          "calibrated": 983.039,
+          "lowerTolerance": 933.887,
+          "upperTolerance": 1032.191
+        },
+        {
+          "solids": 19.0085,
+          "theoretical": 1019.605,
+          "calibrated": 1007.832,
+          "lowerTolerance": 957.44,
+          "upperTolerance": 1058.223
+        },
+        {
+          "solids": 19.339,
+          "theoretical": 1044.871,
+          "calibrated": 1032.806,
+          "lowerTolerance": 981.166,
+          "upperTolerance": 1084.446
+        },
+        {
+          "solids": 19.6695,
+          "theoretical": 1070.319,
+          "calibrated": 1057.96,
+          "lowerTolerance": 1005.062,
+          "upperTolerance": 1110.858
+        },
+        {
+          "solids": 20,
+          "theoretical": 1095.947,
+          "calibrated": 1083.292,
+          "lowerTolerance": 1029.127,
+          "upperTolerance": 1137.457
+        }
+      ]
+    },
+    {
+      "id": "thick_1000_5000_preset",
+      "input": {
+        "resinType": "THICK_1000_5000",
+        "spinSpeed": 1500,
+        "spinTime": 30,
+        "targetThickness": 3000,
+        "tolerancePercent": null,
+        "measuredPoints": [
+          {
+            "id": "preset-pt-0",
+            "solidsContent": 12,
+            "thickness": 2350,
+            "note": "濃度 12%"
+          },
+          {
+            "id": "preset-pt-1",
+            "solidsContent": 18,
+            "thickness": 4100,
+            "note": "濃度 18%"
+          }
+        ]
+      },
+      "prediction": {
+        "targetThickness": 3000,
+        "recommendedSolids": 14.336450849419183,
+        "tolerancePercent": 5,
+        "lowerThickness": 2850,
+        "lowerSolids": 13.810620449910491,
+        "upperThickness": 3150,
+        "upperSolids": 14.855188121053878,
+        "spinSpeed": 1500,
+        "spinTime": 30,
+        "calibration": {
+          "mode": "multi_point_lsq",
+          "modeLabel": "多點最小平方法擬合 (2 數據點)",
+          "theoreticalC": 3800,
+          "calibratedC": 4323.099137928656,
+          "theoreticalAlpha": 1.5,
+          "calibratedAlpha": 1.3726745764908574,
+          "beta": 0.48,
+          "gamma": 0.15,
+          "scaleFactor": 0.8290951776818533,
+          "rSquared": 0.9999999999999999,
+          "pointsCount": 2
+        },
+        "resin": {
+          "id": "THICK_1000_5000",
+          "name": "超厚膜/封裝介電 (1000~5000nm)",
+          "fullName": "Ultra-Thick Photoresist & Packaging Dielectric (1000 ~ 5000 nm / 1~5µm)",
+          "modelName": "High-Viscosity Thick Film 非牛頓黏性模型",
+          "recommendedThicknessRange": [
+            1000,
+            5000
+          ],
+          "alpha": 1.5,
+          "beta": 0.48,
+          "gamma": 0.15,
+          "defaultC": 3800,
+          "description": "適用於先進封裝 RDL 重佈線層、Bump 凸塊遮罩與厚膜光阻，具備高固含量與高黏滯特性。",
+          "typicalSolvents": [
+            "PGMEA",
+            "Cyclohexanone",
+            "gamma-Butyrolactone (GBL)"
+          ]
+        }
+      },
+      "curvePoints": [
+        {
+          "solidsContent": 0.5,
+          "theoreticalThickness": 24.107,
+          "calibratedThickness": 29.956,
+          "diffNm": 5.849,
+          "diffPercent": 24.26
+        },
+        {
+          "solidsContent": 1,
+          "theoreticalThickness": 68.185,
+          "calibratedThickness": 77.572,
+          "diffNm": 9.386,
+          "diffPercent": 13.77
+        },
+        {
+          "solidsContent": 1.5,
+          "theoreticalThickness": 125.265,
+          "calibratedThickness": 135.338,
+          "diffNm": 10.073,
+          "diffPercent": 8.04
+        },
+        {
+          "solidsContent": 2,
+          "theoreticalThickness": 192.858,
+          "calibratedThickness": 200.872,
+          "diffNm": 8.014,
+          "diffPercent": 4.16
+        },
+        {
+          "solidsContent": 3,
+          "theoreticalThickness": 354.302,
+          "calibratedThickness": 350.458,
+          "diffNm": -3.844,
+          "diffPercent": -1.09
+        },
+        {
+          "solidsContent": 4,
+          "theoreticalThickness": 545.483,
+          "calibratedThickness": 520.158,
+          "diffNm": -25.325,
+          "diffPercent": -4.64
+        },
+        {
+          "solidsContent": 5,
+          "theoreticalThickness": 762.336,
+          "calibratedThickness": 706.58,
+          "diffNm": -55.756,
+          "diffPercent": -7.31
+        },
+        {
+          "solidsContent": 6,
+          "theoreticalThickness": 1002.117,
+          "calibratedThickness": 907.51,
+          "diffNm": -94.607,
+          "diffPercent": -9.44
+        },
+        {
+          "solidsContent": 7,
+          "theoreticalThickness": 1262.812,
+          "calibratedThickness": 1121.367,
+          "diffNm": -141.445,
+          "diffPercent": -11.2
+        },
+        {
+          "solidsContent": 8,
+          "theoreticalThickness": 1542.86,
+          "calibratedThickness": 1346.951,
+          "diffNm": -195.909,
+          "diffPercent": -12.7
+        },
+        {
+          "solidsContent": 9,
+          "theoreticalThickness": 1841.007,
+          "calibratedThickness": 1583.316,
+          "diffNm": -257.691,
+          "diffPercent": -14
+        },
+        {
+          "solidsContent": 10,
+          "theoreticalThickness": 2156.213,
+          "calibratedThickness": 1829.691,
+          "diffNm": -326.522,
+          "diffPercent": -15.14
+        },
+        {
+          "solidsContent": 12,
+          "theoreticalThickness": 2834.415,
+          "calibratedThickness": 2350,
+          "diffNm": -484.415,
+          "diffPercent": -17.09
+        },
+        {
+          "solidsContent": 14,
+          "theoreticalThickness": 3571.771,
+          "calibratedThickness": 2903.782,
+          "diffNm": -667.989,
+          "diffPercent": -18.7
+        },
+        {
+          "solidsContent": 16,
+          "theoreticalThickness": 4363.868,
+          "calibratedThickness": 3487.933,
+          "diffNm": -875.935,
+          "diffPercent": -20.07
+        },
+        {
+          "solidsContent": 18,
+          "theoreticalThickness": 5207.153,
+          "calibratedThickness": 4100,
+          "diffNm": -1107.153,
+          "diffPercent": -21.26
+        },
+        {
+          "solidsContent": 20,
+          "theoreticalThickness": 6098.691,
+          "calibratedThickness": 4737.988,
+          "diffNm": -1360.702,
+          "diffPercent": -22.31
+        },
+        {
+          "solidsContent": 22,
+          "theoreticalThickness": 7035.997,
+          "calibratedThickness": 5400.235,
+          "diffNm": -1635.761,
+          "diffPercent": -23.25
+        },
+        {
+          "solidsContent": 25,
+          "theoreticalThickness": 8523.179,
+          "calibratedThickness": 6436.057,
+          "diffNm": -2087.122,
+          "diffPercent": -24.49
+        },
+        {
+          "solidsContent": 28,
+          "theoreticalThickness": 10102.495,
+          "calibratedThickness": 7519.349,
+          "diffNm": -2583.146,
+          "diffPercent": -25.57
+        },
+        {
+          "solidsContent": 30,
+          "theoreticalThickness": 11204.01,
+          "calibratedThickness": 8266.278,
+          "diffNm": -2937.732,
+          "diffPercent": -26.22
+        },
+        {
+          "solidsContent": 35,
+          "theoreticalThickness": 14118.666,
+          "calibratedThickness": 10214.242,
+          "diffNm": -3904.424,
+          "diffPercent": -27.65
+        },
+        {
+          "solidsContent": 40,
+          "theoreticalThickness": 17249.702,
+          "calibratedThickness": 12269.03,
+          "diffNm": -4980.672,
+          "diffPercent": -28.87
+        },
+        {
+          "solidsContent": 45,
+          "theoreticalThickness": 20583.081,
+          "calibratedThickness": 14422.017,
+          "diffNm": -6161.064,
+          "diffPercent": -29.93
+        },
+        {
+          "solidsContent": 50,
+          "theoreticalThickness": 24107.191,
+          "calibratedThickness": 16666.183,
+          "diffNm": -7441.009,
+          "diffPercent": -30.87
+        }
+      ],
+      "denseChartPoints": [
+        {
+          "solids": 0.5,
+          "theoretical": 24.107,
+          "calibrated": 29.956,
+          "lowerTolerance": 28.458,
+          "upperTolerance": 31.454
+        },
+        {
+          "solids": 0.8305,
+          "theoretical": 51.607,
+          "calibrated": 60.116,
+          "lowerTolerance": 57.11,
+          "upperTolerance": 63.122
+        },
+        {
+          "solids": 1.161,
+          "theoretical": 85.3,
+          "calibrated": 95.215,
+          "lowerTolerance": 90.454,
+          "upperTolerance": 99.976
+        },
+        {
+          "solids": 1.4915,
+          "theoretical": 124.205,
+          "calibrated": 134.289,
+          "lowerTolerance": 127.575,
+          "upperTolerance": 141.004
+        },
+        {
+          "solids": 1.822,
+          "theoretical": 167.697,
+          "calibrated": 176.751,
+          "lowerTolerance": 167.914,
+          "upperTolerance": 185.589
+        },
+        {
+          "solids": 2.1525,
+          "theoretical": 215.337,
+          "calibrated": 222.197,
+          "lowerTolerance": 211.087,
+          "upperTolerance": 233.307
+        },
+        {
+          "solids": 2.4831,
+          "theoretical": 266.79,
+          "calibrated": 270.327,
+          "lowerTolerance": 256.811,
+          "upperTolerance": 283.844
+        },
+        {
+          "solids": 2.8136,
+          "theoretical": 321.792,
+          "calibrated": 320.912,
+          "lowerTolerance": 304.866,
+          "upperTolerance": 336.957
+        },
+        {
+          "solids": 3.1441,
+          "theoretical": 380.128,
+          "calibrated": 373.764,
+          "lowerTolerance": 355.076,
+          "upperTolerance": 392.452
+        },
+        {
+          "solids": 3.4746,
+          "theoretical": 441.616,
+          "calibrated": 428.732,
+          "lowerTolerance": 407.295,
+          "upperTolerance": 450.168
+        },
+        {
+          "solids": 3.8051,
+          "theoretical": 506.102,
+          "calibrated": 485.685,
+          "lowerTolerance": 461.401,
+          "upperTolerance": 509.969
+        },
+        {
+          "solids": 4.1356,
+          "theoretical": 573.454,
+          "calibrated": 544.514,
+          "lowerTolerance": 517.288,
+          "upperTolerance": 571.74
+        },
+        {
+          "solids": 4.4661,
+          "theoretical": 643.553,
+          "calibrated": 605.123,
+          "lowerTolerance": 574.867,
+          "upperTolerance": 635.379
+        },
+        {
+          "solids": 4.7966,
+          "theoretical": 716.297,
+          "calibrated": 667.428,
+          "lowerTolerance": 634.057,
+          "upperTolerance": 700.8
+        },
+        {
+          "solids": 5.1271,
+          "theoretical": 791.592,
+          "calibrated": 731.355,
+          "lowerTolerance": 694.787,
+          "upperTolerance": 767.923
+        },
+        {
+          "solids": 5.4576,
+          "theoretical": 869.355,
+          "calibrated": 796.837,
+          "lowerTolerance": 756.995,
+          "upperTolerance": 836.679
+        },
+        {
+          "solids": 5.7881,
+          "theoretical": 949.51,
+          "calibrated": 863.815,
+          "lowerTolerance": 820.624,
+          "upperTolerance": 907.006
+        },
+        {
+          "solids": 6.1186,
+          "theoretical": 1031.987,
+          "calibrated": 932.234,
+          "lowerTolerance": 885.622,
+          "upperTolerance": 978.845
+        },
+        {
+          "solids": 6.4492,
+          "theoretical": 1116.723,
+          "calibrated": 1002.044,
+          "lowerTolerance": 951.942,
+          "upperTolerance": 1052.146
+        },
+        {
+          "solids": 6.7797,
+          "theoretical": 1203.659,
+          "calibrated": 1073.201,
+          "lowerTolerance": 1019.541,
+          "upperTolerance": 1126.862
+        },
+        {
+          "solids": 7.1102,
+          "theoretical": 1292.741,
+          "calibrated": 1145.664,
+          "lowerTolerance": 1088.381,
+          "upperTolerance": 1202.947
+        },
+        {
+          "solids": 7.4407,
+          "theoretical": 1383.918,
+          "calibrated": 1219.393,
+          "lowerTolerance": 1158.423,
+          "upperTolerance": 1280.362
+        },
+        {
+          "solids": 7.7712,
+          "theoretical": 1477.143,
+          "calibrated": 1294.352,
+          "lowerTolerance": 1229.635,
+          "upperTolerance": 1359.07
+        },
+        {
+          "solids": 8.1017,
+          "theoretical": 1572.372,
+          "calibrated": 1370.51,
+          "lowerTolerance": 1301.985,
+          "upperTolerance": 1439.036
+        },
+        {
+          "solids": 8.4322,
+          "theoretical": 1669.565,
+          "calibrated": 1447.835,
+          "lowerTolerance": 1375.443,
+          "upperTolerance": 1520.226
+        },
+        {
+          "solids": 8.7627,
+          "theoretical": 1768.681,
+          "calibrated": 1526.297,
+          "lowerTolerance": 1449.982,
+          "upperTolerance": 1602.612
+        },
+        {
+          "solids": 9.0932,
+          "theoretical": 1869.684,
+          "calibrated": 1605.871,
+          "lowerTolerance": 1525.577,
+          "upperTolerance": 1686.164
+        },
+        {
+          "solids": 9.4237,
+          "theoretical": 1972.54,
+          "calibrated": 1686.53,
+          "lowerTolerance": 1602.203,
+          "upperTolerance": 1770.856
+        },
+        {
+          "solids": 9.7542,
+          "theoretical": 2077.216,
+          "calibrated": 1768.25,
+          "lowerTolerance": 1679.838,
+          "upperTolerance": 1856.663
+        },
+        {
+          "solids": 10.0847,
+          "theoretical": 2183.68,
+          "calibrated": 1851.009,
+          "lowerTolerance": 1758.459,
+          "upperTolerance": 1943.56
+        },
+        {
+          "solids": 10.4153,
+          "theoretical": 2291.904,
+          "calibrated": 1934.785,
+          "lowerTolerance": 1838.046,
+          "upperTolerance": 2031.525
+        },
+        {
+          "solids": 10.7458,
+          "theoretical": 2401.859,
+          "calibrated": 2019.558,
+          "lowerTolerance": 1918.58,
+          "upperTolerance": 2120.536
+        },
+        {
+          "solids": 11.0763,
+          "theoretical": 2513.518,
+          "calibrated": 2105.308,
+          "lowerTolerance": 2000.043,
+          "upperTolerance": 2210.574
+        },
+        {
+          "solids": 11.4068,
+          "theoretical": 2626.855,
+          "calibrated": 2192.018,
+          "lowerTolerance": 2082.417,
+          "upperTolerance": 2301.619
+        },
+        {
+          "solids": 11.7373,
+          "theoretical": 2741.847,
+          "calibrated": 2279.668,
+          "lowerTolerance": 2165.685,
+          "upperTolerance": 2393.652
+        },
+        {
+          "solids": 12.0678,
+          "theoretical": 2858.47,
+          "calibrated": 2368.244,
+          "lowerTolerance": 2249.832,
+          "upperTolerance": 2486.656
+        },
+        {
+          "solids": 12.3983,
+          "theoretical": 2976.7,
+          "calibrated": 2457.728,
+          "lowerTolerance": 2334.842,
+          "upperTolerance": 2580.615
+        },
+        {
+          "solids": 12.7288,
+          "theoretical": 3096.517,
+          "calibrated": 2548.106,
+          "lowerTolerance": 2420.701,
+          "upperTolerance": 2675.511
+        },
+        {
+          "solids": 13.0593,
+          "theoretical": 3217.9,
+          "calibrated": 2639.363,
+          "lowerTolerance": 2507.395,
+          "upperTolerance": 2771.331
+        },
+        {
+          "solids": 13.3898,
+          "theoretical": 3340.829,
+          "calibrated": 2731.484,
+          "lowerTolerance": 2594.91,
+          "upperTolerance": 2868.059
+        },
+        {
+          "solids": 13.7203,
+          "theoretical": 3465.284,
+          "calibrated": 2824.457,
+          "lowerTolerance": 2683.234,
+          "upperTolerance": 2965.68
+        },
+        {
+          "solids": 14.0508,
+          "theoretical": 3591.248,
+          "calibrated": 2918.269,
+          "lowerTolerance": 2772.355,
+          "upperTolerance": 3064.182
+        },
+        {
+          "solids": 14.3814,
+          "theoretical": 3718.702,
+          "calibrated": 3012.906,
+          "lowerTolerance": 2862.261,
+          "upperTolerance": 3163.551
+        },
+        {
+          "solids": 14.7119,
+          "theoretical": 3847.629,
+          "calibrated": 3108.358,
+          "lowerTolerance": 2952.94,
+          "upperTolerance": 3263.776
+        },
+        {
+          "solids": 15.0424,
+          "theoretical": 3978.012,
+          "calibrated": 3204.612,
+          "lowerTolerance": 3044.381,
+          "upperTolerance": 3364.842
+        },
+        {
+          "solids": 15.3729,
+          "theoretical": 4109.836,
+          "calibrated": 3301.657,
+          "lowerTolerance": 3136.574,
+          "upperTolerance": 3466.74
+        },
+        {
+          "solids": 15.7034,
+          "theoretical": 4243.085,
+          "calibrated": 3399.484,
+          "lowerTolerance": 3229.509,
+          "upperTolerance": 3569.458
+        },
+        {
+          "solids": 16.0339,
+          "theoretical": 4377.743,
+          "calibrated": 3498.08,
+          "lowerTolerance": 3323.176,
+          "upperTolerance": 3672.984
+        },
+        {
+          "solids": 16.3644,
+          "theoretical": 4513.797,
+          "calibrated": 3597.437,
+          "lowerTolerance": 3417.565,
+          "upperTolerance": 3777.309
+        },
+        {
+          "solids": 16.6949,
+          "theoretical": 4651.231,
+          "calibrated": 3697.545,
+          "lowerTolerance": 3512.668,
+          "upperTolerance": 3882.422
+        },
+        {
+          "solids": 17.0254,
+          "theoretical": 4790.033,
+          "calibrated": 3798.394,
+          "lowerTolerance": 3608.474,
+          "upperTolerance": 3988.314
+        },
+        {
+          "solids": 17.3559,
+          "theoretical": 4930.188,
+          "calibrated": 3899.976,
+          "lowerTolerance": 3704.977,
+          "upperTolerance": 4094.974
+        },
+        {
+          "solids": 17.6864,
+          "theoretical": 5071.685,
+          "calibrated": 4002.28,
+          "lowerTolerance": 3802.166,
+          "upperTolerance": 4202.394
+        },
+        {
+          "solids": 18.0169,
+          "theoretical": 5214.51,
+          "calibrated": 4105.3,
+          "lowerTolerance": 3900.035,
+          "upperTolerance": 4310.565
+        },
+        {
+          "solids": 18.3475,
+          "theoretical": 5358.651,
+          "calibrated": 4209.027,
+          "lowerTolerance": 3998.576,
+          "upperTolerance": 4419.478
+        },
+        {
+          "solids": 18.678,
+          "theoretical": 5504.096,
+          "calibrated": 4313.452,
+          "lowerTolerance": 4097.78,
+          "upperTolerance": 4529.125
+        },
+        {
+          "solids": 19.0085,
+          "theoretical": 5650.833,
+          "calibrated": 4418.569,
+          "lowerTolerance": 4197.64,
+          "upperTolerance": 4639.497
+        },
+        {
+          "solids": 19.339,
+          "theoretical": 5798.852,
+          "calibrated": 4524.368,
+          "lowerTolerance": 4298.15,
+          "upperTolerance": 4750.587
+        },
+        {
+          "solids": 19.6695,
+          "theoretical": 5948.142,
+          "calibrated": 4630.844,
+          "lowerTolerance": 4399.302,
+          "upperTolerance": 4862.386
+        },
+        {
+          "solids": 20,
+          "theoretical": 6098.691,
+          "calibrated": 4737.988,
+          "lowerTolerance": 4501.089,
+          "upperTolerance": 4974.888
+        }
+      ]
+    },
+    {
+      "id": "thick_2000_20000_preset",
+      "input": {
+        "resinType": "THICK_2000_20000",
+        "spinSpeed": 1500,
+        "spinTime": 35,
+        "targetThickness": 10000,
+        "tolerancePercent": null,
+        "measuredPoints": [
+          {
+            "id": "preset-pt-0",
+            "solidsContent": 28,
+            "thickness": 9800,
+            "note": "高黏度 PI 樣品 (28.0 wt% -> 9800.000 nm)"
+          }
+        ]
+      },
+      "prediction": {
+        "targetThickness": 10000,
+        "recommendedSolids": 28.35578886926582,
+        "tolerancePercent": 5,
+        "lowerThickness": 9500,
+        "lowerSolids": 27.461166880282,
+        "upperThickness": 10500,
+        "upperSolids": 29.233784820644573,
+        "spinSpeed": 1500,
+        "spinTime": 35,
+        "calibration": {
+          "mode": "single_point_shift",
+          "modeLabel": "單點平移校正 (1 數據點)",
+          "theoreticalC": 18000,
+          "calibratedC": 1951.2030107936619,
+          "theoreticalAlpha": 1.6,
+          "calibratedAlpha": 1.6,
+          "beta": 0.45,
+          "gamma": 0.12,
+          "scaleFactor": 0.10840016726631455,
+          "rSquared": 1,
+          "pointsCount": 1
+        },
+        "resin": {
+          "id": "THICK_2000_20000",
+          "name": "高黏度PI/SU-8厚膜 (2000~20000nm)",
+          "fullName": "High-Viscosity Polyimide & Thick SU-8 Layer (2000 ~ 20000 nm / 2~20µm)",
+          "modelName": "Polymer Viscous Flow & Evaporation 聚合物高黏厚膜模型",
+          "recommendedThicknessRange": [
+            2000,
+            20000
+          ],
+          "alpha": 1.6,
+          "beta": 0.45,
+          "gamma": 0.12,
+          "defaultC": 18000,
+          "description": "適用於 MEMS 結構、應力緩衝鈍化層 (Polyimide / PI) 及超厚結構 SU-8 (最高可達 20µm)。",
+          "typicalSolvents": [
+            "NMP",
+            "GBL",
+            "Cyclopentanone"
+          ]
+        }
+      },
+      "curvePoints": [
+        {
+          "solidsContent": 0.5,
+          "theoreticalThickness": 144.243,
+          "calibratedThickness": 15.636,
+          "diffNm": -128.607,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 1,
+          "theoreticalThickness": 437.264,
+          "calibratedThickness": 47.399,
+          "diffNm": -389.864,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 1.5,
+          "theoreticalThickness": 836.545,
+          "calibratedThickness": 90.682,
+          "diffNm": -745.863,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 2,
+          "theoreticalThickness": 1325.535,
+          "calibratedThickness": 143.688,
+          "diffNm": -1181.847,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 3,
+          "theoreticalThickness": 2535.93,
+          "calibratedThickness": 274.895,
+          "diffNm": -2261.035,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 4,
+          "theoreticalThickness": 4018.271,
+          "calibratedThickness": 435.581,
+          "diffNm": -3582.69,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 5,
+          "theoreticalThickness": 5742.424,
+          "calibratedThickness": 622.48,
+          "diffNm": -5119.945,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 6,
+          "theoreticalThickness": 7687.503,
+          "calibratedThickness": 833.327,
+          "diffNm": -6854.176,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 7,
+          "theoreticalThickness": 9837.849,
+          "calibratedThickness": 1066.424,
+          "diffNm": -8771.424,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 8,
+          "theoreticalThickness": 12181.121,
+          "calibratedThickness": 1320.436,
+          "diffNm": -10860.685,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 9,
+          "theoreticalThickness": 14707.244,
+          "calibratedThickness": 1594.268,
+          "diffNm": -13112.976,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 10,
+          "theoreticalThickness": 17407.775,
+          "calibratedThickness": 1887.006,
+          "diffNm": -15520.77,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 12,
+          "theoreticalThickness": 23304.15,
+          "calibratedThickness": 2526.174,
+          "diffNm": -20777.976,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 14,
+          "theoreticalThickness": 29822.78,
+          "calibratedThickness": 3232.794,
+          "diffNm": -26589.986,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 16,
+          "theoreticalThickness": 36926.253,
+          "calibratedThickness": 4002.812,
+          "diffNm": -32923.441,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 18,
+          "theoreticalThickness": 44584.026,
+          "calibratedThickness": 4832.916,
+          "diffNm": -39751.11,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 20,
+          "theoreticalThickness": 52770.507,
+          "calibratedThickness": 5720.332,
+          "diffNm": -47050.175,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 22,
+          "theoreticalThickness": 61463.822,
+          "calibratedThickness": 6662.689,
+          "diffNm": -54801.133,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 25,
+          "theoreticalThickness": 75413.186,
+          "calibratedThickness": 8174.802,
+          "diffNm": -67238.384,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 28,
+          "theoreticalThickness": 90405.765,
+          "calibratedThickness": 9800,
+          "diffNm": -80605.765,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 30,
+          "theoreticalThickness": 100957.196,
+          "calibratedThickness": 10943.777,
+          "diffNm": -90013.419,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 35,
+          "theoreticalThickness": 129196.915,
+          "calibratedThickness": 14004.967,
+          "diffNm": -115191.948,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 40,
+          "theoreticalThickness": 159970.263,
+          "calibratedThickness": 17340.803,
+          "diffNm": -142629.46,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 45,
+          "theoreticalThickness": 193144.922,
+          "calibratedThickness": 20936.942,
+          "diffNm": -172207.98,
+          "diffPercent": -89.16
+        },
+        {
+          "solidsContent": 50,
+          "theoreticalThickness": 228610.03,
+          "calibratedThickness": 24781.365,
+          "diffNm": -203828.664,
+          "diffPercent": -89.16
+        }
+      ],
+      "denseChartPoints": [
+        {
+          "solids": 0.5,
+          "theoretical": 144.243,
+          "calibrated": 15.636,
+          "lowerTolerance": 14.854,
+          "upperTolerance": 16.418
+        },
+        {
+          "solids": 0.8305,
+          "theoretical": 324.858,
+          "calibrated": 35.215,
+          "lowerTolerance": 33.454,
+          "upperTolerance": 36.975
+        },
+        {
+          "solids": 1.161,
+          "theoretical": 555.245,
+          "calibrated": 60.189,
+          "lowerTolerance": 57.179,
+          "upperTolerance": 63.198
+        },
+        {
+          "solids": 1.4915,
+          "theoretical": 828.996,
+          "calibrated": 89.863,
+          "lowerTolerance": 85.37,
+          "upperTolerance": 94.356
+        },
+        {
+          "solids": 1.822,
+          "theoretical": 1141.915,
+          "calibrated": 123.784,
+          "lowerTolerance": 117.595,
+          "upperTolerance": 129.973
+        },
+        {
+          "solids": 2.1525,
+          "theoretical": 1490.96,
+          "calibrated": 161.62,
+          "lowerTolerance": 153.539,
+          "upperTolerance": 169.701
+        },
+        {
+          "solids": 2.4831,
+          "theoretical": 1873.787,
+          "calibrated": 203.119,
+          "lowerTolerance": 192.963,
+          "upperTolerance": 213.275
+        },
+        {
+          "solids": 2.8136,
+          "theoretical": 2288.511,
+          "calibrated": 248.075,
+          "lowerTolerance": 235.671,
+          "upperTolerance": 260.479
+        },
+        {
+          "solids": 3.1441,
+          "theoretical": 2733.571,
+          "calibrated": 296.32,
+          "lowerTolerance": 281.504,
+          "upperTolerance": 311.136
+        },
+        {
+          "solids": 3.4746,
+          "theoretical": 3207.645,
+          "calibrated": 347.709,
+          "lowerTolerance": 330.324,
+          "upperTolerance": 365.095
+        },
+        {
+          "solids": 3.8051,
+          "theoretical": 3709.593,
+          "calibrated": 402.12,
+          "lowerTolerance": 382.014,
+          "upperTolerance": 422.226
+        },
+        {
+          "solids": 4.1356,
+          "theoretical": 4238.418,
+          "calibrated": 459.445,
+          "lowerTolerance": 436.473,
+          "upperTolerance": 482.417
+        },
+        {
+          "solids": 4.4661,
+          "theoretical": 4793.239,
+          "calibrated": 519.588,
+          "lowerTolerance": 493.608,
+          "upperTolerance": 545.567
+        },
+        {
+          "solids": 4.7966,
+          "theoretical": 5373.266,
+          "calibrated": 582.463,
+          "lowerTolerance": 553.34,
+          "upperTolerance": 611.586
+        },
+        {
+          "solids": 5.1271,
+          "theoretical": 5977.79,
+          "calibrated": 647.993,
+          "lowerTolerance": 615.594,
+          "upperTolerance": 680.393
+        },
+        {
+          "solids": 5.4576,
+          "theoretical": 6606.165,
+          "calibrated": 716.109,
+          "lowerTolerance": 680.304,
+          "upperTolerance": 751.915
+        },
+        {
+          "solids": 5.7881,
+          "theoretical": 7257.803,
+          "calibrated": 786.747,
+          "lowerTolerance": 747.41,
+          "upperTolerance": 826.084
+        },
+        {
+          "solids": 6.1186,
+          "theoretical": 7932.162,
+          "calibrated": 859.848,
+          "lowerTolerance": 816.855,
+          "upperTolerance": 902.84
+        },
+        {
+          "solids": 6.4492,
+          "theoretical": 8628.743,
+          "calibrated": 935.357,
+          "lowerTolerance": 888.589,
+          "upperTolerance": 982.125
+        },
+        {
+          "solids": 6.7797,
+          "theoretical": 9347.082,
+          "calibrated": 1013.225,
+          "lowerTolerance": 962.564,
+          "upperTolerance": 1063.886
+        },
+        {
+          "solids": 7.1102,
+          "theoretical": 10086.749,
+          "calibrated": 1093.405,
+          "lowerTolerance": 1038.735,
+          "upperTolerance": 1148.076
+        },
+        {
+          "solids": 7.4407,
+          "theoretical": 10847.341,
+          "calibrated": 1175.854,
+          "lowerTolerance": 1117.061,
+          "upperTolerance": 1234.646
+        },
+        {
+          "solids": 7.7712,
+          "theoretical": 11628.481,
+          "calibrated": 1260.529,
+          "lowerTolerance": 1197.503,
+          "upperTolerance": 1323.556
+        },
+        {
+          "solids": 8.1017,
+          "theoretical": 12429.816,
+          "calibrated": 1347.394,
+          "lowerTolerance": 1280.024,
+          "upperTolerance": 1414.764
+        },
+        {
+          "solids": 8.4322,
+          "theoretical": 13251.01,
+          "calibrated": 1436.412,
+          "lowerTolerance": 1364.591,
+          "upperTolerance": 1508.232
+        },
+        {
+          "solids": 8.7627,
+          "theoretical": 14091.75,
+          "calibrated": 1527.548,
+          "lowerTolerance": 1451.171,
+          "upperTolerance": 1603.925
+        },
+        {
+          "solids": 9.0932,
+          "theoretical": 14951.736,
+          "calibrated": 1620.771,
+          "lowerTolerance": 1539.732,
+          "upperTolerance": 1701.809
+        },
+        {
+          "solids": 9.4237,
+          "theoretical": 15830.686,
+          "calibrated": 1716.049,
+          "lowerTolerance": 1630.247,
+          "upperTolerance": 1801.851
+        },
+        {
+          "solids": 9.7542,
+          "theoretical": 16728.33,
+          "calibrated": 1813.354,
+          "lowerTolerance": 1722.686,
+          "upperTolerance": 1904.021
+        },
+        {
+          "solids": 10.0847,
+          "theoretical": 17644.412,
+          "calibrated": 1912.657,
+          "lowerTolerance": 1817.024,
+          "upperTolerance": 2008.29
+        },
+        {
+          "solids": 10.4153,
+          "theoretical": 18578.689,
+          "calibrated": 2013.933,
+          "lowerTolerance": 1913.236,
+          "upperTolerance": 2114.63
+        },
+        {
+          "solids": 10.7458,
+          "theoretical": 19530.927,
+          "calibrated": 2117.156,
+          "lowerTolerance": 2011.298,
+          "upperTolerance": 2223.014
+        },
+        {
+          "solids": 11.0763,
+          "theoretical": 20500.904,
+          "calibrated": 2222.301,
+          "lowerTolerance": 2111.186,
+          "upperTolerance": 2333.416
+        },
+        {
+          "solids": 11.4068,
+          "theoretical": 21488.404,
+          "calibrated": 2329.347,
+          "lowerTolerance": 2212.879,
+          "upperTolerance": 2445.814
+        },
+        {
+          "solids": 11.7373,
+          "theoretical": 22493.224,
+          "calibrated": 2438.269,
+          "lowerTolerance": 2316.356,
+          "upperTolerance": 2560.183
+        },
+        {
+          "solids": 12.0678,
+          "theoretical": 23515.166,
+          "calibrated": 2549.048,
+          "lowerTolerance": 2421.596,
+          "upperTolerance": 2676.5
+        },
+        {
+          "solids": 12.3983,
+          "theoretical": 24554.041,
+          "calibrated": 2661.662,
+          "lowerTolerance": 2528.579,
+          "upperTolerance": 2794.745
+        },
+        {
+          "solids": 12.7288,
+          "theoretical": 25609.668,
+          "calibrated": 2776.092,
+          "lowerTolerance": 2637.288,
+          "upperTolerance": 2914.897
+        },
+        {
+          "solids": 13.0593,
+          "theoretical": 26681.871,
+          "calibrated": 2892.319,
+          "lowerTolerance": 2747.703,
+          "upperTolerance": 3036.935
+        },
+        {
+          "solids": 13.3898,
+          "theoretical": 27770.481,
+          "calibrated": 3010.325,
+          "lowerTolerance": 2859.809,
+          "upperTolerance": 3160.841
+        },
+        {
+          "solids": 13.7203,
+          "theoretical": 28875.334,
+          "calibrated": 3130.091,
+          "lowerTolerance": 2973.587,
+          "upperTolerance": 3286.596
+        },
+        {
+          "solids": 14.0508,
+          "theoretical": 29996.273,
+          "calibrated": 3251.601,
+          "lowerTolerance": 3089.021,
+          "upperTolerance": 3414.181
+        },
+        {
+          "solids": 14.3814,
+          "theoretical": 31133.146,
+          "calibrated": 3374.838,
+          "lowerTolerance": 3206.096,
+          "upperTolerance": 3543.58
+        },
+        {
+          "solids": 14.7119,
+          "theoretical": 32285.805,
+          "calibrated": 3499.787,
+          "lowerTolerance": 3324.797,
+          "upperTolerance": 3674.776
+        },
+        {
+          "solids": 15.0424,
+          "theoretical": 33454.106,
+          "calibrated": 3626.431,
+          "lowerTolerance": 3445.109,
+          "upperTolerance": 3807.752
+        },
+        {
+          "solids": 15.3729,
+          "theoretical": 34637.913,
+          "calibrated": 3754.756,
+          "lowerTolerance": 3567.018,
+          "upperTolerance": 3942.493
+        },
+        {
+          "solids": 15.7034,
+          "theoretical": 35837.09,
+          "calibrated": 3884.747,
+          "lowerTolerance": 3690.509,
+          "upperTolerance": 4078.984
+        },
+        {
+          "solids": 16.0339,
+          "theoretical": 37051.507,
+          "calibrated": 4016.39,
+          "lowerTolerance": 3815.57,
+          "upperTolerance": 4217.209
+        },
+        {
+          "solids": 16.3644,
+          "theoretical": 38281.037,
+          "calibrated": 4149.671,
+          "lowerTolerance": 3942.187,
+          "upperTolerance": 4357.154
+        },
+        {
+          "solids": 16.6949,
+          "theoretical": 39525.559,
+          "calibrated": 4284.577,
+          "lowerTolerance": 4070.348,
+          "upperTolerance": 4498.806
+        },
+        {
+          "solids": 17.0254,
+          "theoretical": 40784.952,
+          "calibrated": 4421.096,
+          "lowerTolerance": 4200.041,
+          "upperTolerance": 4642.15
+        },
+        {
+          "solids": 17.3559,
+          "theoretical": 42059.101,
+          "calibrated": 4559.214,
+          "lowerTolerance": 4331.253,
+          "upperTolerance": 4787.174
+        },
+        {
+          "solids": 17.6864,
+          "theoretical": 43347.892,
+          "calibrated": 4698.919,
+          "lowerTolerance": 4463.973,
+          "upperTolerance": 4933.865
+        },
+        {
+          "solids": 18.0169,
+          "theoretical": 44651.215,
+          "calibrated": 4840.199,
+          "lowerTolerance": 4598.189,
+          "upperTolerance": 5082.209
+        },
+        {
+          "solids": 18.3475,
+          "theoretical": 45968.963,
+          "calibrated": 4983.043,
+          "lowerTolerance": 4733.891,
+          "upperTolerance": 5232.195
+        },
+        {
+          "solids": 18.678,
+          "theoretical": 47301.031,
+          "calibrated": 5127.44,
+          "lowerTolerance": 4871.068,
+          "upperTolerance": 5383.812
+        },
+        {
+          "solids": 19.0085,
+          "theoretical": 48647.318,
+          "calibrated": 5273.377,
+          "lowerTolerance": 5009.709,
+          "upperTolerance": 5537.046
+        },
+        {
+          "solids": 19.339,
+          "theoretical": 50007.724,
+          "calibrated": 5420.846,
+          "lowerTolerance": 5149.803,
+          "upperTolerance": 5691.888
+        },
+        {
+          "solids": 19.6695,
+          "theoretical": 51382.152,
+          "calibrated": 5569.834,
+          "lowerTolerance": 5291.342,
+          "upperTolerance": 5848.326
+        },
+        {
+          "solids": 20,
+          "theoretical": 52770.507,
+          "calibrated": 5720.332,
+          "lowerTolerance": 5434.315,
+          "upperTolerance": 6006.348
+        }
+      ]
+    },
+    {
+      "id": "soc_multi_pt",
+      "input": {
+        "resinType": "SOC",
+        "spinSpeed": 2000,
+        "spinTime": 30,
+        "targetThickness": 250,
+        "tolerancePercent": null,
+        "measuredPoints": [
+          {
+            "id": "preset-pt-0",
+            "solidsContent": 5,
+            "thickness": 85,
+            "note": "樣品 1"
+          },
+          {
+            "id": "preset-pt-1",
+            "solidsContent": 8,
+            "thickness": 182,
+            "note": "樣品 2"
+          },
+          {
+            "id": "preset-pt-2",
+            "solidsContent": 10,
+            "thickness": 260,
+            "note": "樣品 3"
+          },
+          {
+            "id": "preset-pt-3",
+            "solidsContent": 12,
+            "thickness": 350,
+            "note": "樣品 4"
+          }
+        ]
+      },
+      "prediction": {
+        "targetThickness": 250,
+        "recommendedSolids": 9.747770617748722,
+        "tolerancePercent": 5,
+        "lowerThickness": 237.5,
+        "lowerSolids": 9.443111668892891,
+        "upperThickness": 262.5,
+        "upperSolids": 10.046678647009678,
+        "spinSpeed": 2000,
+        "spinTime": 30,
+        "calibration": {
+          "mode": "multi_point_lsq",
+          "modeLabel": "多點最小平方法擬合 (4 數據點)",
+          "theoreticalC": 85,
+          "calibratedC": 447.565784639559,
+          "theoreticalAlpha": 1.45,
+          "calibratedAlpha": 1.6153815260509363,
+          "beta": 0.48,
+          "gamma": 0.18,
+          "scaleFactor": 6.871233049000608,
+          "rSquared": 0.9999930001705811,
+          "pointsCount": 4
+        },
+        "resin": {
+          "id": "SOC",
+          "name": "SOC 填平層",
+          "fullName": "Spin-on Carbon Planarization Layer",
+          "modelName": "High-Viscosity Flow & Evaporation 模型",
+          "recommendedThicknessRange": [
+            50,
+            500
+          ],
+          "alpha": 1.45,
+          "beta": 0.48,
+          "gamma": 0.18,
+          "defaultC": 85,
+          "description": "高碳含量填平材料，具備高黏度與自平坦化特性，為圖案轉移之重要硬遮罩底層。",
+          "typicalSolvents": [
+            "PGMEA",
+            "Cyclohexanone",
+            "Propylene Glycol"
+          ]
+        }
+      },
+      "curvePoints": [
+        {
+          "solidsContent": 0.5,
+          "theoreticalThickness": 0.439,
+          "calibratedThickness": 2.062,
+          "diffNm": 1.623,
+          "diffPercent": 369.52
+        },
+        {
+          "solidsContent": 1,
+          "theoreticalThickness": 1.2,
+          "calibratedThickness": 6.317,
+          "diffNm": 5.117,
+          "diffPercent": 426.55
+        },
+        {
+          "solidsContent": 1.5,
+          "theoreticalThickness": 2.16,
+          "calibratedThickness": 12.16,
+          "diffNm": 10,
+          "diffPercent": 463.07
+        },
+        {
+          "solidsContent": 2,
+          "theoreticalThickness": 3.277,
+          "calibratedThickness": 19.353,
+          "diffNm": 16.076,
+          "diffPercent": 490.5
+        },
+        {
+          "solidsContent": 3,
+          "theoreticalThickness": 5.9,
+          "calibratedThickness": 37.257,
+          "diffNm": 31.357,
+          "diffPercent": 531.46
+        },
+        {
+          "solidsContent": 4,
+          "theoreticalThickness": 8.954,
+          "calibratedThickness": 59.298,
+          "diffNm": 50.343,
+          "diffPercent": 562.23
+        },
+        {
+          "solidsContent": 5,
+          "theoreticalThickness": 12.375,
+          "calibratedThickness": 85.032,
+          "diffNm": 72.657,
+          "diffPercent": 587.12
+        },
+        {
+          "solidsContent": 6,
+          "theoreticalThickness": 16.12,
+          "calibratedThickness": 114.154,
+          "diffNm": 98.034,
+          "diffPercent": 608.16
+        },
+        {
+          "solidsContent": 7,
+          "theoreticalThickness": 20.157,
+          "calibratedThickness": 146.432,
+          "diffNm": 126.275,
+          "diffPercent": 626.44
+        },
+        {
+          "solidsContent": 8,
+          "theoreticalThickness": 24.464,
+          "calibratedThickness": 181.684,
+          "diffNm": 157.22,
+          "diffPercent": 642.66
+        },
+        {
+          "solidsContent": 9,
+          "theoreticalThickness": 29.02,
+          "calibratedThickness": 219.759,
+          "diffNm": 190.739,
+          "diffPercent": 657.27
+        },
+        {
+          "solidsContent": 10,
+          "theoreticalThickness": 33.81,
+          "calibratedThickness": 260.533,
+          "diffNm": 226.723,
+          "diffPercent": 670.58
+        },
+        {
+          "solidsContent": 12,
+          "theoreticalThickness": 44.041,
+          "calibratedThickness": 349.76,
+          "diffNm": 305.719,
+          "diffPercent": 694.17
+        },
+        {
+          "solidsContent": 14,
+          "theoreticalThickness": 55.072,
+          "calibratedThickness": 448.657,
+          "diffNm": 393.586,
+          "diffPercent": 714.68
+        },
+        {
+          "solidsContent": 16,
+          "theoreticalThickness": 66.837,
+          "calibratedThickness": 556.665,
+          "diffNm": 489.828,
+          "diffPercent": 732.87
+        },
+        {
+          "solidsContent": 18,
+          "theoreticalThickness": 79.284,
+          "calibratedThickness": 673.325,
+          "diffNm": 594.04,
+          "diffPercent": 749.25
+        },
+        {
+          "solidsContent": 20,
+          "theoreticalThickness": 92.371,
+          "calibratedThickness": 798.253,
+          "diffNm": 705.882,
+          "diffPercent": 764.18
+        },
+        {
+          "solidsContent": 22,
+          "theoreticalThickness": 106.061,
+          "calibratedThickness": 931.12,
+          "diffNm": 825.059,
+          "diffPercent": 777.91
+        },
+        {
+          "solidsContent": 25,
+          "theoreticalThickness": 127.66,
+          "calibratedThickness": 1144.688,
+          "diffNm": 1017.028,
+          "diffPercent": 796.67
+        },
+        {
+          "solidsContent": 28,
+          "theoreticalThickness": 150.46,
+          "calibratedThickness": 1374.653,
+          "diffNm": 1224.192,
+          "diffPercent": 813.63
+        },
+        {
+          "solidsContent": 30,
+          "theoreticalThickness": 166.291,
+          "calibratedThickness": 1536.721,
+          "diffNm": 1370.43,
+          "diffPercent": 824.12
+        },
+        {
+          "solidsContent": 35,
+          "theoreticalThickness": 207.942,
+          "calibratedThickness": 1971.241,
+          "diffNm": 1763.299,
+          "diffPercent": 847.98
+        },
+        {
+          "solidsContent": 40,
+          "theoreticalThickness": 252.365,
+          "calibratedThickness": 2445.788,
+          "diffNm": 2193.422,
+          "diffPercent": 869.15
+        },
+        {
+          "solidsContent": 45,
+          "theoreticalThickness": 299.365,
+          "calibratedThickness": 2958.35,
+          "diffNm": 2658.985,
+          "diffPercent": 888.21
+        },
+        {
+          "solidsContent": 50,
+          "theoreticalThickness": 348.778,
+          "calibratedThickness": 3507.239,
+          "diffNm": 3158.461,
+          "diffPercent": 905.58
+        }
+      ],
+      "denseChartPoints": [
+        {
+          "solids": 0.5,
+          "theoretical": 0.439,
+          "calibrated": 2.062,
+          "lowerTolerance": 1.959,
+          "upperTolerance": 2.165
+        },
+        {
+          "solids": 0.8305,
+          "theoretical": 0.916,
+          "calibrated": 4.679,
+          "lowerTolerance": 4.445,
+          "upperTolerance": 4.913
+        },
+        {
+          "solids": 1.161,
+          "theoretical": 1.49,
+          "calibrated": 8.039,
+          "lowerTolerance": 7.637,
+          "upperTolerance": 8.441
+        },
+        {
+          "solids": 1.4915,
+          "theoretical": 2.142,
+          "calibrated": 12.049,
+          "lowerTolerance": 11.447,
+          "upperTolerance": 12.652
+        },
+        {
+          "solids": 1.822,
+          "theoretical": 2.863,
+          "calibrated": 16.649,
+          "lowerTolerance": 15.816,
+          "upperTolerance": 17.481
+        },
+        {
+          "solids": 2.1525,
+          "theoretical": 3.646,
+          "calibrated": 21.793,
+          "lowerTolerance": 20.704,
+          "upperTolerance": 22.883
+        },
+        {
+          "solids": 2.4831,
+          "theoretical": 4.485,
+          "calibrated": 27.449,
+          "lowerTolerance": 26.077,
+          "upperTolerance": 28.822
+        },
+        {
+          "solids": 2.8136,
+          "theoretical": 5.376,
+          "calibrated": 33.589,
+          "lowerTolerance": 31.91,
+          "upperTolerance": 35.269
+        },
+        {
+          "solids": 3.1441,
+          "theoretical": 6.315,
+          "calibrated": 40.19,
+          "lowerTolerance": 38.181,
+          "upperTolerance": 42.2
+        },
+        {
+          "solids": 3.4746,
+          "theoretical": 7.3,
+          "calibrated": 47.233,
+          "lowerTolerance": 44.871,
+          "upperTolerance": 49.594
+        },
+        {
+          "solids": 3.8051,
+          "theoretical": 8.329,
+          "calibrated": 54.7,
+          "lowerTolerance": 51.965,
+          "upperTolerance": 57.435
+        },
+        {
+          "solids": 4.1356,
+          "theoretical": 9.398,
+          "calibrated": 62.578,
+          "lowerTolerance": 59.449,
+          "upperTolerance": 65.707
+        },
+        {
+          "solids": 4.4661,
+          "theoretical": 10.506,
+          "calibrated": 70.854,
+          "lowerTolerance": 67.311,
+          "upperTolerance": 74.397
+        },
+        {
+          "solids": 4.7966,
+          "theoretical": 11.652,
+          "calibrated": 79.515,
+          "lowerTolerance": 75.539,
+          "upperTolerance": 83.491
+        },
+        {
+          "solids": 5.1271,
+          "theoretical": 12.834,
+          "calibrated": 88.552,
+          "lowerTolerance": 84.124,
+          "upperTolerance": 92.979
+        },
+        {
+          "solids": 5.4576,
+          "theoretical": 14.051,
+          "calibrated": 97.954,
+          "lowerTolerance": 93.056,
+          "upperTolerance": 102.852
+        },
+        {
+          "solids": 5.7881,
+          "theoretical": 15.301,
+          "calibrated": 107.714,
+          "lowerTolerance": 102.328,
+          "upperTolerance": 113.1
+        },
+        {
+          "solids": 6.1186,
+          "theoretical": 16.584,
+          "calibrated": 117.823,
+          "lowerTolerance": 111.932,
+          "upperTolerance": 123.714
+        },
+        {
+          "solids": 6.4492,
+          "theoretical": 17.899,
+          "calibrated": 128.273,
+          "lowerTolerance": 121.86,
+          "upperTolerance": 134.687
+        },
+        {
+          "solids": 6.7797,
+          "theoretical": 19.244,
+          "calibrated": 139.059,
+          "lowerTolerance": 132.106,
+          "upperTolerance": 146.012
+        },
+        {
+          "solids": 7.1102,
+          "theoretical": 20.619,
+          "calibrated": 150.173,
+          "lowerTolerance": 142.664,
+          "upperTolerance": 157.682
+        },
+        {
+          "solids": 7.4407,
+          "theoretical": 22.023,
+          "calibrated": 161.61,
+          "lowerTolerance": 153.529,
+          "upperTolerance": 169.69
+        },
+        {
+          "solids": 7.7712,
+          "theoretical": 23.456,
+          "calibrated": 173.363,
+          "lowerTolerance": 164.695,
+          "upperTolerance": 182.032
+        },
+        {
+          "solids": 8.1017,
+          "theoretical": 24.916,
+          "calibrated": 185.429,
+          "lowerTolerance": 176.157,
+          "upperTolerance": 194.7
+        },
+        {
+          "solids": 8.4322,
+          "theoretical": 26.403,
+          "calibrated": 197.801,
+          "lowerTolerance": 187.911,
+          "upperTolerance": 207.691
+        },
+        {
+          "solids": 8.7627,
+          "theoretical": 27.917,
+          "calibrated": 210.475,
+          "lowerTolerance": 199.952,
+          "upperTolerance": 220.999
+        },
+        {
+          "solids": 9.0932,
+          "theoretical": 29.457,
+          "calibrated": 223.448,
+          "lowerTolerance": 212.275,
+          "upperTolerance": 234.62
+        },
+        {
+          "solids": 9.4237,
+          "theoretical": 31.022,
+          "calibrated": 236.713,
+          "lowerTolerance": 224.877,
+          "upperTolerance": 248.549
+        },
+        {
+          "solids": 9.7542,
+          "theoretical": 32.612,
+          "calibrated": 250.268,
+          "lowerTolerance": 237.755,
+          "upperTolerance": 262.781
+        },
+        {
+          "solids": 10.0847,
+          "theoretical": 34.226,
+          "calibrated": 264.109,
+          "lowerTolerance": 250.903,
+          "upperTolerance": 277.314
+        },
+        {
+          "solids": 10.4153,
+          "theoretical": 35.864,
+          "calibrated": 278.231,
+          "lowerTolerance": 264.32,
+          "upperTolerance": 292.143
+        },
+        {
+          "solids": 10.7458,
+          "theoretical": 37.526,
+          "calibrated": 292.632,
+          "lowerTolerance": 278.001,
+          "upperTolerance": 307.264
+        },
+        {
+          "solids": 11.0763,
+          "theoretical": 39.211,
+          "calibrated": 307.309,
+          "lowerTolerance": 291.943,
+          "upperTolerance": 322.674
+        },
+        {
+          "solids": 11.4068,
+          "theoretical": 40.919,
+          "calibrated": 322.257,
+          "lowerTolerance": 306.144,
+          "upperTolerance": 338.37
+        },
+        {
+          "solids": 11.7373,
+          "theoretical": 42.65,
+          "calibrated": 337.474,
+          "lowerTolerance": 320.601,
+          "upperTolerance": 354.348
+        },
+        {
+          "solids": 12.0678,
+          "theoretical": 44.402,
+          "calibrated": 352.958,
+          "lowerTolerance": 335.31,
+          "upperTolerance": 370.605
+        },
+        {
+          "solids": 12.3983,
+          "theoretical": 46.176,
+          "calibrated": 368.704,
+          "lowerTolerance": 350.269,
+          "upperTolerance": 387.139
+        },
+        {
+          "solids": 12.7288,
+          "theoretical": 47.972,
+          "calibrated": 384.711,
+          "lowerTolerance": 365.475,
+          "upperTolerance": 403.947
+        },
+        {
+          "solids": 13.0593,
+          "theoretical": 49.788,
+          "calibrated": 400.976,
+          "lowerTolerance": 380.927,
+          "upperTolerance": 421.025
+        },
+        {
+          "solids": 13.3898,
+          "theoretical": 51.626,
+          "calibrated": 417.496,
+          "lowerTolerance": 396.621,
+          "upperTolerance": 438.371
+        },
+        {
+          "solids": 13.7203,
+          "theoretical": 53.484,
+          "calibrated": 434.269,
+          "lowerTolerance": 412.556,
+          "upperTolerance": 455.982
+        },
+        {
+          "solids": 14.0508,
+          "theoretical": 55.362,
+          "calibrated": 451.292,
+          "lowerTolerance": 428.728,
+          "upperTolerance": 473.857
+        },
+        {
+          "solids": 14.3814,
+          "theoretical": 57.26,
+          "calibrated": 468.564,
+          "lowerTolerance": 445.136,
+          "upperTolerance": 491.992
+        },
+        {
+          "solids": 14.7119,
+          "theoretical": 59.178,
+          "calibrated": 486.082,
+          "lowerTolerance": 461.778,
+          "upperTolerance": 510.386
+        },
+        {
+          "solids": 15.0424,
+          "theoretical": 61.116,
+          "calibrated": 503.844,
+          "lowerTolerance": 478.651,
+          "upperTolerance": 529.036
+        },
+        {
+          "solids": 15.3729,
+          "theoretical": 63.072,
+          "calibrated": 521.847,
+          "lowerTolerance": 495.755,
+          "upperTolerance": 547.939
+        },
+        {
+          "solids": 15.7034,
+          "theoretical": 65.048,
+          "calibrated": 540.09,
+          "lowerTolerance": 513.086,
+          "upperTolerance": 567.095
+        },
+        {
+          "solids": 16.0339,
+          "theoretical": 67.042,
+          "calibrated": 558.571,
+          "lowerTolerance": 530.643,
+          "upperTolerance": 586.5
+        },
+        {
+          "solids": 16.3644,
+          "theoretical": 69.055,
+          "calibrated": 577.288,
+          "lowerTolerance": 548.424,
+          "upperTolerance": 606.153
+        },
+        {
+          "solids": 16.6949,
+          "theoretical": 71.087,
+          "calibrated": 596.239,
+          "lowerTolerance": 566.427,
+          "upperTolerance": 626.051
+        },
+        {
+          "solids": 17.0254,
+          "theoretical": 73.137,
+          "calibrated": 615.423,
+          "lowerTolerance": 584.652,
+          "upperTolerance": 646.194
+        },
+        {
+          "solids": 17.3559,
+          "theoretical": 75.204,
+          "calibrated": 634.837,
+          "lowerTolerance": 603.095,
+          "upperTolerance": 666.578
+        },
+        {
+          "solids": 17.6864,
+          "theoretical": 77.29,
+          "calibrated": 654.479,
+          "lowerTolerance": 621.755,
+          "upperTolerance": 687.203
+        },
+        {
+          "solids": 18.0169,
+          "theoretical": 79.393,
+          "calibrated": 674.349,
+          "lowerTolerance": 640.632,
+          "upperTolerance": 708.067
+        },
+        {
+          "solids": 18.3475,
+          "theoretical": 81.513,
+          "calibrated": 694.445,
+          "lowerTolerance": 659.723,
+          "upperTolerance": 729.167
+        },
+        {
+          "solids": 18.678,
+          "theoretical": 83.651,
+          "calibrated": 714.765,
+          "lowerTolerance": 679.026,
+          "upperTolerance": 750.503
+        },
+        {
+          "solids": 19.0085,
+          "theoretical": 85.806,
+          "calibrated": 735.307,
+          "lowerTolerance": 698.541,
+          "upperTolerance": 772.072
+        },
+        {
+          "solids": 19.339,
+          "theoretical": 87.977,
+          "calibrated": 756.07,
+          "lowerTolerance": 718.266,
+          "upperTolerance": 793.873
+        },
+        {
+          "solids": 19.6695,
+          "theoretical": 90.166,
+          "calibrated": 777.052,
+          "lowerTolerance": 738.2,
+          "upperTolerance": 815.905
+        },
+        {
+          "solids": 20,
+          "theoretical": 92.371,
+          "calibrated": 798.253,
+          "lowerTolerance": 758.34,
+          "upperTolerance": 838.165
+        }
+      ]
+    },
+    {
+      "id": "euv_advanced",
+      "input": {
+        "resinType": "EUV",
+        "spinSpeed": 2500,
+        "spinTime": 25,
+        "targetThickness": 35,
+        "tolerancePercent": null,
+        "measuredPoints": []
+      },
+      "prediction": {
+        "targetThickness": 35,
+        "recommendedSolids": 16.24326927129199,
+        "tolerancePercent": 5,
+        "lowerThickness": 33.25,
+        "lowerSolids": 15.590223027494538,
+        "upperThickness": 36.75,
+        "upperSolids": 16.88981462985357,
+        "spinSpeed": 2500,
+        "spinTime": 25,
+        "calibration": {
+          "mode": "theoretical",
+          "modeLabel": "理論模式 (0 數據點)",
+          "theoreticalC": 120,
+          "calibratedC": 120,
+          "theoreticalAlpha": 1.25,
+          "calibratedAlpha": 1.25,
+          "beta": 0.5,
+          "gamma": 0.25,
+          "scaleFactor": 1,
+          "rSquared": null,
+          "pointsCount": 0
+        },
+        "resin": {
+          "id": "EUV",
+          "name": "EUV 樹脂",
+          "fullName": "Extreme Ultraviolet Photoresist (EUV 13.5nm)",
+          "modelName": "Emslie-Meyerhofer 超薄膜蒸發修正模型",
+          "recommendedThicknessRange": [
+            5,
+            50
+          ],
+          "alpha": 1.25,
+          "beta": 0.5,
+          "gamma": 0.25,
+          "defaultC": 120,
+          "description": "適用於次世代 3nm / 2nm 製程極薄感光層，強調極低缺陷與超高均勻性。",
+          "typicalSolvents": [
+            "PGMEA",
+            "PGME",
+            "Ethyl Lactate"
+          ]
+        }
+      },
+      "curvePoints": [
+        {
+          "solidsContent": 0.5,
+          "theoreticalThickness": 0.451,
+          "calibratedThickness": 0.451,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 1,
+          "theoreticalThickness": 1.073,
+          "calibratedThickness": 1.073,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 1.5,
+          "theoreticalThickness": 1.782,
+          "calibratedThickness": 1.782,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 2,
+          "theoreticalThickness": 2.553,
+          "calibratedThickness": 2.553,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 3,
+          "theoreticalThickness": 4.238,
+          "calibratedThickness": 4.238,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 4,
+          "theoreticalThickness": 6.072,
+          "calibratedThickness": 6.072,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 5,
+          "theoreticalThickness": 8.025,
+          "calibratedThickness": 8.025,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 6,
+          "theoreticalThickness": 10.079,
+          "calibratedThickness": 10.079,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 7,
+          "theoreticalThickness": 12.221,
+          "calibratedThickness": 12.221,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 8,
+          "theoreticalThickness": 14.441,
+          "calibratedThickness": 14.441,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 9,
+          "theoreticalThickness": 16.731,
+          "calibratedThickness": 16.731,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 10,
+          "theoreticalThickness": 19.086,
+          "calibratedThickness": 19.086,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 12,
+          "theoreticalThickness": 23.972,
+          "calibratedThickness": 23.972,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 14,
+          "theoreticalThickness": 29.066,
+          "calibratedThickness": 29.066,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 16,
+          "theoreticalThickness": 34.346,
+          "calibratedThickness": 34.346,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 18,
+          "theoreticalThickness": 39.794,
+          "calibratedThickness": 39.794,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 20,
+          "theoreticalThickness": 45.396,
+          "calibratedThickness": 45.396,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 22,
+          "theoreticalThickness": 51.139,
+          "calibratedThickness": 51.139,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 25,
+          "theoreticalThickness": 60,
+          "calibratedThickness": 60,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 28,
+          "theoreticalThickness": 69.131,
+          "calibratedThickness": 69.131,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 30,
+          "theoreticalThickness": 75.358,
+          "calibratedThickness": 75.358,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 35,
+          "theoreticalThickness": 91.372,
+          "calibratedThickness": 91.372,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 40,
+          "theoreticalThickness": 107.97,
+          "calibratedThickness": 107.97,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 45,
+          "theoreticalThickness": 125.096,
+          "calibratedThickness": 125.096,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 50,
+          "theoreticalThickness": 142.705,
+          "calibratedThickness": 142.705,
+          "diffNm": 0,
+          "diffPercent": 0
+        }
+      ],
+      "denseChartPoints": [
+        {
+          "solids": 0.5,
+          "theoretical": 0.451,
+          "calibrated": 0.451,
+          "lowerTolerance": 0.429,
+          "upperTolerance": 0.474
+        },
+        {
+          "solids": 0.8305,
+          "theoretical": 0.851,
+          "calibrated": 0.851,
+          "lowerTolerance": 0.808,
+          "upperTolerance": 0.894
+        },
+        {
+          "solids": 1.161,
+          "theoretical": 1.294,
+          "calibrated": 1.294,
+          "lowerTolerance": 1.229,
+          "upperTolerance": 1.358
+        },
+        {
+          "solids": 1.4915,
+          "theoretical": 1.769,
+          "calibrated": 1.769,
+          "lowerTolerance": 1.681,
+          "upperTolerance": 1.858
+        },
+        {
+          "solids": 1.822,
+          "theoretical": 2.272,
+          "calibrated": 2.272,
+          "lowerTolerance": 2.158,
+          "upperTolerance": 2.386
+        },
+        {
+          "solids": 2.1525,
+          "theoretical": 2.798,
+          "calibrated": 2.798,
+          "lowerTolerance": 2.659,
+          "upperTolerance": 2.938
+        },
+        {
+          "solids": 2.4831,
+          "theoretical": 3.345,
+          "calibrated": 3.345,
+          "lowerTolerance": 3.178,
+          "upperTolerance": 3.513
+        },
+        {
+          "solids": 2.8136,
+          "theoretical": 3.911,
+          "calibrated": 3.911,
+          "lowerTolerance": 3.716,
+          "upperTolerance": 4.107
+        },
+        {
+          "solids": 3.1441,
+          "theoretical": 4.494,
+          "calibrated": 4.494,
+          "lowerTolerance": 4.269,
+          "upperTolerance": 4.718
+        },
+        {
+          "solids": 3.4746,
+          "theoretical": 5.092,
+          "calibrated": 5.092,
+          "lowerTolerance": 4.837,
+          "upperTolerance": 5.346
+        },
+        {
+          "solids": 3.8051,
+          "theoretical": 5.704,
+          "calibrated": 5.704,
+          "lowerTolerance": 5.419,
+          "upperTolerance": 5.989
+        },
+        {
+          "solids": 4.1356,
+          "theoretical": 6.33,
+          "calibrated": 6.33,
+          "lowerTolerance": 6.013,
+          "upperTolerance": 6.646
+        },
+        {
+          "solids": 4.4661,
+          "theoretical": 6.968,
+          "calibrated": 6.968,
+          "lowerTolerance": 6.62,
+          "upperTolerance": 7.317
+        },
+        {
+          "solids": 4.7966,
+          "theoretical": 7.619,
+          "calibrated": 7.619,
+          "lowerTolerance": 7.238,
+          "upperTolerance": 8
+        },
+        {
+          "solids": 5.1271,
+          "theoretical": 8.281,
+          "calibrated": 8.281,
+          "lowerTolerance": 7.867,
+          "upperTolerance": 8.695
+        },
+        {
+          "solids": 5.4576,
+          "theoretical": 8.953,
+          "calibrated": 8.953,
+          "lowerTolerance": 8.506,
+          "upperTolerance": 9.401
+        },
+        {
+          "solids": 5.7881,
+          "theoretical": 9.636,
+          "calibrated": 9.636,
+          "lowerTolerance": 9.154,
+          "upperTolerance": 10.118
+        },
+        {
+          "solids": 6.1186,
+          "theoretical": 10.329,
+          "calibrated": 10.329,
+          "lowerTolerance": 9.812,
+          "upperTolerance": 10.845
+        },
+        {
+          "solids": 6.4492,
+          "theoretical": 11.031,
+          "calibrated": 11.031,
+          "lowerTolerance": 10.479,
+          "upperTolerance": 11.582
+        },
+        {
+          "solids": 6.7797,
+          "theoretical": 11.742,
+          "calibrated": 11.742,
+          "lowerTolerance": 11.155,
+          "upperTolerance": 12.329
+        },
+        {
+          "solids": 7.1102,
+          "theoretical": 12.462,
+          "calibrated": 12.462,
+          "lowerTolerance": 11.839,
+          "upperTolerance": 13.085
+        },
+        {
+          "solids": 7.4407,
+          "theoretical": 13.19,
+          "calibrated": 13.19,
+          "lowerTolerance": 12.53,
+          "upperTolerance": 13.849
+        },
+        {
+          "solids": 7.7712,
+          "theoretical": 13.926,
+          "calibrated": 13.926,
+          "lowerTolerance": 13.23,
+          "upperTolerance": 14.623
+        },
+        {
+          "solids": 8.1017,
+          "theoretical": 14.671,
+          "calibrated": 14.671,
+          "lowerTolerance": 13.937,
+          "upperTolerance": 15.404
+        },
+        {
+          "solids": 8.4322,
+          "theoretical": 15.422,
+          "calibrated": 15.422,
+          "lowerTolerance": 14.651,
+          "upperTolerance": 16.194
+        },
+        {
+          "solids": 8.7627,
+          "theoretical": 16.182,
+          "calibrated": 16.182,
+          "lowerTolerance": 15.373,
+          "upperTolerance": 16.991
+        },
+        {
+          "solids": 9.0932,
+          "theoretical": 16.948,
+          "calibrated": 16.948,
+          "lowerTolerance": 16.101,
+          "upperTolerance": 17.796
+        },
+        {
+          "solids": 9.4237,
+          "theoretical": 17.722,
+          "calibrated": 17.722,
+          "lowerTolerance": 16.836,
+          "upperTolerance": 18.608
+        },
+        {
+          "solids": 9.7542,
+          "theoretical": 18.502,
+          "calibrated": 18.502,
+          "lowerTolerance": 17.577,
+          "upperTolerance": 19.427
+        },
+        {
+          "solids": 10.0847,
+          "theoretical": 19.289,
+          "calibrated": 19.289,
+          "lowerTolerance": 18.324,
+          "upperTolerance": 20.253
+        },
+        {
+          "solids": 10.4153,
+          "theoretical": 20.082,
+          "calibrated": 20.082,
+          "lowerTolerance": 19.078,
+          "upperTolerance": 21.086
+        },
+        {
+          "solids": 10.7458,
+          "theoretical": 20.882,
+          "calibrated": 20.882,
+          "lowerTolerance": 19.838,
+          "upperTolerance": 21.926
+        },
+        {
+          "solids": 11.0763,
+          "theoretical": 21.688,
+          "calibrated": 21.688,
+          "lowerTolerance": 20.604,
+          "upperTolerance": 22.772
+        },
+        {
+          "solids": 11.4068,
+          "theoretical": 22.5,
+          "calibrated": 22.5,
+          "lowerTolerance": 21.375,
+          "upperTolerance": 23.625
+        },
+        {
+          "solids": 11.7373,
+          "theoretical": 23.318,
+          "calibrated": 23.318,
+          "lowerTolerance": 22.152,
+          "upperTolerance": 24.484
+        },
+        {
+          "solids": 12.0678,
+          "theoretical": 24.141,
+          "calibrated": 24.141,
+          "lowerTolerance": 22.934,
+          "upperTolerance": 25.348
+        },
+        {
+          "solids": 12.3983,
+          "theoretical": 24.971,
+          "calibrated": 24.971,
+          "lowerTolerance": 23.722,
+          "upperTolerance": 26.219
+        },
+        {
+          "solids": 12.7288,
+          "theoretical": 25.805,
+          "calibrated": 25.805,
+          "lowerTolerance": 24.515,
+          "upperTolerance": 27.096
+        },
+        {
+          "solids": 13.0593,
+          "theoretical": 26.646,
+          "calibrated": 26.646,
+          "lowerTolerance": 25.313,
+          "upperTolerance": 27.978
+        },
+        {
+          "solids": 13.3898,
+          "theoretical": 27.491,
+          "calibrated": 27.491,
+          "lowerTolerance": 26.117,
+          "upperTolerance": 28.866
+        },
+        {
+          "solids": 13.7203,
+          "theoretical": 28.342,
+          "calibrated": 28.342,
+          "lowerTolerance": 26.925,
+          "upperTolerance": 29.759
+        },
+        {
+          "solids": 14.0508,
+          "theoretical": 29.198,
+          "calibrated": 29.198,
+          "lowerTolerance": 27.738,
+          "upperTolerance": 30.658
+        },
+        {
+          "solids": 14.3814,
+          "theoretical": 30.059,
+          "calibrated": 30.059,
+          "lowerTolerance": 28.556,
+          "upperTolerance": 31.562
+        },
+        {
+          "solids": 14.7119,
+          "theoretical": 30.925,
+          "calibrated": 30.925,
+          "lowerTolerance": 29.379,
+          "upperTolerance": 32.471
+        },
+        {
+          "solids": 15.0424,
+          "theoretical": 31.796,
+          "calibrated": 31.796,
+          "lowerTolerance": 30.206,
+          "upperTolerance": 33.386
+        },
+        {
+          "solids": 15.3729,
+          "theoretical": 32.672,
+          "calibrated": 32.672,
+          "lowerTolerance": 31.038,
+          "upperTolerance": 34.305
+        },
+        {
+          "solids": 15.7034,
+          "theoretical": 33.552,
+          "calibrated": 33.552,
+          "lowerTolerance": 31.874,
+          "upperTolerance": 35.23
+        },
+        {
+          "solids": 16.0339,
+          "theoretical": 34.437,
+          "calibrated": 34.437,
+          "lowerTolerance": 32.715,
+          "upperTolerance": 36.159
+        },
+        {
+          "solids": 16.3644,
+          "theoretical": 35.327,
+          "calibrated": 35.327,
+          "lowerTolerance": 33.56,
+          "upperTolerance": 37.093
+        },
+        {
+          "solids": 16.6949,
+          "theoretical": 36.221,
+          "calibrated": 36.221,
+          "lowerTolerance": 34.41,
+          "upperTolerance": 38.032
+        },
+        {
+          "solids": 17.0254,
+          "theoretical": 37.119,
+          "calibrated": 37.119,
+          "lowerTolerance": 35.263,
+          "upperTolerance": 38.975
+        },
+        {
+          "solids": 17.3559,
+          "theoretical": 38.022,
+          "calibrated": 38.022,
+          "lowerTolerance": 36.121,
+          "upperTolerance": 39.923
+        },
+        {
+          "solids": 17.6864,
+          "theoretical": 38.929,
+          "calibrated": 38.929,
+          "lowerTolerance": 36.983,
+          "upperTolerance": 40.876
+        },
+        {
+          "solids": 18.0169,
+          "theoretical": 39.841,
+          "calibrated": 39.841,
+          "lowerTolerance": 37.849,
+          "upperTolerance": 41.833
+        },
+        {
+          "solids": 18.3475,
+          "theoretical": 40.756,
+          "calibrated": 40.756,
+          "lowerTolerance": 38.719,
+          "upperTolerance": 42.794
+        },
+        {
+          "solids": 18.678,
+          "theoretical": 41.676,
+          "calibrated": 41.676,
+          "lowerTolerance": 39.592,
+          "upperTolerance": 43.76
+        },
+        {
+          "solids": 19.0085,
+          "theoretical": 42.6,
+          "calibrated": 42.6,
+          "lowerTolerance": 40.47,
+          "upperTolerance": 44.73
+        },
+        {
+          "solids": 19.339,
+          "theoretical": 43.528,
+          "calibrated": 43.528,
+          "lowerTolerance": 41.352,
+          "upperTolerance": 45.704
+        },
+        {
+          "solids": 19.6695,
+          "theoretical": 44.46,
+          "calibrated": 44.46,
+          "lowerTolerance": 42.237,
+          "upperTolerance": 46.683
+        },
+        {
+          "solids": 20,
+          "theoretical": 45.396,
+          "calibrated": 45.396,
+          "lowerTolerance": 43.126,
+          "upperTolerance": 47.665
+        }
+      ]
+    },
+    {
+      "id": "arf_immersion",
+      "input": {
+        "resinType": "ArF",
+        "spinSpeed": 1800,
+        "spinTime": 30,
+        "targetThickness": 90,
+        "tolerancePercent": null,
+        "measuredPoints": [
+          {
+            "id": "preset-pt-0",
+            "solidsContent": 6.5,
+            "thickness": 82,
+            "note": "初測樣品 (6.5 wt% -> 82 nm)"
+          }
+        ]
+      },
+      "prediction": {
+        "targetThickness": 90,
+        "recommendedSolids": 6.971252980054681,
+        "tolerancePercent": 5,
+        "lowerThickness": 85.5,
+        "lowerSolids": 6.707515334195236,
+        "upperThickness": 94.5,
+        "upperSolids": 7.231737389668818,
+        "spinSpeed": 1800,
+        "spinTime": 30,
+        "calibration": {
+          "mode": "single_point_shift",
+          "modeLabel": "單點平移校正 (1 數據點)",
+          "theoreticalC": 110,
+          "calibratedC": 569.7700168849065,
+          "theoreticalAlpha": 1.33,
+          "calibratedAlpha": 1.33,
+          "beta": 0.5,
+          "gamma": 0.2,
+          "scaleFactor": 5.179727426226422,
+          "rSquared": 1,
+          "pointsCount": 1
+        },
+        "resin": {
+          "id": "ArF",
+          "name": "ArF 樹脂",
+          "fullName": "Argon Fluoride Photoresist (ArF 193nm / Immersion)",
+          "modelName": "Standard Meyerhofer 流體蒸發模型",
+          "recommendedThicknessRange": [
+            50,
+            150
+          ],
+          "alpha": 1.33,
+          "beta": 0.5,
+          "gamma": 0.2,
+          "defaultC": 110,
+          "description": "主流 DUV 微影材料，具備良好光阻對比度與線寬控制特性。",
+          "typicalSolvents": [
+            "PGMEA",
+            "Cyclohexanone",
+            "gamma-Butyrolactone"
+          ]
+        }
+      },
+      "curvePoints": [
+        {
+          "solidsContent": 0.5,
+          "theoreticalThickness": 0.522,
+          "calibratedThickness": 2.706,
+          "diffNm": 2.183,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 1,
+          "theoreticalThickness": 1.313,
+          "calibratedThickness": 6.802,
+          "diffNm": 5.489,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 1.5,
+          "theoreticalThickness": 2.252,
+          "calibratedThickness": 11.664,
+          "diffNm": 9.412,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 2,
+          "theoreticalThickness": 3.301,
+          "calibratedThickness": 17.101,
+          "diffNm": 13.799,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 3,
+          "theoreticalThickness": 5.661,
+          "calibratedThickness": 29.323,
+          "diffNm": 23.662,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 4,
+          "theoreticalThickness": 8.3,
+          "calibratedThickness": 42.991,
+          "diffNm": 34.691,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 5,
+          "theoreticalThickness": 11.168,
+          "calibratedThickness": 57.845,
+          "diffNm": 46.678,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 6,
+          "theoreticalThickness": 14.232,
+          "calibratedThickness": 73.719,
+          "diffNm": 59.487,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 7,
+          "theoreticalThickness": 17.471,
+          "calibratedThickness": 90.494,
+          "diffNm": 73.023,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 8,
+          "theoreticalThickness": 20.866,
+          "calibratedThickness": 108.081,
+          "diffNm": 87.215,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 9,
+          "theoreticalThickness": 24.405,
+          "calibratedThickness": 126.41,
+          "diffNm": 102.005,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 10,
+          "theoreticalThickness": 28.076,
+          "calibratedThickness": 145.425,
+          "diffNm": 117.349,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 12,
+          "theoreticalThickness": 35.78,
+          "calibratedThickness": 185.332,
+          "diffNm": 149.552,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 14,
+          "theoreticalThickness": 43.922,
+          "calibratedThickness": 227.504,
+          "diffNm": 183.582,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 16,
+          "theoreticalThickness": 52.458,
+          "calibratedThickness": 271.718,
+          "diffNm": 219.26,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 18,
+          "theoreticalThickness": 61.354,
+          "calibratedThickness": 317.798,
+          "diffNm": 256.444,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 20,
+          "theoreticalThickness": 70.583,
+          "calibratedThickness": 365.602,
+          "diffNm": 295.019,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 22,
+          "theoreticalThickness": 80.122,
+          "calibratedThickness": 415.013,
+          "diffNm": 334.89,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 25,
+          "theoreticalThickness": 94.971,
+          "calibratedThickness": 491.925,
+          "diffNm": 396.954,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 28,
+          "theoreticalThickness": 110.421,
+          "calibratedThickness": 571.952,
+          "diffNm": 461.53,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 30,
+          "theoreticalThickness": 121.033,
+          "calibratedThickness": 626.917,
+          "diffNm": 505.885,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 35,
+          "theoreticalThickness": 148.574,
+          "calibratedThickness": 769.573,
+          "diffNm": 620.999,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 40,
+          "theoreticalThickness": 177.448,
+          "calibratedThickness": 919.134,
+          "diffNm": 741.686,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 45,
+          "theoreticalThickness": 207.541,
+          "calibratedThickness": 1075.008,
+          "diffNm": 867.467,
+          "diffPercent": 417.97
+        },
+        {
+          "solidsContent": 50,
+          "theoreticalThickness": 238.76,
+          "calibratedThickness": 1236.714,
+          "diffNm": 997.953,
+          "diffPercent": 417.97
+        }
+      ],
+      "denseChartPoints": [
+        {
+          "solids": 0.5,
+          "theoretical": 0.522,
+          "calibrated": 2.706,
+          "lowerTolerance": 2.57,
+          "upperTolerance": 2.841
+        },
+        {
+          "solids": 0.8305,
+          "theoretical": 1.026,
+          "calibrated": 5.313,
+          "lowerTolerance": 5.048,
+          "upperTolerance": 5.579
+        },
+        {
+          "solids": 1.161,
+          "theoretical": 1.602,
+          "calibrated": 8.296,
+          "lowerTolerance": 7.881,
+          "upperTolerance": 8.711
+        },
+        {
+          "solids": 1.4915,
+          "theoretical": 2.235,
+          "calibrated": 11.576,
+          "lowerTolerance": 10.997,
+          "upperTolerance": 12.155
+        },
+        {
+          "solids": 1.822,
+          "theoretical": 2.917,
+          "calibrated": 15.107,
+          "lowerTolerance": 14.352,
+          "upperTolerance": 15.862
+        },
+        {
+          "solids": 2.1525,
+          "theoretical": 3.64,
+          "calibrated": 18.857,
+          "lowerTolerance": 17.914,
+          "upperTolerance": 19.799
+        },
+        {
+          "solids": 2.4831,
+          "theoretical": 4.402,
+          "calibrated": 22.802,
+          "lowerTolerance": 21.662,
+          "upperTolerance": 23.942
+        },
+        {
+          "solids": 2.8136,
+          "theoretical": 5.198,
+          "calibrated": 26.925,
+          "lowerTolerance": 25.578,
+          "upperTolerance": 28.271
+        },
+        {
+          "solids": 3.1441,
+          "theoretical": 6.026,
+          "calibrated": 31.211,
+          "lowerTolerance": 29.65,
+          "upperTolerance": 32.771
+        },
+        {
+          "solids": 3.4746,
+          "theoretical": 6.882,
+          "calibrated": 35.648,
+          "lowerTolerance": 33.866,
+          "upperTolerance": 37.431
+        },
+        {
+          "solids": 3.8051,
+          "theoretical": 7.766,
+          "calibrated": 40.228,
+          "lowerTolerance": 38.216,
+          "upperTolerance": 42.239
+        },
+        {
+          "solids": 4.1356,
+          "theoretical": 8.676,
+          "calibrated": 44.94,
+          "lowerTolerance": 42.693,
+          "upperTolerance": 47.187
+        },
+        {
+          "solids": 4.4661,
+          "theoretical": 9.61,
+          "calibrated": 49.779,
+          "lowerTolerance": 47.29,
+          "upperTolerance": 52.268
+        },
+        {
+          "solids": 4.7966,
+          "theoretical": 10.568,
+          "calibrated": 54.737,
+          "lowerTolerance": 52,
+          "upperTolerance": 57.474
+        },
+        {
+          "solids": 5.1271,
+          "theoretical": 11.547,
+          "calibrated": 59.81,
+          "lowerTolerance": 56.819,
+          "upperTolerance": 62.8
+        },
+        {
+          "solids": 5.4576,
+          "theoretical": 12.547,
+          "calibrated": 64.991,
+          "lowerTolerance": 61.742,
+          "upperTolerance": 68.241
+        },
+        {
+          "solids": 5.7881,
+          "theoretical": 13.568,
+          "calibrated": 70.277,
+          "lowerTolerance": 66.764,
+          "upperTolerance": 73.791
+        },
+        {
+          "solids": 6.1186,
+          "theoretical": 14.608,
+          "calibrated": 75.664,
+          "lowerTolerance": 71.881,
+          "upperTolerance": 79.447
+        },
+        {
+          "solids": 6.4492,
+          "theoretical": 15.666,
+          "calibrated": 81.148,
+          "lowerTolerance": 77.091,
+          "upperTolerance": 85.205
+        },
+        {
+          "solids": 6.7797,
+          "theoretical": 16.743,
+          "calibrated": 86.725,
+          "lowerTolerance": 82.389,
+          "upperTolerance": 91.062
+        },
+        {
+          "solids": 7.1102,
+          "theoretical": 17.837,
+          "calibrated": 92.393,
+          "lowerTolerance": 87.773,
+          "upperTolerance": 97.013
+        },
+        {
+          "solids": 7.4407,
+          "theoretical": 18.949,
+          "calibrated": 98.149,
+          "lowerTolerance": 93.241,
+          "upperTolerance": 103.056
+        },
+        {
+          "solids": 7.7712,
+          "theoretical": 20.076,
+          "calibrated": 103.989,
+          "lowerTolerance": 98.79,
+          "upperTolerance": 109.188
+        },
+        {
+          "solids": 8.1017,
+          "theoretical": 21.22,
+          "calibrated": 109.912,
+          "lowerTolerance": 104.416,
+          "upperTolerance": 115.408
+        },
+        {
+          "solids": 8.4322,
+          "theoretical": 22.379,
+          "calibrated": 115.915,
+          "lowerTolerance": 110.12,
+          "upperTolerance": 121.711
+        },
+        {
+          "solids": 8.7627,
+          "theoretical": 23.553,
+          "calibrated": 121.997,
+          "lowerTolerance": 115.897,
+          "upperTolerance": 128.097
+        },
+        {
+          "solids": 9.0932,
+          "theoretical": 24.742,
+          "calibrated": 128.154,
+          "lowerTolerance": 121.747,
+          "upperTolerance": 134.562
+        },
+        {
+          "solids": 9.4237,
+          "theoretical": 25.945,
+          "calibrated": 134.386,
+          "lowerTolerance": 127.667,
+          "upperTolerance": 141.106
+        },
+        {
+          "solids": 9.7542,
+          "theoretical": 27.162,
+          "calibrated": 140.691,
+          "lowerTolerance": 133.656,
+          "upperTolerance": 147.726
+        },
+        {
+          "solids": 10.0847,
+          "theoretical": 28.393,
+          "calibrated": 147.066,
+          "lowerTolerance": 139.713,
+          "upperTolerance": 154.42
+        },
+        {
+          "solids": 10.4153,
+          "theoretical": 29.637,
+          "calibrated": 153.511,
+          "lowerTolerance": 145.836,
+          "upperTolerance": 161.187
+        },
+        {
+          "solids": 10.7458,
+          "theoretical": 30.894,
+          "calibrated": 160.024,
+          "lowerTolerance": 152.023,
+          "upperTolerance": 168.025
+        },
+        {
+          "solids": 11.0763,
+          "theoretical": 32.164,
+          "calibrated": 166.603,
+          "lowerTolerance": 158.273,
+          "upperTolerance": 174.933
+        },
+        {
+          "solids": 11.4068,
+          "theoretical": 33.447,
+          "calibrated": 173.247,
+          "lowerTolerance": 164.585,
+          "upperTolerance": 181.909
+        },
+        {
+          "solids": 11.7373,
+          "theoretical": 34.742,
+          "calibrated": 179.955,
+          "lowerTolerance": 170.957,
+          "upperTolerance": 188.953
+        },
+        {
+          "solids": 12.0678,
+          "theoretical": 36.049,
+          "calibrated": 186.726,
+          "lowerTolerance": 177.389,
+          "upperTolerance": 196.062
+        },
+        {
+          "solids": 12.3983,
+          "theoretical": 37.368,
+          "calibrated": 193.558,
+          "lowerTolerance": 183.88,
+          "upperTolerance": 203.236
+        },
+        {
+          "solids": 12.7288,
+          "theoretical": 38.699,
+          "calibrated": 200.45,
+          "lowerTolerance": 190.428,
+          "upperTolerance": 210.473
+        },
+        {
+          "solids": 13.0593,
+          "theoretical": 40.041,
+          "calibrated": 207.402,
+          "lowerTolerance": 197.032,
+          "upperTolerance": 217.772
+        },
+        {
+          "solids": 13.3898,
+          "theoretical": 41.395,
+          "calibrated": 214.412,
+          "lowerTolerance": 203.692,
+          "upperTolerance": 225.133
+        },
+        {
+          "solids": 13.7203,
+          "theoretical": 42.759,
+          "calibrated": 221.48,
+          "lowerTolerance": 210.406,
+          "upperTolerance": 232.554
+        },
+        {
+          "solids": 14.0508,
+          "theoretical": 44.134,
+          "calibrated": 228.604,
+          "lowerTolerance": 217.174,
+          "upperTolerance": 240.034
+        },
+        {
+          "solids": 14.3814,
+          "theoretical": 45.52,
+          "calibrated": 235.783,
+          "lowerTolerance": 223.994,
+          "upperTolerance": 247.572
+        },
+        {
+          "solids": 14.7119,
+          "theoretical": 46.917,
+          "calibrated": 243.017,
+          "lowerTolerance": 230.866,
+          "upperTolerance": 255.168
+        },
+        {
+          "solids": 15.0424,
+          "theoretical": 48.324,
+          "calibrated": 250.305,
+          "lowerTolerance": 237.79,
+          "upperTolerance": 262.82
+        },
+        {
+          "solids": 15.3729,
+          "theoretical": 49.741,
+          "calibrated": 257.646,
+          "lowerTolerance": 244.764,
+          "upperTolerance": 270.528
+        },
+        {
+          "solids": 15.7034,
+          "theoretical": 51.169,
+          "calibrated": 265.039,
+          "lowerTolerance": 251.787,
+          "upperTolerance": 278.291
+        },
+        {
+          "solids": 16.0339,
+          "theoretical": 52.606,
+          "calibrated": 272.484,
+          "lowerTolerance": 258.86,
+          "upperTolerance": 286.108
+        },
+        {
+          "solids": 16.3644,
+          "theoretical": 54.053,
+          "calibrated": 279.98,
+          "lowerTolerance": 265.981,
+          "upperTolerance": 293.979
+        },
+        {
+          "solids": 16.6949,
+          "theoretical": 55.51,
+          "calibrated": 287.525,
+          "lowerTolerance": 273.149,
+          "upperTolerance": 301.902
+        },
+        {
+          "solids": 17.0254,
+          "theoretical": 56.976,
+          "calibrated": 295.12,
+          "lowerTolerance": 280.364,
+          "upperTolerance": 309.876
+        },
+        {
+          "solids": 17.3559,
+          "theoretical": 58.452,
+          "calibrated": 302.764,
+          "lowerTolerance": 287.626,
+          "upperTolerance": 317.903
+        },
+        {
+          "solids": 17.6864,
+          "theoretical": 59.937,
+          "calibrated": 310.457,
+          "lowerTolerance": 294.934,
+          "upperTolerance": 325.979
+        },
+        {
+          "solids": 18.0169,
+          "theoretical": 61.431,
+          "calibrated": 318.196,
+          "lowerTolerance": 302.287,
+          "upperTolerance": 334.106
+        },
+        {
+          "solids": 18.3475,
+          "theoretical": 62.934,
+          "calibrated": 325.983,
+          "lowerTolerance": 309.684,
+          "upperTolerance": 342.282
+        },
+        {
+          "solids": 18.678,
+          "theoretical": 64.447,
+          "calibrated": 333.816,
+          "lowerTolerance": 317.125,
+          "upperTolerance": 350.507
+        },
+        {
+          "solids": 19.0085,
+          "theoretical": 65.968,
+          "calibrated": 341.695,
+          "lowerTolerance": 324.61,
+          "upperTolerance": 358.78
+        },
+        {
+          "solids": 19.339,
+          "theoretical": 67.498,
+          "calibrated": 349.62,
+          "lowerTolerance": 332.139,
+          "upperTolerance": 367.101
+        },
+        {
+          "solids": 19.6695,
+          "theoretical": 69.036,
+          "calibrated": 357.589,
+          "lowerTolerance": 339.709,
+          "upperTolerance": 375.468
+        },
+        {
+          "solids": 20,
+          "theoretical": 70.583,
+          "calibrated": 365.602,
+          "lowerTolerance": 347.322,
+          "upperTolerance": 383.882
+        }
+      ]
+    },
+    {
+      "id": "barc_preset",
+      "input": {
+        "resinType": "BARC",
+        "spinSpeed": 2000,
+        "spinTime": 30,
+        "targetThickness": 45,
+        "tolerancePercent": null,
+        "measuredPoints": [
+          {
+            "id": "preset-pt-0",
+            "solidsContent": 4,
+            "thickness": 43.5,
+            "note": "BARC 標稱樣品 (4.0 wt% -> 43.500 nm)"
+          }
+        ]
+      },
+      "prediction": {
+        "targetThickness": 45,
+        "recommendedSolids": 4.105684503783501,
+        "tolerancePercent": 5,
+        "lowerThickness": 42.75,
+        "lowerSolids": 3.9468433104257303,
+        "upperThickness": 47.25,
+        "upperSolids": 4.262702604418579,
+        "spinSpeed": 2000,
+        "spinTime": 30,
+        "calibration": {
+          "mode": "single_point_shift",
+          "modeLabel": "單點平移校正 (1 數據點)",
+          "theoreticalC": 650,
+          "calibratedC": 633.5056856760152,
+          "theoreticalAlpha": 1.3,
+          "calibratedAlpha": 1.3,
+          "beta": 0.5,
+          "gamma": 0.2,
+          "scaleFactor": 0.9746241318092542,
+          "rSquared": 1,
+          "pointsCount": 1
+        },
+        "resin": {
+          "id": "BARC",
+          "name": "BARC 抗反射層 (5~200nm)",
+          "fullName": "Bottom Anti-Reflective Coating (BARC 5 ~ 200 nm)",
+          "modelName": "Meyerhofer 抗反射薄膜蒸發流體模型",
+          "recommendedThicknessRange": [
+            5,
+            200
+          ],
+          "alpha": 1.3,
+          "beta": 0.5,
+          "gamma": 0.2,
+          "defaultC": 650,
+          "description": "微影底部抗反射塗層 (BARC)，具備高光學吸收性 (k-value) 與抗駐波干涉特性，覆蓋 5~200nm 精密抗反射薄膜。",
+          "typicalSolvents": [
+            "PGMEA",
+            "Cyclohexanone",
+            "Ethyl Lactate (EL)",
+            "1-Methoxy-2-propanol"
+          ]
+        }
+      },
+      "curvePoints": [
+        {
+          "solidsContent": 0.5,
+          "theoreticalThickness": 2.99,
+          "calibratedThickness": 2.914,
+          "diffNm": -0.076,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 1,
+          "theoreticalThickness": 7.362,
+          "calibratedThickness": 7.175,
+          "diffNm": -0.187,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 1.5,
+          "theoreticalThickness": 12.471,
+          "calibratedThickness": 12.154,
+          "diffNm": -0.316,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 2,
+          "theoreticalThickness": 18.126,
+          "calibratedThickness": 17.666,
+          "diffNm": -0.46,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 3,
+          "theoreticalThickness": 30.707,
+          "calibratedThickness": 29.927,
+          "diffNm": -0.779,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 4,
+          "theoreticalThickness": 44.633,
+          "calibratedThickness": 43.5,
+          "diffNm": -1.133,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 5,
+          "theoreticalThickness": 59.653,
+          "calibratedThickness": 58.14,
+          "diffNm": -1.514,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 6,
+          "theoreticalThickness": 75.609,
+          "calibratedThickness": 73.69,
+          "diffNm": -1.919,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 7,
+          "theoreticalThickness": 92.385,
+          "calibratedThickness": 90.041,
+          "diffNm": -2.344,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 8,
+          "theoreticalThickness": 109.898,
+          "calibratedThickness": 107.11,
+          "diffNm": -2.789,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 9,
+          "theoreticalThickness": 128.082,
+          "calibratedThickness": 124.832,
+          "diffNm": -3.25,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 10,
+          "theoreticalThickness": 146.884,
+          "calibratedThickness": 143.157,
+          "diffNm": -3.727,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 12,
+          "theoreticalThickness": 186.17,
+          "calibratedThickness": 181.446,
+          "diffNm": -4.724,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 14,
+          "theoreticalThickness": 227.479,
+          "calibratedThickness": 221.706,
+          "diffNm": -5.772,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 16,
+          "theoreticalThickness": 270.601,
+          "calibratedThickness": 263.735,
+          "diffNm": -6.867,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 18,
+          "theoreticalThickness": 315.376,
+          "calibratedThickness": 307.373,
+          "diffNm": -8.003,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 20,
+          "theoreticalThickness": 361.671,
+          "calibratedThickness": 352.493,
+          "diffNm": -9.178,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 22,
+          "theoreticalThickness": 409.377,
+          "calibratedThickness": 398.989,
+          "diffNm": -10.388,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 25,
+          "theoreticalThickness": 483.388,
+          "calibratedThickness": 471.122,
+          "diffNm": -12.266,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 28,
+          "theoreticalThickness": 560.118,
+          "calibratedThickness": 545.905,
+          "diffNm": -14.213,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 30,
+          "theoreticalThickness": 612.677,
+          "calibratedThickness": 597.13,
+          "diffNm": -15.547,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 35,
+          "theoreticalThickness": 748.622,
+          "calibratedThickness": 729.625,
+          "diffNm": -18.997,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 40,
+          "theoreticalThickness": 890.537,
+          "calibratedThickness": 867.939,
+          "diffNm": -22.598,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 45,
+          "theoreticalThickness": 1037.888,
+          "calibratedThickness": 1011.55,
+          "diffNm": -26.337,
+          "diffPercent": -2.54
+        },
+        {
+          "solidsContent": 50,
+          "theoreticalThickness": 1190.242,
+          "calibratedThickness": 1160.038,
+          "diffNm": -30.203,
+          "diffPercent": -2.54
+        }
+      ],
+      "denseChartPoints": [
+        {
+          "solids": 0.5,
+          "theoretical": 2.99,
+          "calibrated": 2.914,
+          "lowerTolerance": 2.768,
+          "upperTolerance": 3.06
+        },
+        {
+          "solids": 0.8305,
+          "theoretical": 5.783,
+          "calibrated": 5.636,
+          "lowerTolerance": 5.354,
+          "upperTolerance": 5.918
+        },
+        {
+          "solids": 1.161,
+          "theoretical": 8.938,
+          "calibrated": 8.712,
+          "lowerTolerance": 8.276,
+          "upperTolerance": 9.147
+        },
+        {
+          "solids": 1.4915,
+          "theoretical": 12.379,
+          "calibrated": 12.065,
+          "lowerTolerance": 11.462,
+          "upperTolerance": 12.668
+        },
+        {
+          "solids": 1.822,
+          "theoretical": 16.058,
+          "calibrated": 15.651,
+          "lowerTolerance": 14.868,
+          "upperTolerance": 16.433
+        },
+        {
+          "solids": 2.1525,
+          "theoretical": 19.944,
+          "calibrated": 19.438,
+          "lowerTolerance": 18.466,
+          "upperTolerance": 20.41
+        },
+        {
+          "solids": 2.4831,
+          "theoretical": 24.013,
+          "calibrated": 23.404,
+          "lowerTolerance": 22.234,
+          "upperTolerance": 24.574
+        },
+        {
+          "solids": 2.8136,
+          "theoretical": 28.249,
+          "calibrated": 27.532,
+          "lowerTolerance": 26.156,
+          "upperTolerance": 28.909
+        },
+        {
+          "solids": 3.1441,
+          "theoretical": 32.637,
+          "calibrated": 31.809,
+          "lowerTolerance": 30.219,
+          "upperTolerance": 33.4
+        },
+        {
+          "solids": 3.4746,
+          "theoretical": 37.166,
+          "calibrated": 36.223,
+          "lowerTolerance": 34.412,
+          "upperTolerance": 38.034
+        },
+        {
+          "solids": 3.8051,
+          "theoretical": 41.826,
+          "calibrated": 40.765,
+          "lowerTolerance": 38.727,
+          "upperTolerance": 42.803
+        },
+        {
+          "solids": 4.1356,
+          "theoretical": 46.609,
+          "calibrated": 45.427,
+          "lowerTolerance": 43.155,
+          "upperTolerance": 47.698
+        },
+        {
+          "solids": 4.4661,
+          "theoretical": 51.509,
+          "calibrated": 50.202,
+          "lowerTolerance": 47.692,
+          "upperTolerance": 52.712
+        },
+        {
+          "solids": 4.7966,
+          "theoretical": 56.518,
+          "calibrated": 55.084,
+          "lowerTolerance": 52.33,
+          "upperTolerance": 57.838
+        },
+        {
+          "solids": 5.1271,
+          "theoretical": 61.632,
+          "calibrated": 60.068,
+          "lowerTolerance": 57.065,
+          "upperTolerance": 63.072
+        },
+        {
+          "solids": 5.4576,
+          "theoretical": 66.847,
+          "calibrated": 65.15,
+          "lowerTolerance": 61.893,
+          "upperTolerance": 68.408
+        },
+        {
+          "solids": 5.7881,
+          "theoretical": 72.156,
+          "calibrated": 70.325,
+          "lowerTolerance": 66.809,
+          "upperTolerance": 73.842
+        },
+        {
+          "solids": 6.1186,
+          "theoretical": 77.558,
+          "calibrated": 75.59,
+          "lowerTolerance": 71.81,
+          "upperTolerance": 79.369
+        },
+        {
+          "solids": 6.4492,
+          "theoretical": 83.048,
+          "calibrated": 80.94,
+          "lowerTolerance": 76.893,
+          "upperTolerance": 84.987
+        },
+        {
+          "solids": 6.7797,
+          "theoretical": 88.623,
+          "calibrated": 86.374,
+          "lowerTolerance": 82.055,
+          "upperTolerance": 90.692
+        },
+        {
+          "solids": 7.1102,
+          "theoretical": 94.28,
+          "calibrated": 91.887,
+          "lowerTolerance": 87.293,
+          "upperTolerance": 96.482
+        },
+        {
+          "solids": 7.4407,
+          "theoretical": 100.016,
+          "calibrated": 97.478,
+          "lowerTolerance": 92.604,
+          "upperTolerance": 102.352
+        },
+        {
+          "solids": 7.7712,
+          "theoretical": 105.83,
+          "calibrated": 103.144,
+          "lowerTolerance": 97.987,
+          "upperTolerance": 108.301
+        },
+        {
+          "solids": 8.1017,
+          "theoretical": 111.718,
+          "calibrated": 108.883,
+          "lowerTolerance": 103.439,
+          "upperTolerance": 114.327
+        },
+        {
+          "solids": 8.4322,
+          "theoretical": 117.679,
+          "calibrated": 114.692,
+          "lowerTolerance": 108.958,
+          "upperTolerance": 120.427
+        },
+        {
+          "solids": 8.7627,
+          "theoretical": 123.71,
+          "calibrated": 120.571,
+          "lowerTolerance": 114.542,
+          "upperTolerance": 126.599
+        },
+        {
+          "solids": 9.0932,
+          "theoretical": 129.81,
+          "calibrated": 126.516,
+          "lowerTolerance": 120.19,
+          "upperTolerance": 132.841
+        },
+        {
+          "solids": 9.4237,
+          "theoretical": 135.976,
+          "calibrated": 132.526,
+          "lowerTolerance": 125.9,
+          "upperTolerance": 139.152
+        },
+        {
+          "solids": 9.7542,
+          "theoretical": 142.208,
+          "calibrated": 138.6,
+          "lowerTolerance": 131.67,
+          "upperTolerance": 145.53
+        },
+        {
+          "solids": 10.0847,
+          "theoretical": 148.504,
+          "calibrated": 144.736,
+          "lowerTolerance": 137.499,
+          "upperTolerance": 151.972
+        },
+        {
+          "solids": 10.4153,
+          "theoretical": 154.862,
+          "calibrated": 150.932,
+          "lowerTolerance": 143.386,
+          "upperTolerance": 158.479
+        },
+        {
+          "solids": 10.7458,
+          "theoretical": 161.281,
+          "calibrated": 157.188,
+          "lowerTolerance": 149.329,
+          "upperTolerance": 165.048
+        },
+        {
+          "solids": 11.0763,
+          "theoretical": 167.759,
+          "calibrated": 163.502,
+          "lowerTolerance": 155.327,
+          "upperTolerance": 171.677
+        },
+        {
+          "solids": 11.4068,
+          "theoretical": 174.295,
+          "calibrated": 169.873,
+          "lowerTolerance": 161.379,
+          "upperTolerance": 178.366
+        },
+        {
+          "solids": 11.7373,
+          "theoretical": 180.889,
+          "calibrated": 176.299,
+          "lowerTolerance": 167.484,
+          "upperTolerance": 185.114
+        },
+        {
+          "solids": 12.0678,
+          "theoretical": 187.539,
+          "calibrated": 182.78,
+          "lowerTolerance": 173.641,
+          "upperTolerance": 191.919
+        },
+        {
+          "solids": 12.3983,
+          "theoretical": 194.243,
+          "calibrated": 189.314,
+          "lowerTolerance": 179.848,
+          "upperTolerance": 198.779
+        },
+        {
+          "solids": 12.7288,
+          "theoretical": 201.001,
+          "calibrated": 195.901,
+          "lowerTolerance": 186.105,
+          "upperTolerance": 205.696
+        },
+        {
+          "solids": 13.0593,
+          "theoretical": 207.812,
+          "calibrated": 202.539,
+          "lowerTolerance": 192.412,
+          "upperTolerance": 212.666
+        },
+        {
+          "solids": 13.3898,
+          "theoretical": 214.675,
+          "calibrated": 209.228,
+          "lowerTolerance": 198.766,
+          "upperTolerance": 219.689
+        },
+        {
+          "solids": 13.7203,
+          "theoretical": 221.589,
+          "calibrated": 215.966,
+          "lowerTolerance": 205.168,
+          "upperTolerance": 226.764
+        },
+        {
+          "solids": 14.0508,
+          "theoretical": 228.553,
+          "calibrated": 222.754,
+          "lowerTolerance": 211.616,
+          "upperTolerance": 233.891
+        },
+        {
+          "solids": 14.3814,
+          "theoretical": 235.567,
+          "calibrated": 229.589,
+          "lowerTolerance": 218.11,
+          "upperTolerance": 241.068
+        },
+        {
+          "solids": 14.7119,
+          "theoretical": 242.629,
+          "calibrated": 236.472,
+          "lowerTolerance": 224.648,
+          "upperTolerance": 248.295
+        },
+        {
+          "solids": 15.0424,
+          "theoretical": 249.738,
+          "calibrated": 243.401,
+          "lowerTolerance": 231.231,
+          "upperTolerance": 255.571
+        },
+        {
+          "solids": 15.3729,
+          "theoretical": 256.895,
+          "calibrated": 250.376,
+          "lowerTolerance": 237.857,
+          "upperTolerance": 262.895
+        },
+        {
+          "solids": 15.7034,
+          "theoretical": 264.098,
+          "calibrated": 257.397,
+          "lowerTolerance": 244.527,
+          "upperTolerance": 270.266
+        },
+        {
+          "solids": 16.0339,
+          "theoretical": 271.347,
+          "calibrated": 264.461,
+          "lowerTolerance": 251.238,
+          "upperTolerance": 277.684
+        },
+        {
+          "solids": 16.3644,
+          "theoretical": 278.641,
+          "calibrated": 271.57,
+          "lowerTolerance": 257.991,
+          "upperTolerance": 285.148
+        },
+        {
+          "solids": 16.6949,
+          "theoretical": 285.979,
+          "calibrated": 278.722,
+          "lowerTolerance": 264.786,
+          "upperTolerance": 292.658
+        },
+        {
+          "solids": 17.0254,
+          "theoretical": 293.36,
+          "calibrated": 285.916,
+          "lowerTolerance": 271.62,
+          "upperTolerance": 300.212
+        },
+        {
+          "solids": 17.3559,
+          "theoretical": 300.785,
+          "calibrated": 293.152,
+          "lowerTolerance": 278.495,
+          "upperTolerance": 307.81
+        },
+        {
+          "solids": 17.6864,
+          "theoretical": 308.253,
+          "calibrated": 300.43,
+          "lowerTolerance": 285.409,
+          "upperTolerance": 315.452
+        },
+        {
+          "solids": 18.0169,
+          "theoretical": 315.762,
+          "calibrated": 307.749,
+          "lowerTolerance": 292.362,
+          "upperTolerance": 323.137
+        },
+        {
+          "solids": 18.3475,
+          "theoretical": 323.313,
+          "calibrated": 315.108,
+          "lowerTolerance": 299.353,
+          "upperTolerance": 330.864
+        },
+        {
+          "solids": 18.678,
+          "theoretical": 330.904,
+          "calibrated": 322.507,
+          "lowerTolerance": 306.382,
+          "upperTolerance": 338.633
+        },
+        {
+          "solids": 19.0085,
+          "theoretical": 338.537,
+          "calibrated": 329.946,
+          "lowerTolerance": 313.449,
+          "upperTolerance": 346.443
+        },
+        {
+          "solids": 19.339,
+          "theoretical": 346.209,
+          "calibrated": 337.423,
+          "lowerTolerance": 320.552,
+          "upperTolerance": 354.294
+        },
+        {
+          "solids": 19.6695,
+          "theoretical": 353.92,
+          "calibrated": 344.939,
+          "lowerTolerance": 327.692,
+          "upperTolerance": 362.186
+        },
+        {
+          "solids": 20,
+          "theoretical": 361.671,
+          "calibrated": 352.493,
+          "lowerTolerance": 334.868,
+          "upperTolerance": 370.117
+        }
+      ]
+    },
+    {
+      "id": "krf_thick",
+      "input": {
+        "resinType": "KrF",
+        "spinSpeed": 1500,
+        "spinTime": 35,
+        "targetThickness": 320,
+        "tolerancePercent": null,
+        "measuredPoints": []
+      },
+      "prediction": {
+        "targetThickness": 320,
+        "recommendedSolids": 47.47743985666109,
+        "tolerancePercent": 5,
+        "lowerThickness": 304,
+        "lowerSolids": 45.76943821077919,
+        "upperThickness": 336,
+        "upperSolids": 49.16120347099306,
+        "spinSpeed": 1500,
+        "spinTime": 35,
+        "calibration": {
+          "mode": "theoretical",
+          "modeLabel": "理論模式 (0 數據點)",
+          "theoreticalC": 95,
+          "calibratedC": 95,
+          "theoreticalAlpha": 1.4,
+          "calibratedAlpha": 1.4,
+          "beta": 0.5,
+          "gamma": 0.15,
+          "scaleFactor": 1,
+          "rSquared": null,
+          "pointsCount": 0
+        },
+        "resin": {
+          "id": "KrF",
+          "name": "KrF 樹脂",
+          "fullName": "Krypton Fluoride Photoresist (KrF 248nm)",
+          "modelName": "Empirical Power Law 冪律模型",
+          "recommendedThicknessRange": [
+            150,
+            500
+          ],
+          "alpha": 1.4,
+          "beta": 0.5,
+          "gamma": 0.15,
+          "defaultC": 95,
+          "description": "厚膜或中階微影層常用材料，耐蝕刻性佳，適用於金屬導線與厚光阻圖案。",
+          "typicalSolvents": [
+            "PGMEA",
+            "Ethyl Lactate"
+          ]
+        }
+      },
+      "curvePoints": [
+        {
+          "solidsContent": 0.5,
+          "theoreticalThickness": 0.545,
+          "calibratedThickness": 0.545,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 1,
+          "theoreticalThickness": 1.439,
+          "calibratedThickness": 1.439,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 1.5,
+          "theoreticalThickness": 2.539,
+          "calibratedThickness": 2.539,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 2,
+          "theoreticalThickness": 3.798,
+          "calibratedThickness": 3.798,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 3,
+          "theoreticalThickness": 6.699,
+          "calibratedThickness": 6.699,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 4,
+          "theoreticalThickness": 10.022,
+          "calibratedThickness": 10.022,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 5,
+          "theoreticalThickness": 13.697,
+          "calibratedThickness": 13.697,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 6,
+          "theoreticalThickness": 17.68,
+          "calibratedThickness": 17.68,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 7,
+          "theoreticalThickness": 21.938,
+          "calibratedThickness": 21.938,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 8,
+          "theoreticalThickness": 26.448,
+          "calibratedThickness": 26.448,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 9,
+          "theoreticalThickness": 31.189,
+          "calibratedThickness": 31.189,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 10,
+          "theoreticalThickness": 36.147,
+          "calibratedThickness": 36.147,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 12,
+          "theoreticalThickness": 46.658,
+          "calibratedThickness": 46.658,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 14,
+          "theoreticalThickness": 57.896,
+          "calibratedThickness": 57.896,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 16,
+          "theoreticalThickness": 69.797,
+          "calibratedThickness": 69.797,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 18,
+          "theoreticalThickness": 82.309,
+          "calibratedThickness": 82.309,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 20,
+          "theoreticalThickness": 95.392,
+          "calibratedThickness": 95.392,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 22,
+          "theoreticalThickness": 109.008,
+          "calibratedThickness": 109.008,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 25,
+          "theoreticalThickness": 130.372,
+          "calibratedThickness": 130.372,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 28,
+          "theoreticalThickness": 152.788,
+          "calibratedThickness": 152.788,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 30,
+          "theoreticalThickness": 168.282,
+          "calibratedThickness": 168.282,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 35,
+          "theoreticalThickness": 208.816,
+          "calibratedThickness": 208.816,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 40,
+          "theoreticalThickness": 251.74,
+          "calibratedThickness": 251.74,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 45,
+          "theoreticalThickness": 296.869,
+          "calibratedThickness": 296.869,
+          "diffNm": 0,
+          "diffPercent": 0
+        },
+        {
+          "solidsContent": 50,
+          "theoreticalThickness": 344.053,
+          "calibratedThickness": 344.053,
+          "diffNm": 0,
+          "diffPercent": 0
+        }
+      ],
+      "denseChartPoints": [
+        {
+          "solids": 0.5,
+          "theoretical": 0.545,
+          "calibrated": 0.545,
+          "lowerTolerance": 0.518,
+          "upperTolerance": 0.573
+        },
+        {
+          "solids": 0.8305,
+          "theoretical": 1.11,
+          "calibrated": 1.11,
+          "lowerTolerance": 1.054,
+          "upperTolerance": 1.165
+        },
+        {
+          "solids": 1.161,
+          "theoretical": 1.774,
+          "calibrated": 1.774,
+          "lowerTolerance": 1.685,
+          "upperTolerance": 1.862
+        },
+        {
+          "solids": 1.4915,
+          "theoretical": 2.519,
+          "calibrated": 2.519,
+          "lowerTolerance": 2.393,
+          "upperTolerance": 2.644
+        },
+        {
+          "solids": 1.822,
+          "theoretical": 3.333,
+          "calibrated": 3.333,
+          "lowerTolerance": 3.166,
+          "upperTolerance": 3.5
+        },
+        {
+          "solids": 2.1525,
+          "theoretical": 4.209,
+          "calibrated": 4.209,
+          "lowerTolerance": 3.999,
+          "upperTolerance": 4.42
+        },
+        {
+          "solids": 2.4831,
+          "theoretical": 5.141,
+          "calibrated": 5.141,
+          "lowerTolerance": 4.884,
+          "upperTolerance": 5.398
+        },
+        {
+          "solids": 2.8136,
+          "theoretical": 6.124,
+          "calibrated": 6.124,
+          "lowerTolerance": 5.818,
+          "upperTolerance": 6.43
+        },
+        {
+          "solids": 3.1441,
+          "theoretical": 7.154,
+          "calibrated": 7.154,
+          "lowerTolerance": 6.796,
+          "upperTolerance": 7.512
+        },
+        {
+          "solids": 3.4746,
+          "theoretical": 8.229,
+          "calibrated": 8.229,
+          "lowerTolerance": 7.817,
+          "upperTolerance": 8.64
+        },
+        {
+          "solids": 3.8051,
+          "theoretical": 9.345,
+          "calibrated": 9.345,
+          "lowerTolerance": 8.878,
+          "upperTolerance": 9.812
+        },
+        {
+          "solids": 4.1356,
+          "theoretical": 10.501,
+          "calibrated": 10.501,
+          "lowerTolerance": 9.976,
+          "upperTolerance": 11.026
+        },
+        {
+          "solids": 4.4661,
+          "theoretical": 11.694,
+          "calibrated": 11.694,
+          "lowerTolerance": 11.109,
+          "upperTolerance": 12.279
+        },
+        {
+          "solids": 4.7966,
+          "theoretical": 12.923,
+          "calibrated": 12.923,
+          "lowerTolerance": 12.277,
+          "upperTolerance": 13.57
+        },
+        {
+          "solids": 5.1271,
+          "theoretical": 14.187,
+          "calibrated": 14.187,
+          "lowerTolerance": 13.478,
+          "upperTolerance": 14.896
+        },
+        {
+          "solids": 5.4576,
+          "theoretical": 15.484,
+          "calibrated": 15.484,
+          "lowerTolerance": 14.709,
+          "upperTolerance": 16.258
+        },
+        {
+          "solids": 5.7881,
+          "theoretical": 16.812,
+          "calibrated": 16.812,
+          "lowerTolerance": 15.971,
+          "upperTolerance": 17.653
+        },
+        {
+          "solids": 6.1186,
+          "theoretical": 18.171,
+          "calibrated": 18.171,
+          "lowerTolerance": 17.263,
+          "upperTolerance": 19.08
+        },
+        {
+          "solids": 6.4492,
+          "theoretical": 19.56,
+          "calibrated": 19.56,
+          "lowerTolerance": 18.582,
+          "upperTolerance": 20.538
+        },
+        {
+          "solids": 6.7797,
+          "theoretical": 20.978,
+          "calibrated": 20.978,
+          "lowerTolerance": 19.929,
+          "upperTolerance": 22.027
+        },
+        {
+          "solids": 7.1102,
+          "theoretical": 22.423,
+          "calibrated": 22.423,
+          "lowerTolerance": 21.302,
+          "upperTolerance": 23.544
+        },
+        {
+          "solids": 7.4407,
+          "theoretical": 23.896,
+          "calibrated": 23.896,
+          "lowerTolerance": 22.701,
+          "upperTolerance": 25.091
+        },
+        {
+          "solids": 7.7712,
+          "theoretical": 25.395,
+          "calibrated": 25.395,
+          "lowerTolerance": 24.125,
+          "upperTolerance": 26.665
+        },
+        {
+          "solids": 8.1017,
+          "theoretical": 26.92,
+          "calibrated": 26.92,
+          "lowerTolerance": 25.574,
+          "upperTolerance": 28.266
+        },
+        {
+          "solids": 8.4322,
+          "theoretical": 28.47,
+          "calibrated": 28.47,
+          "lowerTolerance": 27.046,
+          "upperTolerance": 29.893
+        },
+        {
+          "solids": 8.7627,
+          "theoretical": 30.044,
+          "calibrated": 30.044,
+          "lowerTolerance": 28.542,
+          "upperTolerance": 31.546
+        },
+        {
+          "solids": 9.0932,
+          "theoretical": 31.643,
+          "calibrated": 31.643,
+          "lowerTolerance": 30.06,
+          "upperTolerance": 33.225
+        },
+        {
+          "solids": 9.4237,
+          "theoretical": 33.264,
+          "calibrated": 33.264,
+          "lowerTolerance": 31.601,
+          "upperTolerance": 34.928
+        },
+        {
+          "solids": 9.7542,
+          "theoretical": 34.909,
+          "calibrated": 34.909,
+          "lowerTolerance": 33.164,
+          "upperTolerance": 36.655
+        },
+        {
+          "solids": 10.0847,
+          "theoretical": 36.576,
+          "calibrated": 36.576,
+          "lowerTolerance": 34.747,
+          "upperTolerance": 38.405
+        },
+        {
+          "solids": 10.4153,
+          "theoretical": 38.265,
+          "calibrated": 38.265,
+          "lowerTolerance": 36.352,
+          "upperTolerance": 40.179
+        },
+        {
+          "solids": 10.7458,
+          "theoretical": 39.976,
+          "calibrated": 39.976,
+          "lowerTolerance": 37.977,
+          "upperTolerance": 41.975
+        },
+        {
+          "solids": 11.0763,
+          "theoretical": 41.708,
+          "calibrated": 41.708,
+          "lowerTolerance": 39.623,
+          "upperTolerance": 43.793
+        },
+        {
+          "solids": 11.4068,
+          "theoretical": 43.461,
+          "calibrated": 43.461,
+          "lowerTolerance": 41.288,
+          "upperTolerance": 45.634
+        },
+        {
+          "solids": 11.7373,
+          "theoretical": 45.234,
+          "calibrated": 45.234,
+          "lowerTolerance": 42.972,
+          "upperTolerance": 47.495
+        },
+        {
+          "solids": 12.0678,
+          "theoretical": 47.027,
+          "calibrated": 47.027,
+          "lowerTolerance": 44.676,
+          "upperTolerance": 49.378
+        },
+        {
+          "solids": 12.3983,
+          "theoretical": 48.84,
+          "calibrated": 48.84,
+          "lowerTolerance": 46.398,
+          "upperTolerance": 51.282
+        },
+        {
+          "solids": 12.7288,
+          "theoretical": 50.672,
+          "calibrated": 50.672,
+          "lowerTolerance": 48.139,
+          "upperTolerance": 53.206
+        },
+        {
+          "solids": 13.0593,
+          "theoretical": 52.524,
+          "calibrated": 52.524,
+          "lowerTolerance": 49.898,
+          "upperTolerance": 55.15
+        },
+        {
+          "solids": 13.3898,
+          "theoretical": 54.394,
+          "calibrated": 54.394,
+          "lowerTolerance": 51.675,
+          "upperTolerance": 57.114
+        },
+        {
+          "solids": 13.7203,
+          "theoretical": 56.283,
+          "calibrated": 56.283,
+          "lowerTolerance": 53.469,
+          "upperTolerance": 59.097
+        },
+        {
+          "solids": 14.0508,
+          "theoretical": 58.19,
+          "calibrated": 58.19,
+          "lowerTolerance": 55.281,
+          "upperTolerance": 61.1
+        },
+        {
+          "solids": 14.3814,
+          "theoretical": 60.116,
+          "calibrated": 60.116,
+          "lowerTolerance": 57.11,
+          "upperTolerance": 63.121
+        },
+        {
+          "solids": 14.7119,
+          "theoretical": 62.059,
+          "calibrated": 62.059,
+          "lowerTolerance": 58.956,
+          "upperTolerance": 65.162
+        },
+        {
+          "solids": 15.0424,
+          "theoretical": 64.019,
+          "calibrated": 64.019,
+          "lowerTolerance": 60.818,
+          "upperTolerance": 67.22
+        },
+        {
+          "solids": 15.3729,
+          "theoretical": 65.997,
+          "calibrated": 65.997,
+          "lowerTolerance": 62.697,
+          "upperTolerance": 69.297
+        },
+        {
+          "solids": 15.7034,
+          "theoretical": 67.992,
+          "calibrated": 67.992,
+          "lowerTolerance": 64.593,
+          "upperTolerance": 71.392
+        },
+        {
+          "solids": 16.0339,
+          "theoretical": 70.004,
+          "calibrated": 70.004,
+          "lowerTolerance": 66.504,
+          "upperTolerance": 73.504
+        },
+        {
+          "solids": 16.3644,
+          "theoretical": 72.032,
+          "calibrated": 72.032,
+          "lowerTolerance": 68.431,
+          "upperTolerance": 75.634
+        },
+        {
+          "solids": 16.6949,
+          "theoretical": 74.077,
+          "calibrated": 74.077,
+          "lowerTolerance": 70.374,
+          "upperTolerance": 77.781
+        },
+        {
+          "solids": 17.0254,
+          "theoretical": 76.139,
+          "calibrated": 76.139,
+          "lowerTolerance": 72.332,
+          "upperTolerance": 79.946
+        },
+        {
+          "solids": 17.3559,
+          "theoretical": 78.216,
+          "calibrated": 78.216,
+          "lowerTolerance": 74.305,
+          "upperTolerance": 82.127
+        },
+        {
+          "solids": 17.6864,
+          "theoretical": 80.309,
+          "calibrated": 80.309,
+          "lowerTolerance": 76.294,
+          "upperTolerance": 84.324
+        },
+        {
+          "solids": 18.0169,
+          "theoretical": 82.418,
+          "calibrated": 82.418,
+          "lowerTolerance": 78.297,
+          "upperTolerance": 86.539
+        },
+        {
+          "solids": 18.3475,
+          "theoretical": 84.542,
+          "calibrated": 84.542,
+          "lowerTolerance": 80.315,
+          "upperTolerance": 88.769
+        },
+        {
+          "solids": 18.678,
+          "theoretical": 86.682,
+          "calibrated": 86.682,
+          "lowerTolerance": 82.348,
+          "upperTolerance": 91.016
+        },
+        {
+          "solids": 19.0085,
+          "theoretical": 88.837,
+          "calibrated": 88.837,
+          "lowerTolerance": 84.395,
+          "upperTolerance": 93.279
+        },
+        {
+          "solids": 19.339,
+          "theoretical": 91.007,
+          "calibrated": 91.007,
+          "lowerTolerance": 86.457,
+          "upperTolerance": 95.557
+        },
+        {
+          "solids": 19.6695,
+          "theoretical": 93.192,
+          "calibrated": 93.192,
+          "lowerTolerance": 88.532,
+          "upperTolerance": 97.851
+        },
+        {
+          "solids": 20,
+          "theoretical": 95.392,
+          "calibrated": 95.392,
+          "lowerTolerance": 90.622,
+          "upperTolerance": 100.161
+        }
+      ]
+    }
+  ],
+  "customCurves": [
+    {
+      "id": "custom-curve-soc-lot-a",
+      "input": {
+        "resinType": "SOC",
+        "spinSpeed": 2000,
+        "spinTime": 30,
+        "targetThickness": 220,
+        "tolerancePercent": null,
+        "calibratedC": 84.12,
+        "calibratedAlpha": 1.45,
+        "beta": 0.48,
+        "gamma": 0.18
+      },
+      "prediction": {
+        "targetThickness": 220,
+        "recommendedSolids": 36.64955599969002,
+        "tolerancePercent": 5,
+        "lowerThickness": 209,
+        "lowerSolids": 35.37575250165553,
+        "upperThickness": 231,
+        "upperSolids": 37.903736769733484,
+        "spinSpeed": 2000,
+        "spinTime": 30,
+        "calibration": {
+          "mode": "theoretical",
+          "modeLabel": "理論模式 (0 數據點)",
+          "theoreticalC": 84.12,
+          "calibratedC": 84.12,
+          "theoreticalAlpha": 1.45,
+          "calibratedAlpha": 1.45,
+          "beta": 0.48,
+          "gamma": 0.18,
+          "scaleFactor": 1,
+          "rSquared": null,
+          "pointsCount": 0
+        },
+        "resin": {
+          "id": "SOC",
+          "name": "SOC 產線批次 Lot-A (1點實測校正)",
+          "fullName": "SOC 產線批次 Lot-A (1點實測校正) (已固化自訂基本值)",
+          "modelName": "SOC 填平層 機構流體模型 [自訂基準常數 C₀=84.12, α₀=1.4500]",
+          "recommendedThicknessRange": [
+            50,
+            500
+          ],
+          "alpha": 1.45,
+          "beta": 0.48,
+          "gamma": 0.18,
+          "defaultC": 84.12,
+          "description": "標準 2000 RPM, 30s 旋塗條件，以 8.0 wt% (180.000 nm) 單點平移校正後之曲線。",
+          "typicalSolvents": [
+            "PGMEA",
+            "Cyclohexanone",
+            "Propylene Glycol"
+          ],
+          "isCustomBaseline": true,
+          "customCurveId": "custom-curve-soc-lot-a"
+        }
+      }
+    },
+    {
+      "id": "custom-curve-arf-multi",
+      "input": {
+        "resinType": "ArF",
+        "spinSpeed": 1800,
+        "spinTime": 30,
+        "targetThickness": 90,
+        "tolerancePercent": null,
+        "calibratedC": 108.45,
+        "calibratedAlpha": 1.345,
+        "beta": 0.5,
+        "gamma": 0.2
+      },
+      "prediction": {
+        "targetThickness": 90,
+        "recommendedSolids": 23.41916158934826,
+        "tolerancePercent": 5,
+        "lowerThickness": 85.5,
+        "lowerSolids": 22.54285761399366,
+        "upperThickness": 94.5,
+        "upperSolids": 24.284293263581734,
+        "spinSpeed": 1800,
+        "spinTime": 30,
+        "calibration": {
+          "mode": "theoretical",
+          "modeLabel": "理論模式 (0 數據點)",
+          "theoreticalC": 108.45,
+          "calibratedC": 108.45,
+          "theoreticalAlpha": 1.345,
+          "calibratedAlpha": 1.345,
+          "beta": 0.5,
+          "gamma": 0.2,
+          "scaleFactor": 1,
+          "rSquared": null,
+          "pointsCount": 0
+        },
+        "resin": {
+          "id": "ArF",
+          "name": "ArF 浸潤式 193nm 驗證配方 (4點最小平方法)",
+          "fullName": "ArF 浸潤式 193nm 驗證配方 (4點最小平方法) (已固化自訂基本值)",
+          "modelName": "ArF 樹脂 機構流體模型 [自訂基準常數 C₀=108.45, α₀=1.3450]",
+          "recommendedThicknessRange": [
+            50,
+            150
+          ],
+          "alpha": 1.345,
+          "beta": 0.5,
+          "gamma": 0.2,
+          "defaultC": 108.45,
+          "description": "ArF 浸潤式光阻多濃度樣品擬合，指數 α 優化至 1.3450，R²=0.9982。",
+          "typicalSolvents": [
+            "PGMEA",
+            "Cyclohexanone",
+            "gamma-Butyrolactone"
+          ],
+          "isCustomBaseline": true,
+          "customCurveId": "custom-curve-arf-multi"
+        }
+      }
+    }
+  ]
+}
