@@ -4,6 +4,10 @@ import { Plus, Trash2, Sliders, CheckCircle, RefreshCw, HelpCircle, FileText, Sp
 import { calculateThickness } from '../utils/meyerhofer';
 import { describeRSquared, formatMeasureCondition } from '../utils/format';
 
+// 範例按鈕載入的實測點，記錄範例本身的量測條件（不使用畫面上目前的轉速與時間）
+const EXAMPLE_SPIN_SPEED = 2000;
+const EXAMPLE_SPIN_TIME = 30;
+
 interface CalibrationManagerProps {
   measuredPoints: MeasuredPoint[];
   onUpdatePoints: (points: MeasuredPoint[]) => void;
@@ -62,18 +66,18 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
         solidsContent: 8.0,
         thickness: 180.0,
         note: '官方測試範例: 固含量 8.0 wt%, 實測 180.000 nm',
-        spinSpeed,
-        spinTime,
+        spinSpeed: EXAMPLE_SPIN_SPEED,
+        spinTime: EXAMPLE_SPIN_TIME,
       },
     ]);
   };
 
   const handleLoadMultiPointDemo = () => {
     onUpdatePoints([
-      { id: 'm-1', solidsContent: 5.0, thickness: 85.0, note: '低濃度批次 (5.0 wt%)', spinSpeed, spinTime },
-      { id: 'm-2', solidsContent: 8.0, thickness: 182.0, note: '標稱批次 (8.0 wt%)', spinSpeed, spinTime },
-      { id: 'm-3', solidsContent: 10.0, thickness: 260.0, note: '中高濃度 (10.0 wt%)', spinSpeed, spinTime },
-      { id: 'm-4', solidsContent: 12.0, thickness: 350.0, note: '高膜厚驗證 (12.0 wt%)', spinSpeed, spinTime },
+      { id: 'm-1', solidsContent: 5.0, thickness: 85.0, note: '低濃度批次 (5.0 wt%)', spinSpeed: EXAMPLE_SPIN_SPEED, spinTime: EXAMPLE_SPIN_TIME },
+      { id: 'm-2', solidsContent: 8.0, thickness: 182.0, note: '標稱批次 (8.0 wt%)', spinSpeed: EXAMPLE_SPIN_SPEED, spinTime: EXAMPLE_SPIN_TIME },
+      { id: 'm-3', solidsContent: 10.0, thickness: 260.0, note: '中高濃度 (10.0 wt%)', spinSpeed: EXAMPLE_SPIN_SPEED, spinTime: EXAMPLE_SPIN_TIME },
+      { id: 'm-4', solidsContent: 12.0, thickness: 350.0, note: '高膜厚驗證 (12.0 wt%)', spinSpeed: EXAMPLE_SPIN_SPEED, spinTime: EXAMPLE_SPIN_TIME },
     ]);
   };
 

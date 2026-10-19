@@ -239,6 +239,27 @@ describe('實測點的量測條件', () => {
     expect(screen.getAllByText('2000 rpm / 30 s')).toHaveLength(1);
   });
 
+  it.each([
+    ['1 點測試範例', /1 點測試範例/, 1],
+    ['多點擬合範例', /多點擬合範例/, 4],
+  ])('「%s」按鈕：記錄範例本身的條件 2000 rpm / 30 s，不使用畫面上目前的數值', async (_label, name, count) => {
+    const user = userEvent.setup();
+    render(<App />);
+    // 先把畫面上的轉速與時間改成與範例不同的數值
+    await user.click(screen.getByRole('button', {name: '1500'}));
+    await user.click(screen.getByRole('button', {name: '45s'}));
+    expect((document.getElementById('spin-speed-input') as HTMLInputElement).value).toBe('1500');
+    expect((document.getElementById('spin-time-input') as HTMLInputElement).value).toBe('45');
+
+    await user.click(screen.getByRole('button', {name}));
+
+    expect(screen.getAllByText('2000 rpm / 30 s')).toHaveLength(count);
+    expect(screen.queryByText('1500 rpm / 45 s')).toBeNull();
+    // 畫面上的製程條件不受影響
+    expect((document.getElementById('spin-speed-input') as HTMLInputElement).value).toBe('1500');
+    expect((document.getElementById('spin-time-input') as HTMLInputElement).value).toBe('45');
+  });
+
   it('載入預設情境時，其實測點帶入該情境的轉速與時間', async () => {
     const user = userEvent.setup();
     render(<App />);
