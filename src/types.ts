@@ -29,6 +29,20 @@ export interface MeasuredPoint {
   solidsContent: number; // wt%
   thickness: number;     // nm
   note?: string;
+  spinSpeed?: number;    // RPM，記錄該點的實測轉速（選填，計算目前不使用）
+  spinTime?: number;     // s，記錄該點的實測旋塗時間（選填，計算目前不使用）
+}
+
+export type WarningCode =
+  | 'ALPHA_OUT_OF_RANGE'
+  | 'FIT_DEGENERATE'
+  | 'SOLIDS_OUT_OF_RANGE';
+
+export interface PredictionWarning {
+  code: WarningCode;
+  message: string; // 繁體中文，說明發生什麼事與程式如何處理
+  field?: string;  // 相關欄位名稱
+  value?: number;  // 相關數值
 }
 
 export type CalibrationMode = 'theoretical' | 'single_point_shift' | 'multi_point_lsq';
@@ -43,8 +57,10 @@ export interface CalibrationResult {
   beta: number;
   gamma: number;
   scaleFactor: number;
-  rSquared: number | null; // For >= 2 points
+  rSquared: number | null; // 僅多點擬合有意義；0 點、1 點或無法擬合時為 null
   pointsCount: number;
+  fittedAlpha: number | null; // 多點擬合實際算出的斜率；未擬合時為 null
+  warnings: PredictionWarning[];
 }
 
 export interface PredictionResult {
@@ -59,6 +75,7 @@ export interface PredictionResult {
   spinTime: number;       // s
   calibration: CalibrationResult;
   resin: ResinConfig;
+  warnings: PredictionWarning[]; // calibration 的警告加上反算階段的警告
 }
 
 export interface CurvePoint {

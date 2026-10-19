@@ -3,8 +3,16 @@ import {
   MeasuredPoint,
   CalibrationResult,
   PredictionResult,
+  PredictionWarning,
   CurvePoint,
 } from '../types';
+
+/** 多點擬合所得 α 的合理範圍；超出時改用基準 α 並發出警告 */
+export const ALPHA_FIT_MIN = 0.05;
+export const ALPHA_FIT_MAX = 4.0;
+
+/** 固含量 (wt%) 的上限；反算結果超過此值會發出警告 */
+export const SOLIDS_MAX = 100;
 
 /**
  * Meyerhofer Forward Calculation:
@@ -94,6 +102,8 @@ export function calibrateModel(
       scaleFactor: 1.0,
       rSquared: null,
       pointsCount: 0,
+      fittedAlpha: null,
+      warnings: [],
     };
   }
 
@@ -123,8 +133,10 @@ export function calibrateModel(
       beta: resin.beta,
       gamma: resin.gamma,
       scaleFactor: scaleFactor,
-      rSquared: 1.0,
+      rSquared: null, // 單點必然通過該點，R² 沒有意義
       pointsCount: 1,
+      fittedAlpha: null,
+      warnings: [],
     };
   }
 
@@ -166,11 +178,21 @@ export function calibrateModel(
   let calibratedAlpha = resin.alpha;
   let calibratedC = resin.defaultC;
   let rSquared: number | null = null;
+  let fittedAlpha: number | null = null;
+  const warnings: PredictionWarning[] = [];
 
   if (ssXX > 1e-8) {
     const slope = ssXY / ssXX;
-    if (slope > 0.05 && slope < 4.0) {
+    fittedAlpha = slope;
+    if (slope > ALPHA_FIT_MIN && slope < ALPHA_FIT_MAX) {
       calibratedAlpha = slope;
+    } else {
+      warnings.push({
+        code: 'ALPHA_OUT_OF_RANGE',
+        message: `擬合 α = ${slope.toFixed(2)} 超出合理範圍 ${ALPHA_FIT_MIN.toFixed(2)}～${ALPHA_FIT_MAX.toFixed(1)}，已改用基準值 ${resin.alpha}`,
+        field: 'calibratedAlpha',
+        value: slope,
+      });
     }
     const interceptA = meanY - calibratedAlpha * meanX;
     const K = Math.exp(interceptA);
@@ -198,7 +220,11 @@ export function calibrateModel(
     }, 0) / n;
 
     calibratedC = resin.defaultC * avgScale;
-    rSquared = 1.0;
+    rSquared = null;
+    warnings.push({
+      code: 'FIT_DEGENERATE',
+      message: `所有實測點的固含量相同，無法擬合 α；已改用平均縮放校正 C，α 維持基準值 ${resin.alpha}，R² 不適用`,
+    });
   }
 
   const theoreticalMidThickness = calculateThickness(
@@ -233,7 +259,49 @@ export function calibrateModel(
     scaleFactor: overallScale,
     rSquared: rSquared,
     pointsCount: n,
+    fittedAlpha: fittedAlpha,
+    warnings: warnings,
   };
+}
+
+const SOLIDS_FIELD_LABELS = {
+  recommendedSolids: '建議固含量',
+  lowerSolids: '下限固含量',
+  upperSolids: '上限固含量',
+} as const;
+
+/** 反算所得固含量若不是有限正數或超過 SOLIDS_MAX，回傳警告（數值本身不修改） */
+function checkSolidsRange(
+  field: keyof typeof SOLIDS_FIELD_LABELS,
+  value: number
+): PredictionWarning | null {
+  const label = SOLIDS_FIELD_LABELS[field];
+  const hint = '結果僅供參考，請確認目標膜厚、轉速、時間與校正參數是否合理';
+  if (!Number.isFinite(value)) {
+    return {
+      code: 'SOLIDS_OUT_OF_RANGE',
+      message: `${label}不是有效數值，${hint}`,
+      field,
+      value,
+    };
+  }
+  if (value <= 0) {
+    return {
+      code: 'SOLIDS_OUT_OF_RANGE',
+      message: `${label} = ${value.toFixed(4)} wt% 小於或等於 0，無法反算出有效固含量，${hint}`,
+      field,
+      value,
+    };
+  }
+  if (value > SOLIDS_MAX) {
+    return {
+      code: 'SOLIDS_OUT_OF_RANGE',
+      message: `${label} = ${value.toFixed(2)} wt% 超過上限 ${SOLIDS_MAX} wt%，${hint}`,
+      field,
+      value,
+    };
+  }
+  return null;
 }
 
 /**
@@ -286,6 +354,16 @@ export function runPrediction(
     calibration.gamma
   );
 
+  const warnings: PredictionWarning[] = [...calibration.warnings];
+  for (const [field, value] of [
+    ['recommendedSolids', recommendedSolids],
+    ['lowerSolids', lowerSolids],
+    ['upperSolids', upperSolids],
+  ] as const) {
+    const w = checkSolidsRange(field, value);
+    if (w) warnings.push(w);
+  }
+
   return {
     targetThickness,
     recommendedSolids,
@@ -298,6 +376,7 @@ export function runPrediction(
     spinTime,
     calibration,
     resin,
+    warnings,
   };
 }
 
@@ -430,6 +509,12 @@ export function generateStructuredReport(
     )
     .join('\n');
 
+  // 有警告時才附加第 4 區段；沒有警告時輸出與原版完全相同
+  const warningSection =
+    prediction.warnings.length > 0
+      ? `\n4. 【警告事項】：\n${prediction.warnings.map(w => `- ${w.message}`).join('\n')}\n`
+      : '';
+
   return `=======================================================
 【半導體旋塗製程配方預測與校正報告】
 =======================================================
@@ -454,7 +539,7 @@ export function generateStructuredReport(
 3. 【數據曲線點表格 (固含量離散分佈表)】:
 ${tableHeader}
 ${tableRows}
-`;
+${warningSection}`;
 }
 
 /**
@@ -469,7 +554,10 @@ export function generateCSV(prediction: PredictionResult, curvePoints: CurvePoin
     )
     .join('\n');
 
-  const meta = `# Resin: ${prediction.resin.name}\n# Model: ${prediction.resin.modelName}\n# Spin Speed: ${prediction.spinSpeed} RPM\n# Spin Time: ${prediction.spinTime} s\n# Target Thickness: ${prediction.targetThickness.toFixed(3)} nm\n# Tolerance Window: +/-${prediction.tolerancePercent.toFixed(1)}%\n# Recommended Solids: ${prediction.recommendedSolids.toFixed(4)} wt%\n# Lower Bound (-${prediction.tolerancePercent.toFixed(1)}%): ${prediction.lowerThickness.toFixed(3)} nm (${prediction.lowerSolids.toFixed(4)} wt%)\n# Upper Bound (+${prediction.tolerancePercent.toFixed(1)}%): ${prediction.upperThickness.toFixed(3)} nm (${prediction.upperSolids.toFixed(4)} wt%)\n# Calibrated C: ${prediction.calibration.calibratedC.toFixed(3)}\n# Calibrated Alpha: ${prediction.calibration.calibratedAlpha.toFixed(4)}\n`;
+  // 有警告時才在檔頭加上 "# Warning:" 行；沒有警告時輸出與原版完全相同
+  const warningLines = prediction.warnings.map(w => `# Warning: ${w.message}\n`).join('');
+
+  const meta = `# Resin: ${prediction.resin.name}\n# Model: ${prediction.resin.modelName}\n# Spin Speed: ${prediction.spinSpeed} RPM\n# Spin Time: ${prediction.spinTime} s\n# Target Thickness: ${prediction.targetThickness.toFixed(3)} nm\n# Tolerance Window: +/-${prediction.tolerancePercent.toFixed(1)}%\n# Recommended Solids: ${prediction.recommendedSolids.toFixed(4)} wt%\n# Lower Bound (-${prediction.tolerancePercent.toFixed(1)}%): ${prediction.lowerThickness.toFixed(3)} nm (${prediction.lowerSolids.toFixed(4)} wt%)\n# Upper Bound (+${prediction.tolerancePercent.toFixed(1)}%): ${prediction.upperThickness.toFixed(3)} nm (${prediction.upperSolids.toFixed(4)} wt%)\n# Calibrated C: ${prediction.calibration.calibratedC.toFixed(3)}\n# Calibrated Alpha: ${prediction.calibration.calibratedAlpha.toFixed(4)}\n${warningLines}`;
 
   return meta + header + rows;
 }

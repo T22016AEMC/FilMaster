@@ -1,4 +1,5 @@
 import { SavedCalibratedCurve, ResinType, MeasuredPoint, CalibrationResult } from '../types';
+import { RESIN_CONFIGS } from './resinConfigs';
 
 const STORAGE_KEY = 'spin_coating_custom_calibrated_curves_v2';
 
@@ -98,26 +99,108 @@ export function exportCurvesAsJSON(curves: SavedCalibratedCurve[]): string {
   return JSON.stringify(curves, null, 2);
 }
 
-export function importCurvesFromJSON(jsonString: string): SavedCalibratedCurve[] {
-  try {
-    const parsed = JSON.parse(jsonString);
-    if (!Array.isArray(parsed)) {
-      throw new Error('匯入之 JSON 格式必須為校正曲線陣列');
+export interface ImportSkippedItem {
+  index: number; // 該筆在匯入陣列中的位置（從 0 開始）
+  name?: string;
+  reason: string;
+}
+
+export interface ImportCurvesResult {
+  curves: SavedCalibratedCurve[];
+  importedCount: number;
+  skipped: ImportSkippedItem[];
+}
+
+const isFiniteNumber = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
+const isPositive = (v: unknown): v is number => isFiniteNumber(v) && v > 0;
+
+/** 驗證匯入的單筆曲線；合格回傳 null，不合格回傳原因 */
+function validateImportedCurve(item: unknown): string | null {
+  if (item === null || typeof item !== 'object' || Array.isArray(item)) {
+    return '不是有效的曲線物件';
+  }
+  const c = item as Record<string, unknown>;
+
+  if (typeof c.name !== 'string' || c.name.trim() === '') {
+    return 'name 必須為非空字串';
+  }
+  if (
+    typeof c.resinType !== 'string' ||
+    !Object.prototype.hasOwnProperty.call(RESIN_CONFIGS, c.resinType)
+  ) {
+    return `resinType 不是支援的樹脂類別${typeof c.resinType === 'string' ? `：${c.resinType}` : ''}`;
+  }
+  for (const key of ['spinSpeed', 'spinTime', 'targetThickness', 'calibratedC', 'calibratedAlpha']) {
+    if (!isPositive(c[key])) return `${key} 必須為大於 0 的有限數值`;
+  }
+  for (const key of ['beta', 'gamma']) {
+    if (!isFiniteNumber(c[key]) || (c[key] as number) < 0) {
+      return `${key} 必須為大於或等於 0 的有限數值`;
     }
-    const current = getSavedCurves();
-    const existingIds = new Set(current.map(c => c.id));
-    const merged = [...current];
-    for (const item of parsed) {
-      if (item.name && item.resinType) {
-        if (!item.id || existingIds.has(item.id)) {
-          item.id = `imported-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`;
+  }
+  if (c.measuredPoints !== undefined) {
+    if (!Array.isArray(c.measuredPoints)) return 'measuredPoints 必須為陣列';
+    for (let i = 0; i < c.measuredPoints.length; i++) {
+      const p = c.measuredPoints[i];
+      if (p === null || typeof p !== 'object') return `measuredPoints[${i}] 不是有效的實測點物件`;
+      const pt = p as Record<string, unknown>;
+      if (!isPositive(pt.solidsContent)) return `measuredPoints[${i}].solidsContent 必須為大於 0 的有限數值`;
+      if (!isPositive(pt.thickness)) return `measuredPoints[${i}].thickness 必須為大於 0 的有限數值`;
+      for (const key of ['spinSpeed', 'spinTime']) {
+        if (pt[key] !== undefined && !isPositive(pt[key])) {
+          return `measuredPoints[${i}].${key} 若有提供，必須為大於 0 的有限數值`;
         }
-        merged.unshift(item);
       }
     }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
-    return merged;
-  } catch (e) {
-    throw new Error('匯入失敗：請確認 JSON 檔案格式是否正確。');
   }
+  return null;
+}
+
+export function importCurvesFromJSON(jsonString: string): ImportCurvesResult {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(jsonString);
+  } catch {
+    throw new Error('檔案不是有效的 JSON 格式');
+  }
+  if (!Array.isArray(parsed)) {
+    throw new Error('JSON 內容必須是校正曲線陣列');
+  }
+
+  const current = getSavedCurves();
+  const existingIds = new Set(current.map(c => c.id));
+  const accepted: SavedCalibratedCurve[] = [];
+  const skipped: ImportSkippedItem[] = [];
+
+  parsed.forEach((item: unknown, index: number) => {
+    const reason = validateImportedCurve(item);
+    if (reason) {
+      const name = (item as {name?: unknown} | null)?.name;
+      skipped.push({index, ...(typeof name === 'string' ? {name} : {}), reason});
+      return;
+    }
+    const raw = item as SavedCalibratedCurve;
+    const hasUsableId = typeof raw.id === 'string' && raw.id !== '' && !existingIds.has(raw.id);
+    const id = hasUsableId ? raw.id : `imported-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
+    existingIds.add(id);
+    accepted.push({
+      ...raw,
+      id,
+      // 補齊舊檔或手寫檔可能缺少的欄位，避免介面讀到 undefined
+      createdAt: typeof raw.createdAt === 'string' ? raw.createdAt : new Date().toISOString().split('T')[0],
+      scaleFactor: isFiniteNumber(raw.scaleFactor)
+        ? raw.scaleFactor
+        : raw.calibratedC / RESIN_CONFIGS[raw.resinType].defaultC,
+      rSquared: isFiniteNumber(raw.rSquared) ? raw.rSquared : null,
+      measuredPoints: raw.measuredPoints ?? [],
+    });
+  });
+
+  const importedCount = accepted.length;
+  // 與原版一致：後匯入的排在最前面
+  const merged = importedCount > 0 ? [...accepted.reverse(), ...current] : current;
+  if (importedCount > 0) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+  }
+  return {curves: merged, importedCount, skipped};
 }

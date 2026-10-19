@@ -2,11 +2,16 @@ import {readFileSync} from 'node:fs';
 import {describe, expect, it} from 'vitest';
 import type {MeasuredPoint, PredictionResult, ResinType} from '../types';
 import {
+  ALPHA_FIT_MAX,
+  ALPHA_FIT_MIN,
+  SOLIDS_MAX,
   calculateRequiredSolids,
   calculateThickness,
   calibrateModel,
+  generateCSV,
   generateCurvePoints,
   generateDenseChartPoints,
+  generateStructuredReport,
   runPrediction,
 } from './meyerhofer';
 import {PRESET_SCENARIOS, RESIN_CONFIGS} from './resinConfigs';
@@ -71,6 +76,46 @@ function expectDeepClose(actual: unknown, expected: unknown, path = '$'): void {
   }
 }
 
+interface GoldenReport {
+  id: string;
+  report: string;
+  csv: string;
+}
+const goldenReports = (
+  JSON.parse(
+    readFileSync(new URL('./__fixtures__/legacy-report-golden.json', import.meta.url), 'utf-8'),
+  ) as {presets: GoldenReport[]}
+).presets;
+
+/**
+ * 階段 3 刻意造成的差異（golden fixture 本身不重新產生）。
+ * 除下列差異外，其餘所有欄位必須與 fixture 完全一致：
+ *  1. 單點校正（single_point_shift）的 rSquared：1.0 → null
+ *  2. calibration 新增 fittedAlpha：多點擬合且在合理範圍內時等於校正後 α，其餘為 null
+ *  3. calibration 與 prediction 新增 warnings：預設情境與預設曲線皆為空陣列
+ */
+function withStage3Changes(p: PredictionResult): PredictionResult {
+  const c = p.calibration;
+  return {
+    ...p,
+    warnings: [],
+    calibration: {
+      ...c,
+      rSquared: c.mode === 'single_point_shift' ? null : c.rSquared,
+      fittedAlpha: c.mode === 'multi_point_lsq' ? c.calibratedAlpha : null,
+      warnings: [],
+    },
+  };
+}
+
+const SINGLE_POINT_PRESET_IDS = [
+  'test_soc_1pt',
+  'thick_500_1000_preset',
+  'thick_2000_20000_preset',
+  'arf_immersion',
+  'barc_preset',
+];
+
 const withIds = (pts: Array<{solidsContent: number; thickness: number}>): MeasuredPoint[] =>
   pts.map((p, i) => ({id: `t-${i}`, ...p}));
 
@@ -86,6 +131,24 @@ describe('A. 與原版 (_legacy) 計算結果的 golden 比對', () => {
     expect(golden.customCurves).toHaveLength(2);
   });
 
+  it('預期差異 1：fixture 中恰好這 5 個單點情境的 rSquared 為 1.0，現在為 null', () => {
+    const singles = golden.presets.filter(g => g.prediction.calibration.mode === 'single_point_shift');
+    expect(singles.map(g => g.id)).toEqual(SINGLE_POINT_PRESET_IDS);
+    for (const g of singles) {
+      expect(g.prediction.calibration.rSquared).toBe(1);
+      const {input} = g;
+      const p = runPrediction(
+        RESIN_CONFIGS[input.resinType],
+        input.spinSpeed,
+        input.spinTime,
+        input.targetThickness,
+        input.measuredPoints,
+        input.tolerancePercent ?? undefined,
+      );
+      expect(p.calibration.rSquared).toBeNull();
+    }
+  });
+
   describe.each(golden.presets.map(p => [p.id, p] as const))('預設情境 %s', (_id, g) => {
     const {input} = g;
     const resin = RESIN_CONFIGS[input.resinType];
@@ -98,8 +161,12 @@ describe('A. 與原版 (_legacy) 計算結果的 golden 比對', () => {
       input.tolerancePercent ?? undefined,
     );
 
-    it('runPrediction 完整結果（含 calibration 全部欄位）', () => {
-      expectDeepClose(prediction, g.prediction);
+    it('runPrediction 完整結果（含 calibration 全部欄位；僅有階段 3 的預期差異）', () => {
+      expectDeepClose(prediction, withStage3Changes(g.prediction));
+    });
+    it('9 個預設情境都不產生任何警告', () => {
+      expect(prediction.warnings).toEqual([]);
+      expect(prediction.calibration.warnings).toEqual([]);
     });
     it('generateCurvePoints（預設參數）', () => {
       expectDeepClose(generateCurvePoints(prediction), g.curvePoints);
@@ -130,7 +197,7 @@ describe('A. 與原版 (_legacy) 計算結果的 golden 比對', () => {
       );
       // fixture 內的 resin 含自訂名稱等文字欄位；此處只比對計算結果
       const {resin: _r1, ...actualRest} = prediction;
-      const {resin: _r2, ...expectedRest} = g.prediction;
+      const {resin: _r2, ...expectedRest} = withStage3Changes(g.prediction);
       expectDeepClose(actualRest, expectedRest);
       expect(prediction.resin.defaultC).toBe(g.prediction.resin.defaultC);
       expect(prediction.resin.alpha).toBe(g.prediction.resin.alpha);
@@ -297,7 +364,7 @@ describe('C. 數學性質', () => {
       expect(c.mode).toBe('multi_point_lsq');
       expect(c.calibratedAlpha).toBe(SOC.alpha);
       expect(c.calibratedC).toBeCloseTo(SOC.defaultC * avgScale, 9);
-      expect(c.rSquared).toBe(1);
+      expect(c.rSquared).toBeNull();
       expect(c.pointsCount).toBe(2);
     });
   });
@@ -317,38 +384,228 @@ describe('C. 數學性質', () => {
 });
 
 // ---------------------------------------------------------------------------
-// D. 記錄現行行為（已知問題，階段 3 會修正；修正時需一併更新這些測試）
+// D. 階段 3 修正後的行為與警告機制
 // ---------------------------------------------------------------------------
-describe('D. 現行行為記錄', () => {
-  it('[現行行為-階段3修正] 1 個實測點時 rSquared 回傳 1.0', () => {
-    const c = calibrateModel(SOC, 2000, 30, withIds([{solidsContent: 8, thickness: 180}]));
-    expect(c.rSquared).toBe(1.0);
+describe('D. 警告機制與階段 3 修正', () => {
+  it('常數：ALPHA_FIT_MIN / ALPHA_FIT_MAX / SOLIDS_MAX', () => {
+    expect(ALPHA_FIT_MIN).toBe(0.05);
+    expect(ALPHA_FIT_MAX).toBe(4.0);
+    expect(SOLIDS_MAX).toBe(100);
   });
 
-  it('[現行行為-階段3修正] 多點擬合斜率超出 0.05～4.0 時，α 靜默改回理論值', () => {
-    // 斜率 5（過大）：h = S^5
-    const steep = calibrateModel(
-      SOC,
-      2000,
-      30,
-      withIds([2, 3, 4].map(S => ({solidsContent: S, thickness: Math.pow(S, 5)}))),
-    );
-    expect(steep.calibratedAlpha).toBe(SOC.alpha);
-    // 斜率 0（過小）：膜厚不隨固含量變化
-    const flat = calibrateModel(
-      SOC,
-      2000,
-      30,
-      withIds([2, 3, 4].map(S => ({solidsContent: S, thickness: 100}))),
-    );
-    expect(flat.calibratedAlpha).toBe(SOC.alpha);
-    // 且完全沒有任何提示：模式仍為多點擬合
-    expect(steep.mode).toBe('multi_point_lsq');
-    expect(flat.mode).toBe('multi_point_lsq');
+  describe('單點校正的 R²', () => {
+    it('1 個實測點時 rSquared 為 null，且沒有警告', () => {
+      const c = calibrateModel(SOC, 2000, 30, withIds([{solidsContent: 8, thickness: 180}]));
+      expect(c.rSquared).toBeNull();
+      expect(c.fittedAlpha).toBeNull();
+      expect(c.warnings).toEqual([]);
+    });
   });
 
-  it('[現行行為-階段3修正] 反算固含量沒有上限檢查（可算出超過 100 wt%）', () => {
-    const p = runPrediction(SOC, 2000, 30, 100000, []);
-    expect(p.recommendedSolids).toBeGreaterThan(100);
+  describe('FIT_DEGENERATE（固含量全相同的備用路徑）', () => {
+    const pts = withIds([
+      {solidsContent: 8, thickness: 180},
+      {solidsContent: 8, thickness: 200},
+    ]);
+
+    it('觸發：rSquared 為 null、fittedAlpha 為 null，並加入警告；計算方式不變', () => {
+      const c = calibrateModel(SOC, 2000, 30, pts);
+      const pred = calculateThickness(8, 2000, 30, SOC.defaultC, SOC.alpha, SOC.beta, SOC.gamma);
+      expect(c.rSquared).toBeNull();
+      expect(c.fittedAlpha).toBeNull();
+      expect(c.calibratedAlpha).toBe(SOC.alpha);
+      expect(c.calibratedC).toBeCloseTo(SOC.defaultC * ((180 / pred + 200 / pred) / 2), 9);
+      expect(c.warnings).toHaveLength(1);
+      expect(c.warnings[0].code).toBe('FIT_DEGENERATE');
+      expect(c.warnings[0].message).toContain('固含量相同');
+      expect(c.warnings[0].message).toContain('平均縮放');
+      expect(c.warnings[0].message).toContain(String(SOC.alpha));
+    });
+
+    it('不觸發：固含量不同的多點擬合沒有此警告', () => {
+      const c = calibrateModel(
+        SOC,
+        2000,
+        30,
+        withIds([
+          {solidsContent: 5, thickness: 85},
+          {solidsContent: 8, thickness: 182},
+        ]),
+      );
+      expect(c.warnings.map(w => w.code)).not.toContain('FIT_DEGENERATE');
+    });
+  });
+
+  describe('ALPHA_OUT_OF_RANGE（擬合 α 超出範圍）', () => {
+    const powerLaw = (alpha: number) =>
+      withIds([2, 3, 4].map(S => ({solidsContent: S, thickness: 5 * Math.pow(S, alpha)})));
+
+    it('觸發（過大）：改用基準 α、記錄實際擬合值，訊息含實際值與基準值', () => {
+      const c = calibrateModel(SOC, 2000, 30, powerLaw(4.52));
+      expect(c.calibratedAlpha).toBe(SOC.alpha);
+      expect(c.fittedAlpha).toBeCloseTo(4.52, 9);
+      expect(c.mode).toBe('multi_point_lsq');
+      expect(c.warnings).toHaveLength(1);
+      const w = c.warnings[0];
+      expect(w.code).toBe('ALPHA_OUT_OF_RANGE');
+      expect(w.message).toBe('擬合 α = 4.52 超出合理範圍 0.05～4.0，已改用基準值 1.45');
+      expect(w.field).toBe('calibratedAlpha');
+      expect(w.value).toBeCloseTo(4.52, 9);
+    });
+
+    it('觸發（過小）：膜厚不隨固含量變化（斜率 0）', () => {
+      const c = calibrateModel(
+        SOC,
+        2000,
+        30,
+        withIds([2, 3, 4].map(S => ({solidsContent: S, thickness: 100}))),
+      );
+      expect(c.calibratedAlpha).toBe(SOC.alpha);
+      expect(c.fittedAlpha as number).toBeCloseTo(0, 9);
+      expect(c.warnings.map(w => w.code)).toEqual(['ALPHA_OUT_OF_RANGE']);
+    });
+
+    it.each([0.5, 1.5, 3.5])('不觸發：斜率 %s 在範圍內，採用擬合值且 fittedAlpha 相同', alpha => {
+      const c = calibrateModel(SOC, 2000, 30, powerLaw(alpha));
+      expect(c.calibratedAlpha).toBeCloseTo(alpha, 9);
+      expect(c.fittedAlpha as number).toBeCloseTo(alpha, 9);
+      expect(c.warnings).toEqual([]);
+    });
+  });
+
+  describe('SOLIDS_OUT_OF_RANGE（反算固含量範圍檢查）', () => {
+    const targetForSolids = (S: number) =>
+      calculateThickness(S, 2000, 30, SOC.defaultC, SOC.alpha, SOC.beta, SOC.gamma);
+
+    it('觸發（> 100）：三個欄位各一則警告，數值照常回傳不被改成 0 或 null', () => {
+      const p = runPrediction(SOC, 2000, 30, 100000, []);
+      expect(p.recommendedSolids).toBeGreaterThan(SOLIDS_MAX);
+      const solidsWarnings = p.warnings.filter(w => w.code === 'SOLIDS_OUT_OF_RANGE');
+      expect(solidsWarnings.map(w => w.field)).toEqual(['recommendedSolids', 'lowerSolids', 'upperSolids']);
+      expect(solidsWarnings[0].value).toBe(p.recommendedSolids);
+      expect(solidsWarnings[1].value).toBe(p.lowerSolids);
+      expect(solidsWarnings[2].value).toBe(p.upperSolids);
+      expect(solidsWarnings[0].message).toContain('建議固含量');
+      expect(solidsWarnings[0].message).toContain('超過上限 100 wt%');
+    });
+
+    it('觸發（≤ 0）：目標膜厚為 0 時三個欄位皆警告，數值仍為 0', () => {
+      const p = runPrediction(SOC, 2000, 30, 0, []);
+      expect(p.recommendedSolids).toBe(0);
+      expect(p.warnings.map(w => [w.code, w.field])).toEqual([
+        ['SOLIDS_OUT_OF_RANGE', 'recommendedSolids'],
+        ['SOLIDS_OUT_OF_RANGE', 'lowerSolids'],
+        ['SOLIDS_OUT_OF_RANGE', 'upperSolids'],
+      ]);
+      expect(p.warnings[0].message).toContain('小於或等於 0');
+    });
+
+    it('觸發（非有限數值）：反算結果為 Infinity', () => {
+      const p = runPrediction({...SOC, defaultC: 1e-300}, 2000, 30, 1e10, []);
+      expect(p.recommendedSolids).toBe(Infinity);
+      const w = p.warnings.find(x => x.field === 'recommendedSolids');
+      expect(w?.code).toBe('SOLIDS_OUT_OF_RANGE');
+      expect(w?.message).toContain('不是有效數值');
+      expect(w?.value).toBe(Infinity);
+    });
+
+    it('只有部分欄位超出時，只警告該欄位（建議 99 wt%、上限 > 100 wt%）', () => {
+      const p = runPrediction(SOC, 2000, 30, targetForSolids(99), []);
+      expect(p.recommendedSolids).toBeCloseTo(99, 6);
+      expect(p.warnings.map(w => w.field)).toEqual(['upperSolids']);
+    });
+
+    it('不觸發：固含量都在 0～100 wt% 之間', () => {
+      const p = runPrediction(SOC, 2000, 30, targetForSolids(50), []);
+      expect(p.warnings).toEqual([]);
+    });
+
+    it('prediction.warnings 包含 calibration 的警告，且排在反算警告之前', () => {
+      const steep = withIds([2, 3, 4].map(S => ({solidsContent: S, thickness: 5 * Math.pow(S, 4.52)})));
+      const p = runPrediction(SOC, 2000, 30, 1e12, steep);
+      expect(p.calibration.warnings.map(w => w.code)).toEqual(['ALPHA_OUT_OF_RANGE']);
+      expect(p.warnings.map(w => w.code)).toEqual([
+        'ALPHA_OUT_OF_RANGE',
+        'SOLIDS_OUT_OF_RANGE',
+        'SOLIDS_OUT_OF_RANGE',
+        'SOLIDS_OUT_OF_RANGE',
+      ]);
+    });
+  });
+
+  describe('報告與 CSV', () => {
+    it.each(goldenReports.map(r => [r.id, r] as const))(
+      '%s：沒有警告時，報告與 CSV 與原版完全相同',
+      (_id, g) => {
+        const sc = PRESET_SCENARIOS.find(s => s.id === g.id)!;
+        const pts = sc.measuredPoints.map((p, i) => ({id: `preset-pt-${i}`, ...p}));
+        const p = runPrediction(
+          RESIN_CONFIGS[sc.resinType],
+          sc.spinSpeed,
+          sc.spinTime,
+          sc.targetThickness,
+          pts,
+          sc.tolerancePercent,
+        );
+        expect(p.warnings).toEqual([]);
+        const curve = generateCurvePoints(p);
+        expect(generateStructuredReport(p, curve)).toBe(g.report);
+        expect(generateCSV(p, curve)).toBe(g.csv);
+        expect(g.report).not.toContain('警告事項');
+        expect(g.csv).not.toContain('# Warning');
+      },
+    );
+
+    const steep = withIds([2, 3, 4].map(S => ({solidsContent: S, thickness: 5 * Math.pow(S, 4.52)})));
+    const warned = runPrediction(SOC, 2000, 30, 100000, steep);
+    const curve = generateCurvePoints(warned);
+
+    it('有警告時，報告最後有「4. 【警告事項】」區段並逐條列出', () => {
+      expect(warned.warnings.length).toBeGreaterThan(1);
+      const report = generateStructuredReport(warned, curve);
+      const [before, section] = report.split('\n4. 【警告事項】：\n');
+      expect(section).toBeDefined();
+      expect(before).toContain('3. 【數據曲線點表格');
+      expect(section.trimEnd().split('\n')).toEqual(warned.warnings.map(w => `- ${w.message}`));
+    });
+
+    it('有警告時，CSV 檔頭註解有逐條 "# Warning:" 行，且位於資料表頭之前', () => {
+      const csv = generateCSV(warned, curve);
+      const headerIdx = csv.indexOf('Solids_wt%,');
+      for (const w of warned.warnings) {
+        const idx = csv.indexOf(`# Warning: ${w.message}\n`);
+        expect(idx).toBeGreaterThan(-1);
+        expect(idx).toBeLessThan(headerIdx);
+      }
+      expect(csv.split('\n').filter(l => l.startsWith('# Warning:'))).toHaveLength(warned.warnings.length);
+    });
+
+    it('警告訊息都是單行文字（不會破壞 CSV 結構）', () => {
+      for (const w of warned.warnings) expect(w.message).not.toContain('\n');
+    });
+  });
+
+  describe('MeasuredPoint 的 spinSpeed / spinTime（計算不使用）', () => {
+    const base = [
+      {solidsContent: 5, thickness: 85},
+      {solidsContent: 8, thickness: 182},
+      {solidsContent: 12, thickness: 350},
+    ];
+    const cases: Array<[string, Array<{solidsContent: number; thickness: number}>]> = [
+      ['單點', base.slice(0, 1)],
+      ['多點擬合', base],
+      ['固含量全相同', [base[1], {solidsContent: 8, thickness: 200}]],
+    ];
+
+    it.each(cases)('%s：帶或不帶轉速／時間，計算結果完全相同', (_label, pts) => {
+      const without = withIds(pts);
+      const withSpin: MeasuredPoint[] = without.map((p, i) => ({
+        ...p,
+        spinSpeed: 500 + i * 1000,
+        spinTime: 5 + i,
+      }));
+      expect(calibrateModel(SOC, 2000, 30, withSpin)).toEqual(calibrateModel(SOC, 2000, 30, without));
+      expect(runPrediction(SOC, 2000, 30, 220, withSpin)).toEqual(runPrediction(SOC, 2000, 30, 220, without));
+    });
   });
 });
