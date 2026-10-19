@@ -451,6 +451,8 @@ describe('D. 警告機制與階段 3 修正', () => {
       expect(w.message).toBe('擬合 α = 4.52 超出合理範圍 0.05～4.0，已改用基準值 1.45');
       expect(w.field).toBe('calibratedAlpha');
       expect(w.value).toBeCloseTo(4.52, 9);
+      // α 改回基準值時，R² 描述的是被捨棄的擬合，一律為 null
+      expect(c.rSquared).toBeNull();
     });
 
     it('觸發（過小）：膜厚不隨固含量變化（斜率 0）', () => {
@@ -463,6 +465,14 @@ describe('D. 警告機制與階段 3 修正', () => {
       expect(c.calibratedAlpha).toBe(SOC.alpha);
       expect(c.fittedAlpha as number).toBeCloseTo(0, 9);
       expect(c.warnings.map(w => w.code)).toEqual(['ALPHA_OUT_OF_RANGE']);
+      // 膜厚全部相同（ssYY = 0）且斜率為 0：R² 也為 null，而不是 1.0
+      expect(c.rSquared).toBeNull();
+    });
+
+    it('過小但膜厚並非全部相同（斜率 0.01）：R² 同樣為 null', () => {
+      const c = calibrateModel(SOC, 2000, 30, powerLaw(0.01));
+      expect(c.calibratedAlpha).toBe(SOC.alpha);
+      expect(c.rSquared).toBeNull();
     });
 
     it.each([0.5, 1.5, 3.5])('不觸發：斜率 %s 在範圍內，採用擬合值且 fittedAlpha 相同', alpha => {
@@ -470,6 +480,7 @@ describe('D. 警告機制與階段 3 修正', () => {
       expect(c.calibratedAlpha).toBeCloseTo(alpha, 9);
       expect(c.fittedAlpha as number).toBeCloseTo(alpha, 9);
       expect(c.warnings).toEqual([]);
+      expect(c.rSquared as number).toBeCloseTo(1, 9);
     });
   });
 

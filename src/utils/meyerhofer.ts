@@ -184,7 +184,8 @@ export function calibrateModel(
   if (ssXX > 1e-8) {
     const slope = ssXY / ssXX;
     fittedAlpha = slope;
-    if (slope > ALPHA_FIT_MIN && slope < ALPHA_FIT_MAX) {
+    const alphaInRange = slope > ALPHA_FIT_MIN && slope < ALPHA_FIT_MAX;
+    if (alphaInRange) {
       calibratedAlpha = slope;
     } else {
       warnings.push({
@@ -199,7 +200,10 @@ export function calibrateModel(
     // K = C * w^-beta * t^-gamma  ==> C = K * w^beta * t^gamma
     calibratedC = K * Math.pow(rpm, resin.beta) * Math.pow(time, resin.gamma);
 
-    if (ssYY > 1e-8) {
+    // α 改回基準值時，R² 描述的是被捨棄的擬合，不代表實際採用的曲線，因此維持 null
+    if (!alphaInRange) {
+      rSquared = null;
+    } else if (ssYY > 1e-8) {
       rSquared = Math.max(0, Math.min(1, (ssXY * ssXY) / (ssXX * ssYY)));
     } else {
       rSquared = 1.0;
