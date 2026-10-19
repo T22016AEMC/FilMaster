@@ -22,6 +22,13 @@
   2. 頁尾顯示的版本號
   3. `CHANGELOG.md`
 
+## 發布新版本的流程
+1. 依語意化版本規則決定新版本號
+2. 更新 `package.json` 的 `version`（頁尾與 Header 的版本號由 `__APP_VERSION__` 在建置時自動取自此欄位，不需手動修改）
+3. 將 `CHANGELOG.md` 的 `[Unreleased]` 改為新版本區段並加上日期，再新增空的 `[Unreleased]`
+4. commit 後建立 git tag（格式 `v2.x.x`）
+5. 推送 main 與 tag，GitHub Actions 會自動部署（測試或型別檢查沒過就不會部署）
+
 ## 重要約束
 - `_legacy/` 為原始程式，唯讀參考，不可修改
 - 計算核心（膜厚計算、反算、校正）的任何修改都必須有對應的單元測試
