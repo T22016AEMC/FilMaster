@@ -77,6 +77,8 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
     ]);
   };
 
+  const rSquaredDisplay = describeRSquared(calibration.rSquared, calibration.pointsCount);
+
   // Get badge styling based on calibration mode
   const getModeBadge = () => {
     if (calibration.mode === 'theoretical') {
@@ -114,7 +116,6 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
   };
 
   const modeBadge = getModeBadge();
-  const rSquaredDisplay = describeRSquared(calibration.rSquared, calibration.pointsCount);
 
   return (
     <div className="bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-xl shadow-black/50 border border-slate-800 p-5 space-y-5">

@@ -124,6 +124,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
         setActiveTab('manage_list');
       } catch (err) {
         setImportError(err instanceof Error && err.message ? err.message : '匯入失敗');
+        setActiveTab('manage_list'); // 錯誤訊息顯示在列表頁籤，需切換過去才看得到
       }
     };
     reader.readAsText(file);
