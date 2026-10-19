@@ -1,11 +1,27 @@
 import React from 'react';
-import { PredictionResult } from '../types';
-import { Target, CheckCircle2, ArrowRight, ShieldCheck, Activity, Cpu, Percent, HelpCircle } from 'lucide-react';
+import { PredictionResult, PredictionWarning } from '../types';
+import { Target, CheckCircle2, ArrowRight, ShieldCheck, Activity, Cpu, Percent, HelpCircle, AlertTriangle } from 'lucide-react';
+import { describeRSquared } from '../utils/format';
 
 interface PredictionSummaryProps {
   prediction: PredictionResult;
   onTolerancePercentChange?: (val: number) => void;
 }
+
+// 固含量超出合理範圍時，在數值旁加上警示圖示（數值照常顯示）
+const SolidsWarnIcon: React.FC<{ warnings: PredictionWarning[]; field: string; className?: string }> = ({
+  warnings,
+  field,
+  className = 'w-4 h-4 text-amber-400',
+}) => {
+  const w = warnings.find(x => x.code === 'SOLIDS_OUT_OF_RANGE' && x.field === field);
+  if (!w) return null;
+  return (
+    <span role="img" aria-label="固含量超出合理範圍" title={w.message} className="inline-flex align-middle">
+      <AlertTriangle className={`shrink-0 ${className}`} />
+    </span>
+  );
+};
 
 export const PredictionSummary: React.FC<PredictionSummaryProps> = ({
   prediction,
@@ -24,6 +40,8 @@ export const PredictionSummary: React.FC<PredictionSummaryProps> = ({
     calibration,
     resin,
   } = prediction;
+
+  const rSquaredDisplay = describeRSquared(calibration.rSquared, calibration.pointsCount);
 
   const toleranceSolidsSpan = upperSolids - lowerSolids;
   const tolerancePercentSolids = recommendedSolids > 0 ? (toleranceSolidsSpan / (2 * recommendedSolids)) * 100 : 0;
@@ -58,6 +76,7 @@ export const PredictionSummary: React.FC<PredictionSummaryProps> = ({
                   {recommendedSolids.toFixed(4)}
                 </span>
                 <span className="text-xl font-bold font-mono text-cyan-400">wt%</span>
+                <SolidsWarnIcon warnings={prediction.warnings} field="recommendedSolids" className="w-6 h-6 text-amber-400" />
               </div>
             </div>
 
@@ -109,8 +128,9 @@ export const PredictionSummary: React.FC<PredictionSummaryProps> = ({
                 <div className="text-base sm:text-lg font-bold font-mono text-slate-200">
                   {lowerThickness.toFixed(3)} <span className="text-[10px] text-slate-400">nm</span>
                 </div>
-                <div className="text-xs font-mono font-semibold text-cyan-300 bg-slate-900 py-1 rounded-lg border border-slate-800">
-                  S = {lowerSolids.toFixed(4)} wt%
+                <div className="text-xs font-mono font-semibold text-cyan-300 bg-slate-900 py-1 rounded-lg border border-slate-800 flex items-center justify-center gap-1">
+                  <span>S = {lowerSolids.toFixed(4)} wt%</span>
+                  <SolidsWarnIcon warnings={prediction.warnings} field="lowerSolids" />
                 </div>
               </div>
 
@@ -123,8 +143,9 @@ export const PredictionSummary: React.FC<PredictionSummaryProps> = ({
                 <div className="text-base sm:text-lg font-black font-mono text-white">
                   {targetThickness.toFixed(3)} <span className="text-[10px] text-cyan-300">nm</span>
                 </div>
-                <div className="text-xs font-mono font-bold text-slate-950 bg-gradient-to-r from-cyan-400 to-cyan-500 py-1 rounded-lg shadow-sm">
-                  S = {recommendedSolids.toFixed(4)} wt%
+                <div className="text-xs font-mono font-bold text-slate-950 bg-gradient-to-r from-cyan-400 to-cyan-500 py-1 rounded-lg shadow-sm flex items-center justify-center gap-1">
+                  <span>S = {recommendedSolids.toFixed(4)} wt%</span>
+                  <SolidsWarnIcon warnings={prediction.warnings} field="recommendedSolids" className="w-4 h-4 text-amber-700" />
                 </div>
               </div>
 
@@ -136,8 +157,9 @@ export const PredictionSummary: React.FC<PredictionSummaryProps> = ({
                 <div className="text-base sm:text-lg font-bold font-mono text-slate-200">
                   {upperThickness.toFixed(3)} <span className="text-[10px] text-slate-400">nm</span>
                 </div>
-                <div className="text-xs font-mono font-semibold text-cyan-300 bg-slate-900 py-1 rounded-lg border border-slate-800">
-                  S = {upperSolids.toFixed(4)} wt%
+                <div className="text-xs font-mono font-semibold text-cyan-300 bg-slate-900 py-1 rounded-lg border border-slate-800 flex items-center justify-center gap-1">
+                  <span>S = {upperSolids.toFixed(4)} wt%</span>
+                  <SolidsWarnIcon warnings={prediction.warnings} field="upperSolids" />
                 </div>
               </div>
             </div>
@@ -247,11 +269,15 @@ export const PredictionSummary: React.FC<PredictionSummaryProps> = ({
           {/* R^2 Determination */}
           <div className="p-2.5 rounded-xl border border-slate-800 bg-slate-950/70">
             <div className="text-slate-400 font-medium text-[11px]">決定係數 R²</div>
-            <div className="font-mono font-bold text-emerald-400 text-sm mt-0.5">
-              {calibration.rSquared !== null ? calibration.rSquared.toFixed(4) : '1.0000 (Exact)'}
+            <div
+              className={`font-mono font-bold text-sm mt-0.5 ${
+                rSquaredDisplay.reason === null ? 'text-emerald-400' : 'text-slate-400'
+              }`}
+            >
+              {rSquaredDisplay.text}
             </div>
             <div className="text-[10px] text-slate-500 mt-0.5 font-mono">
-              {calibration.pointsCount >= 2 ? '最小平方擬合度' : '精確通過'}
+              {rSquaredDisplay.reason ?? '最小平方擬合度'}
             </div>
           </div>
         </div>

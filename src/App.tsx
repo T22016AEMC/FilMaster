@@ -1,163 +1,49 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { ResinType, MeasuredPoint, PresetScenario, SavedCalibratedCurve } from './types';
-import { RESIN_CONFIGS, PRESET_SCENARIOS } from './utils/resinConfigs';
-import { runPrediction, generateCurvePoints, generateStructuredReport, generateCSV } from './utils/meyerhofer';
-import { getSavedCurves } from './utils/customCurves';
 import { Header } from './components/Header';
 import { ProcessInputs } from './components/ProcessInputs';
 import { CalibrationManager } from './components/CalibrationManager';
 import { PredictionSummary } from './components/PredictionSummary';
+import { WarningPanel } from './components/WarningPanel';
 import { CurveChart } from './components/CurveChart';
 import { SensitivityExplorer } from './components/SensitivityExplorer';
 import { DataTableSection } from './components/DataTableSection';
 import { FormulaModal } from './components/FormulaModal';
 import { SavedCurvesModal } from './components/SavedCurvesModal';
-import { Sparkles, BookmarkCheck } from 'lucide-react';
+import { useFilMasterState } from './hooks/useFilMasterState';
+import { Sparkles, BookmarkCheck, AlertTriangle } from 'lucide-react';
 
 export default function App() {
-  // Main state initialized with the prompt's official test case:
-  // SOC, 2000 RPM, 30s, 1 measured point (8.0 wt%, 180 nm), target 220 nm
-  const [selectedResin, setSelectedResin] = useState<ResinType>('SOC');
-  const [spinSpeed, setSpinSpeed] = useState<number>(2000);
-  const [spinTime, setSpinTime] = useState<number>(30);
-  const [targetThickness, setTargetThickness] = useState<number>(220.0);
-  const [tolerancePercent, setTolerancePercent] = useState<number>(5.0);
-  const [measuredPoints, setMeasuredPoints] = useState<MeasuredPoint[]>([
-    {
-      id: 'pt-init-1',
-      solidsContent: 8.0,
-      thickness: 180.0,
-      note: '官方測試範例 (8.0 wt% -> 180.000 nm)',
-    },
-  ]);
-  const [activePresetId, setActivePresetId] = useState<string>('test_soc_1pt');
-  const [copied, setCopied] = useState<boolean>(false);
-  const [isFormulaOpen, setIsFormulaOpen] = useState<boolean>(false);
-
-  // Custom calibrated curves storage & active state
-  const [savedCurves, setSavedCurves] = useState<SavedCalibratedCurve[]>(() => getSavedCurves());
-  const [activeCustomCurveId, setActiveCustomCurveId] = useState<string | null>(null);
-  const [isCurvesModalOpen, setIsCurvesModalOpen] = useState<boolean>(false);
-
-  // Expose measured points for snapshot saving
-  useEffect(() => {
-    (window as any).__lastMeasuredPoints = measuredPoints;
-  }, [measuredPoints]);
-
-  // Current resin configuration: if activeCustomCurveId is set, bake its calibrated C and alpha as the new baseline (C_0, alpha_0)
-  const currentResin = useMemo(() => {
-    if (activeCustomCurveId) {
-      const custom = savedCurves.find(c => c.id === activeCustomCurveId);
-      if (custom) {
-        const base = RESIN_CONFIGS[custom.resinType];
-        return {
-          id: custom.resinType,
-          name: custom.name,
-          fullName: `${custom.name} (已固化自訂基本值)`,
-          modelName: `${base.name} 機構流體模型 [自訂基準常數 C₀=${custom.calibratedC.toFixed(2)}, α₀=${custom.calibratedAlpha.toFixed(4)}]`,
-          recommendedThicknessRange: base.recommendedThicknessRange,
-          alpha: custom.calibratedAlpha, // Saved calibrated alpha becomes the new theoretical base alpha!
-          beta: custom.beta,
-          gamma: custom.gamma,
-          defaultC: custom.calibratedC, // Saved calibrated C becomes the new theoretical base C_0!
-          description: custom.description || `${base.name} 基底之已校正基準配方`,
-          typicalSolvents: base.typicalSolvents,
-          isCustomBaseline: true,
-          customCurveId: custom.id,
-        };
-      }
-    }
-    return RESIN_CONFIGS[selectedResin];
-  }, [selectedResin, activeCustomCurveId, savedCurves]);
-
-  // Run calculation and calibration engine
-  const prediction = useMemo(() => {
-    return runPrediction(currentResin, spinSpeed, spinTime, targetThickness, measuredPoints, tolerancePercent);
-  }, [currentResin, spinSpeed, spinTime, targetThickness, measuredPoints, tolerancePercent]);
-
-  // Generate curve points
-  const curvePoints = useMemo(() => {
-    return generateCurvePoints(prediction);
-  }, [prediction]);
-
-  // Handlers for Presets and Custom Curves
-  const handleSelectPreset = (preset: PresetScenario) => {
-    setSelectedResin(preset.resinType);
-    setSpinSpeed(preset.spinSpeed);
-    setSpinTime(preset.spinTime);
-    setTargetThickness(preset.targetThickness);
-    if (preset.tolerancePercent) {
-      setTolerancePercent(preset.tolerancePercent);
-    }
-    setMeasuredPoints(
-      preset.measuredPoints.map((p, idx) => ({
-        id: `preset-pt-${idx}-${Date.now()}`,
-        solidsContent: p.solidsContent,
-        thickness: p.thickness,
-        note: p.note || `預設樣品 #${idx + 1}`,
-      }))
-    );
-    setActivePresetId(preset.id);
-    setActiveCustomCurveId(null);
-  };
-
-  const handleSelectCustomCurve = (curve: SavedCalibratedCurve) => {
-    setSelectedResin(curve.resinType);
-    setActiveCustomCurveId(curve.id);
-    setSpinSpeed(curve.spinSpeed);
-    setSpinTime(curve.spinTime);
-    setTargetThickness(curve.targetThickness);
-    if (curve.tolerancePercent) {
-      setTolerancePercent(curve.tolerancePercent);
-    }
-    // CRITICAL: The calibrated values (C_cal, alpha_cal) from the saved curve are now baked into the material baseline (C_0, alpha_0).
-    // Active measured points are reset to empty [] so that any subsequent new formula or sample inputs
-    // can be calibrated freshly against this new baseline, WITHOUT being interfered with by old points.
-    setMeasuredPoints([]);
-    setActivePresetId('');
-  };
-
-  const handleReset = () => {
-    setSelectedResin('SOC');
-    setSpinSpeed(2000);
-    setSpinTime(30);
-    setTargetThickness(220.0);
-    setTolerancePercent(5.0);
-    setMeasuredPoints([
-      {
-        id: `pt-reset-1`,
-        solidsContent: 8.0,
-        thickness: 180.0,
-        note: '官方測試範例 (8.0 wt% -> 180.000 nm)',
-      },
-    ]);
-    setActivePresetId('test_soc_1pt');
-    setActiveCustomCurveId(null);
-  };
-
-  const handleCopyReport = () => {
-    const reportText = generateStructuredReport(prediction, curvePoints);
-    navigator.clipboard.writeText(reportText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
-  };
-
-  const handleDownloadCSV = () => {
-    const csvContent = generateCSV(prediction, curvePoints);
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.setAttribute('href', url);
-    link.setAttribute(
-      'download',
-      `spin_coating_${selectedResin}_${spinSpeed}rpm_${targetThickness.toFixed(3)}nm.csv`
-    );
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const activeCurveObj = savedCurves.find(c => c.id === activeCustomCurveId);
+  const state = useFilMasterState();
+  const {
+    selectedResin,
+    spinSpeed,
+    spinTime,
+    targetThickness,
+    tolerancePercent,
+    measuredPoints,
+    activePresetId,
+    copied,
+    isFormulaOpen,
+    setIsFormulaOpen,
+    savedCurves,
+    setSavedCurves,
+    activeCustomCurveId,
+    activeCurveObj,
+    isCurvesModalOpen,
+    setIsCurvesModalOpen,
+    currentResin,
+    prediction,
+    handleSelectResin,
+    handleSpinSpeedChange,
+    handleSpinTimeChange,
+    handleTargetThicknessChange,
+    handleTolerancePercentChange,
+    handleUpdatePoints,
+    handleSelectPreset,
+    handleSelectCustomCurve,
+    handleReset,
+    handleCopyReport,
+    handleDownloadCSV,
+  } = state;
 
   return (
     <div className="min-h-screen tech-grid-bg text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-black">
@@ -195,6 +81,16 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-2 font-mono">
+            {prediction.warnings.length > 0 && (
+              <span
+                id="status-warning-badge"
+                className="px-2 py-1 rounded bg-amber-950/80 border border-amber-500/50 text-amber-300 font-bold flex items-center gap-1"
+                title={prediction.warnings.map(w => w.message).join('；')}
+              >
+                <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
+                <span>警告 {prediction.warnings.length}</span>
+              </span>
+            )}
             <span className="px-2.5 py-1 rounded bg-slate-950/90 border border-cyan-500/40 text-cyan-300 font-bold shadow-[0_0_10px_rgba(6,182,212,0.2)]">
               S_target = {prediction.recommendedSolids.toFixed(4)} wt%
             </span>
@@ -210,44 +106,25 @@ export default function App() {
           <div className="lg:col-span-5 space-y-6">
             <ProcessInputs
               selectedResin={selectedResin}
-              onSelectResin={resin => {
-                setSelectedResin(resin);
-                setActiveCustomCurveId(null);
-                setActivePresetId('');
-              }}
+              onSelectResin={handleSelectResin}
               savedCurves={savedCurves}
               activeCustomCurveId={activeCustomCurveId}
               onSelectCustomCurve={handleSelectCustomCurve}
               onOpenSaveCurveModal={() => setIsCurvesModalOpen(true)}
               onOpenManageCurvesModal={() => setIsCurvesModalOpen(true)}
               spinSpeed={spinSpeed}
-              onSpinSpeedChange={spd => {
-                setSpinSpeed(spd);
-                setActivePresetId('');
-              }}
+              onSpinSpeedChange={handleSpinSpeedChange}
               spinTime={spinTime}
-              onSpinTimeChange={t => {
-                setSpinTime(t);
-                setActivePresetId('');
-              }}
+              onSpinTimeChange={handleSpinTimeChange}
               targetThickness={targetThickness}
-              onTargetThicknessChange={th => {
-                setTargetThickness(th);
-                setActivePresetId('');
-              }}
+              onTargetThicknessChange={handleTargetThicknessChange}
               tolerancePercent={tolerancePercent}
-              onTolerancePercentChange={tol => {
-                setTolerancePercent(tol);
-                setActivePresetId('');
-              }}
+              onTolerancePercentChange={handleTolerancePercentChange}
             />
 
             <CalibrationManager
               measuredPoints={measuredPoints}
-              onUpdatePoints={pts => {
-                setMeasuredPoints(pts);
-                setActivePresetId('');
-              }}
+              onUpdatePoints={handleUpdatePoints}
               calibration={prediction.calibration}
               spinSpeed={spinSpeed}
               spinTime={spinTime}
@@ -257,12 +134,11 @@ export default function App() {
 
           {/* Right Column: Prediction Summary & Interactive Curve Chart (7 cols on lg) */}
           <div className="lg:col-span-7 space-y-6">
+            <WarningPanel warnings={prediction.warnings} />
+
             <PredictionSummary
               prediction={prediction}
-              onTolerancePercentChange={tol => {
-                setTolerancePercent(tol);
-                setActivePresetId('');
-              }}
+              onTolerancePercentChange={handleTolerancePercentChange}
             />
 
             <CurveChart prediction={prediction} measuredPoints={measuredPoints} />
@@ -286,8 +162,9 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono">
           <div className="flex items-center space-x-2">
             <span className="font-bold text-slate-200">
-              FilmMaster Studio
+              FilMaster
             </span>
+            <span id="app-version" className="text-cyan-400/90">v{__APP_VERSION__}</span>
             <span>•</span>
             <span className="text-slate-400">Semiconductor Hydrodynamics Meyerhofer Engine</span>
           </div>
@@ -315,6 +192,7 @@ export default function App() {
         onUpdateSavedCurves={curves => setSavedCurves(curves)}
         onApplyCurve={handleSelectCustomCurve}
         currentPrediction={prediction}
+        measuredPoints={measuredPoints}
       />
     </div>
   );

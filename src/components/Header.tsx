@@ -37,9 +37,9 @@ export const Header: React.FC<HeaderProps> = ({
             <div>
               <div className="flex items-center space-x-2.5">
                 <h1 className="text-lg font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-100 to-cyan-300 bg-clip-text text-transparent flex items-center gap-2 font-mono">
-                  FilmMaster Studio
+                  FilMaster
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-500/40 font-mono tracking-normal shadow-[0_0_10px_rgba(6,182,212,0.3)]">
-                    PRO v2.5
+                    PRO v{__APP_VERSION__}
                   </span>
                 </h1>
               </div>
@@ -90,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({
               id="header-copy-report-btn"
               onClick={onCopyReport}
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-200 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-lg transition-colors"
-              title="複製結構化 AI Studio / Lab 報告"
+              title="複製結構化報告"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-slate-400" />}
               <span>{copied ? '已複製' : '報告'}</span>

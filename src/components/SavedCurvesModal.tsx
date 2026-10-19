@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { SavedCalibratedCurve, ResinType, PredictionResult } from '../types';
+import { SavedCalibratedCurve, ResinType, PredictionResult, MeasuredPoint } from '../types';
+import { describeRSquared } from '../utils/format';
 import { RESIN_CONFIGS } from '../utils/resinConfigs';
 import {
   X,
@@ -21,6 +22,7 @@ import {
   deleteCurve,
   exportCurvesAsJSON,
   importCurvesFromJSON,
+  ImportSkippedItem,
 } from '../utils/customCurves';
 
 interface SavedCurvesModalProps {
@@ -30,6 +32,8 @@ interface SavedCurvesModalProps {
   onUpdateSavedCurves: (curves: SavedCalibratedCurve[]) => void;
   onApplyCurve: (curve: SavedCalibratedCurve) => void;
   currentPrediction: PredictionResult;
+  /** 目前畫面上的實測點；儲存校正曲線時一併存入 */
+  measuredPoints: MeasuredPoint[];
 }
 
 export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
@@ -39,6 +43,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
   onUpdateSavedCurves,
   onApplyCurve,
   currentPrediction,
+  measuredPoints,
 }) => {
   const [activeTab, setActiveTab] = useState<'save_current' | 'manage_list'>('save_current');
   const [curveName, setCurveName] = useState<string>(
@@ -47,6 +52,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
   const [description, setDescription] = useState<string>('');
   const [saveSuccess, setSaveSuccess] = useState<boolean>(false);
   const [importError, setImportError] = useState<string | null>(null);
+  const [importResult, setImportResult] = useState<{ importedCount: number; skipped: ImportSkippedItem[] } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   if (!isOpen) return null;
@@ -73,7 +79,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
       gamma: calibration.gamma,
       scaleFactor: calibration.scaleFactor,
       rSquared: calibration.rSquared,
-      measuredPoints: currentPrediction.calibration.pointsCount > 0 ? (window as any).__lastMeasuredPoints || [] : [],
+      measuredPoints: currentPrediction.calibration.pointsCount > 0 ? measuredPoints : [],
     };
 
     const updated = saveCurve(newCurve);
@@ -104,6 +110,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
 
   const handleImportFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     setImportError(null);
+    setImportResult(null);
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -111,11 +118,12 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
     reader.onload = event => {
       try {
         const content = event.target?.result as string;
-        const updated = importCurvesFromJSON(content).curves;
-        onUpdateSavedCurves(updated);
+        const result = importCurvesFromJSON(content);
+        onUpdateSavedCurves(result.curves);
+        setImportResult({ importedCount: result.importedCount, skipped: result.skipped });
         setActiveTab('manage_list');
-      } catch (err: any) {
-        setImportError(err.message || '匯入失敗');
+      } catch (err) {
+        setImportError(err instanceof Error && err.message ? err.message : '匯入失敗');
       }
     };
     reader.readAsText(file);
@@ -315,6 +323,37 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
               </div>
             )}
 
+            {importResult && (
+              <div
+                id="import-result"
+                className={`p-3 rounded-lg text-xs space-y-1.5 font-mono border ${
+                  importResult.importedCount > 0
+                    ? 'bg-emerald-950/80 border-emerald-800/80 text-emerald-300'
+                    : 'bg-amber-950/70 border-amber-700/60 text-amber-200'
+                }`}
+              >
+                <div className="flex items-center gap-2 font-semibold">
+                  <CheckCircle2 className="w-4 h-4 shrink-0" />
+                  <span>成功匯入 {importResult.importedCount} 筆</span>
+                </div>
+                {importResult.skipped.length > 0 && (
+                  <div className="text-amber-200 space-y-1">
+                    <div className="flex items-center gap-2 font-semibold">
+                      <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span>略過 {importResult.skipped.length} 筆：</span>
+                    </div>
+                    <ul className="list-disc pl-8 space-y-0.5">
+                      {importResult.skipped.map(item => (
+                        <li key={item.index}>
+                          {item.name ? `「${item.name}」` : `第 ${item.index + 1} 筆`}：{item.reason}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+
             {savedCurves.length === 0 ? (
               <div className="text-center py-10 bg-slate-950/60 rounded-xl border border-dashed border-slate-800 text-xs text-slate-400 space-y-2 font-mono">
                 <Layers className="w-8 h-8 mx-auto text-slate-600" />
@@ -352,11 +391,18 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
                           <span className="bg-cyan-950/60 text-cyan-300 px-2 py-0.5 rounded border border-cyan-800 font-semibold">
                             α_cal: {curve.calibratedAlpha.toFixed(4)}
                           </span>
-                          {curve.rSquared !== null && (
-                            <span className="bg-emerald-950/60 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800">
-                              R²={curve.rSquared.toFixed(4)}
-                            </span>
-                          )}
+                          {(() => {
+                            const r2 = describeRSquared(curve.rSquared, curve.measuredPoints?.length ?? 0);
+                            return r2.reason === null ? (
+                              <span className="bg-emerald-950/60 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800">
+                                R²={r2.text}
+                              </span>
+                            ) : (
+                              <span className="bg-slate-900 text-slate-400 px-2 py-0.5 rounded border border-slate-700">
+                                R²={r2.text}（{r2.reason}）
+                              </span>
+                            );
+                          })()}
                           <span className="text-slate-500 text-[10px]">
                             {curve.createdAt}
                           </span>

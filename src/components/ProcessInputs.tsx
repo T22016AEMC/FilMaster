@@ -1,6 +1,7 @@
 import React from 'react';
 import { ResinType, ResinConfig, SavedCalibratedCurve } from '../types';
 import { RESIN_CONFIGS } from '../utils/resinConfigs';
+import { useNumericInput, INVALID_NUMBER_HINT } from '../hooks/useNumericInput';
 import {
   Gauge,
   Clock,
@@ -33,6 +34,16 @@ interface ProcessInputsProps {
   onTolerancePercentChange: (tol: number) => void;
 }
 
+const INVALID_INPUT_CLASS = 'border-rose-500! focus:ring-rose-500! focus:border-rose-500!';
+
+/** 數值無效時顯示在輸入框下方的提示 */
+const InvalidHint: React.FC<{ show: boolean; id: string; className?: string }> = ({ show, id, className = '' }) =>
+  show ? (
+    <p id={id} aria-live="polite" className={`text-[11px] font-mono text-rose-400 ${className}`}>
+      {INVALID_NUMBER_HINT}
+    </p>
+  ) : null;
+
 export const ProcessInputs: React.FC<ProcessInputsProps> = ({
   selectedResin,
   onSelectResin,
@@ -50,6 +61,13 @@ export const ProcessInputs: React.FC<ProcessInputsProps> = ({
   tolerancePercent,
   onTolerancePercentChange,
 }) => {
+  const speedInput = useNumericInput(spinSpeed, onSpinSpeedChange);
+  const timeInput = useNumericInput(spinTime, onSpinTimeChange);
+  const thicknessInput = useNumericInput(targetThickness, onTargetThicknessChange);
+  const toleranceInput = useNumericInput(tolerancePercent, onTolerancePercentChange, v =>
+    Math.min(10.0, Math.max(0.1, v)),
+  );
+
   const currentResin: ResinConfig = RESIN_CONFIGS[selectedResin];
   const [minRange, maxRange] = currentResin.recommendedThicknessRange;
   const isThicknessOutOfRange = targetThickness < minRange || targetThickness > maxRange;
@@ -229,13 +247,16 @@ export const ProcessInputs: React.FC<ProcessInputsProps> = ({
                 min="500"
                 max="5000"
                 step="50"
-                value={spinSpeed}
-                onChange={e => onSpinSpeedChange(Number(e.target.value))}
-                className="w-20 px-2 py-1 text-right font-mono font-bold text-cyan-300 bg-slate-950 border border-slate-700 rounded-lg focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400 text-xs shadow-inner"
+                {...speedInput.inputProps}
+                aria-describedby={speedInput.invalid ? 'spin-speed-hint' : undefined}
+                className={`w-20 px-2 py-1 text-right font-mono font-bold text-cyan-300 bg-slate-950 border border-slate-700 rounded-lg focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400 text-xs shadow-inner ${
+                  speedInput.invalid ? INVALID_INPUT_CLASS : ''
+                }`}
               />
               <span className="font-mono text-slate-400">RPM</span>
             </div>
           </div>
+          <InvalidHint show={speedInput.invalid} id="spin-speed-hint" className="text-right" />
           <input
             id="spin-speed-slider"
             type="range"
@@ -282,13 +303,16 @@ export const ProcessInputs: React.FC<ProcessInputsProps> = ({
                 min="1"
                 max="60"
                 step="1"
-                value={spinTime}
-                onChange={e => onSpinTimeChange(Number(e.target.value))}
-                className="w-16 px-2 py-1 text-right font-mono font-bold text-cyan-300 bg-slate-950 border border-slate-700 rounded-lg focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400 text-xs shadow-inner"
+                {...timeInput.inputProps}
+                aria-describedby={timeInput.invalid ? 'spin-time-hint' : undefined}
+                className={`w-16 px-2 py-1 text-right font-mono font-bold text-cyan-300 bg-slate-950 border border-slate-700 rounded-lg focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400 text-xs shadow-inner ${
+                  timeInput.invalid ? INVALID_INPUT_CLASS : ''
+                }`}
               />
               <span className="font-mono text-slate-400">sec</span>
             </div>
           </div>
+          <InvalidHint show={timeInput.invalid} id="spin-time-hint" className="text-right" />
           <input
             id="spin-time-slider"
             type="range"
@@ -346,13 +370,16 @@ export const ProcessInputs: React.FC<ProcessInputsProps> = ({
                 min="0.1"
                 max="50000"
                 step="0.001"
-                value={targetThickness}
-                onChange={e => onTargetThicknessChange(Number(e.target.value))}
-                className="w-32 sm:w-36 px-3 py-2 text-right font-mono font-extrabold text-xl text-cyan-300 bg-slate-900 border-2 border-cyan-500/80 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.25)]"
+                {...thicknessInput.inputProps}
+                aria-describedby={thicknessInput.invalid ? 'target-thickness-hint' : undefined}
+                className={`w-32 sm:w-36 px-3 py-2 text-right font-mono font-extrabold text-xl text-cyan-300 bg-slate-900 border-2 border-cyan-500/80 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.25)] ${
+                  thicknessInput.invalid ? INVALID_INPUT_CLASS : ''
+                }`}
               />
               <span className="absolute right-3 top-2.5 font-mono text-xs text-cyan-400 pointer-events-none">
                 nm
               </span>
+              <InvalidHint show={thicknessInput.invalid} id="target-thickness-hint" className="absolute right-0 top-full mt-1 whitespace-nowrap" />
             </div>
 
             {/* Range status badge */}
@@ -387,18 +414,16 @@ export const ProcessInputs: React.FC<ProcessInputsProps> = ({
                 min="0.1"
                 max="10.0"
                 step="0.1"
-                value={tolerancePercent}
-                onChange={e => {
-                  const val = parseFloat(e.target.value);
-                  if (!isNaN(val)) {
-                    onTolerancePercentChange(Math.min(10.0, Math.max(0.1, val)));
-                  }
-                }}
-                className="w-16 px-2 py-1 text-right font-mono font-bold text-amber-300 bg-slate-950 border border-slate-700 rounded-lg focus:ring-1 focus:ring-amber-400 text-xs shadow-inner"
+                {...toleranceInput.inputProps}
+                aria-describedby={toleranceInput.invalid ? 'tolerance-hint' : undefined}
+                className={`w-16 px-2 py-1 text-right font-mono font-bold text-amber-300 bg-slate-950 border border-slate-700 rounded-lg focus:ring-1 focus:ring-amber-400 text-xs shadow-inner ${
+                  toleranceInput.invalid ? INVALID_INPUT_CLASS : ''
+                }`}
               />
               <span className="font-mono text-xs text-amber-400 font-bold">%</span>
             </div>
           </div>
+          <InvalidHint show={toleranceInput.invalid} id="tolerance-hint" className="text-right" />
 
           <div className="flex items-center gap-3">
             <input

@@ -212,7 +212,7 @@ h = C * (S ^ alpha) * (w ^ -beta) * (t ^ -gamma)
             <div className="flex items-center justify-between border-b border-slate-800 pb-2">
               <h3 className="text-sm font-bold text-slate-100 flex items-center gap-2 font-mono">
                 <Terminal className="w-4 h-4 text-cyan-400" />
-                四、 Google AI Studio System Instructions (可直接複製使用)
+                四、 AI 助理 System Instructions (可直接複製使用)
               </h3>
               <button
                 type="button"

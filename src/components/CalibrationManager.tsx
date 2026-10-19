@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MeasuredPoint, CalibrationResult, ResinConfig } from '../types';
 import { Plus, Trash2, Sliders, CheckCircle, RefreshCw, HelpCircle, FileText, Sparkles, RotateCcw, BookmarkCheck } from 'lucide-react';
 import { calculateThickness } from '../utils/meyerhofer';
+import { describeRSquared, formatMeasureCondition } from '../utils/format';
 
 interface CalibrationManagerProps {
   measuredPoints: MeasuredPoint[];
@@ -36,6 +37,8 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
         solidsContent: s,
         thickness: h,
         note: newNote.trim() || `新配方樣品 #${measuredPoints.length + 1}`,
+        spinSpeed,
+        spinTime,
       };
       onUpdatePoints([...measuredPoints, newPoint]);
       setNewSolids('');
@@ -59,16 +62,18 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
         solidsContent: 8.0,
         thickness: 180.0,
         note: '官方測試範例: 固含量 8.0 wt%, 實測 180.000 nm',
+        spinSpeed,
+        spinTime,
       },
     ]);
   };
 
   const handleLoadMultiPointDemo = () => {
     onUpdatePoints([
-      { id: 'm-1', solidsContent: 5.0, thickness: 85.0, note: '低濃度批次 (5.0 wt%)' },
-      { id: 'm-2', solidsContent: 8.0, thickness: 182.0, note: '標稱批次 (8.0 wt%)' },
-      { id: 'm-3', solidsContent: 10.0, thickness: 260.0, note: '中高濃度 (10.0 wt%)' },
-      { id: 'm-4', solidsContent: 12.0, thickness: 350.0, note: '高膜厚驗證 (12.0 wt%)' },
+      { id: 'm-1', solidsContent: 5.0, thickness: 85.0, note: '低濃度批次 (5.0 wt%)', spinSpeed, spinTime },
+      { id: 'm-2', solidsContent: 8.0, thickness: 182.0, note: '標稱批次 (8.0 wt%)', spinSpeed, spinTime },
+      { id: 'm-3', solidsContent: 10.0, thickness: 260.0, note: '中高濃度 (10.0 wt%)', spinSpeed, spinTime },
+      { id: 'm-4', solidsContent: 12.0, thickness: 350.0, note: '高膜厚驗證 (12.0 wt%)', spinSpeed, spinTime },
     ]);
   };
 
@@ -102,13 +107,14 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
         dot: 'bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]',
         title: isCustomBase ? `二次多點最小平方法擬合 (${calibration.pointsCount} 數據點)` : `多點最小平方法擬合 (${calibration.pointsCount} 數據點)`,
         desc: `Least Squares 回歸最佳化指數 α = ${calibration.calibratedAlpha.toFixed(4)}，決定係數 R² = ${
-          calibration.rSquared !== null ? calibration.rSquared.toFixed(4) : '1.0000'
+          rSquaredDisplay.reason === null ? rSquaredDisplay.text : `${rSquaredDisplay.text} (${rSquaredDisplay.reason})`
         }`,
       };
     }
   };
 
   const modeBadge = getModeBadge();
+  const rSquaredDisplay = describeRSquared(calibration.rSquared, calibration.pointsCount);
 
   return (
     <div className="bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-xl shadow-black/50 border border-slate-800 p-5 space-y-5">
@@ -159,9 +165,13 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
           <span className="bg-slate-950/80 text-cyan-300 px-2.5 py-1 rounded-md border border-cyan-800/60 font-semibold shadow-xs">
             α_cal: {calibration.calibratedAlpha.toFixed(4)}
           </span>
-          {calibration.rSquared !== null && calibration.pointsCount >= 2 && (
+          {rSquaredDisplay.reason === null ? (
             <span className="bg-emerald-950/90 text-emerald-300 px-2.5 py-1 rounded-md border border-emerald-500/50 font-semibold shadow-[0_0_8px_rgba(16,185,129,0.3)]">
-              R²: {calibration.rSquared.toFixed(4)}
+              R²: {rSquaredDisplay.text}
+            </span>
+          ) : (
+            <span className="bg-slate-950/80 text-slate-400 px-2.5 py-1 rounded-md border border-slate-700 font-semibold">
+              R²: {rSquaredDisplay.text}（{rSquaredDisplay.reason}）
             </span>
           )}
         </div>
@@ -308,7 +318,12 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
                           {residualPercent.toFixed(1)}%)
                         </span>
                       </td>
-                      <td className="px-3 py-2 text-slate-400 max-w-[160px] truncate">{pt.note || '—'}</td>
+                      <td className="px-3 py-2 text-slate-400 max-w-[160px]">
+                        <div className="truncate">{pt.note || '—'}</div>
+                        <div className="text-[10px] text-slate-500 font-mono" title="此點的量測條件（僅記錄，不參與計算）">
+                          {formatMeasureCondition(pt)}
+                        </div>
+                      </td>
                       <td className="px-3 py-2 text-center">
                         <button
                           type="button"

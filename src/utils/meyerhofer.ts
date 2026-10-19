@@ -488,7 +488,7 @@ export function generateDenseChartPoints(
 }
 
 /**
- * Format Structured AI Studio Report
+ * Format Structured Report
  */
 export function generateStructuredReport(
   prediction: PredictionResult,

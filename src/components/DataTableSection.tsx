@@ -53,7 +53,7 @@ export const DataTableSection: React.FC<DataTableSectionProps> = ({
               04. 固含量對應膜厚數值表 (Formulation Data Points Table)
             </h2>
             <p className="text-xs text-slate-400 font-mono">
-              Discretized Formulation Curve Data for AI Studio Analysis & Excel
+              Discretized Formulation Curve Data for AI Analysis & Excel
             </p>
           </div>
         </div>
@@ -67,7 +67,7 @@ export const DataTableSection: React.FC<DataTableSectionProps> = ({
             title="複製符合規範之結構化文字報告"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-slate-400" />}
-            <span>{copied ? '已複製 AI Studio 報告' : '複製結構化報告'}</span>
+            <span>{copied ? '已複製結構化報告' : '複製結構化報告'}</span>
           </button>
 
           <button
