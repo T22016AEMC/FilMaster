@@ -10,6 +10,7 @@ it('Header 名稱左側顯示原創旋塗 BrandMark 裝飾圖示', () => {
   const header = screen.getByRole('banner');
   const frame = within(header).getByTestId('header-logo');
   expect(frame.className).toContain('brand-mark-frame');
+  expect(frame.className).toContain('rounded-brand');
   expect(frame.getAttribute('aria-hidden')).toBe('true');
   const icon = within(frame).getByTestId('brand-mark');
   expect(icon).not.toBeNull();

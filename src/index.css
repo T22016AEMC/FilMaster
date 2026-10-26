@@ -122,3 +122,4 @@
 .quick-value { padding: .25rem .45rem; border-radius: 999px; font-variant-numeric: tabular-nums; }
 
 button:disabled { color: var(--color-muted); background: var(--color-inset); border-color: var(--color-line); }
+.fit-quality-plot .recharts-surface { overflow: visible; }
