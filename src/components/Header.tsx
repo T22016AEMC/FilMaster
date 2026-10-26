@@ -1,5 +1,4 @@
 import {useState} from 'react';
-import {BrandMark} from './BrandMark';
 import {PRESET_SCENARIOS} from '../utils/resinConfigs';
 import type {PresetScenario} from '../types';
 
@@ -10,13 +9,11 @@ export function Header({onSelectPreset, activePresetId, onOpenFormula, onOpenCur
   const [presetsOpen, setPresetsOpen] = useState(false);
   return <header className="brand-header">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 flex flex-wrap justify-between items-center gap-6">
-      <div className="flex items-center gap-5">
-        <BrandMark />
-        <div className="space-y-1">
-          <h1 className="brand-title">FilMaster</h1>
-          <p className="brand-subtitle">半導體旋塗膜厚與固含量預測</p>
+      <div className="space-y-1">
+          <h1 className="sr-only">FilMaster</h1>
+          <img className="brand-logo" src={`${import.meta.env.BASE_URL}brand/filmaster-logo.webp`}
+            width={1000} height={259} alt="FilMaster 半導體旋塗膜厚與固含量預測" />
           <p className="brand-version">版本 v{__APP_VERSION__}</p>
-        </div>
       </div>
       <nav className="flex flex-wrap gap-2" aria-label="次要操作">
         <div className="relative">

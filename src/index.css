@@ -101,10 +101,8 @@
 .tech-card, .tech-card-glow { background: var(--color-surface); border: 1px solid var(--color-line); box-shadow: var(--shadow-card); }
 
 .brand-header { padding-block: var(--spacing-page-block); }
-.brand-title { color: var(--color-brand); font-size: var(--text-brand-title); font-weight: 750; line-height: 1.15; letter-spacing: -.035em; }
-.brand-subtitle { color: var(--color-muted); font-size: 1.125rem; }
+.brand-logo { display: block; height: 88px; width: auto; max-width: 100%; object-fit: contain; object-position: left; }
 .brand-version { color: var(--color-muted); font-size: var(--text-xs); }
-.brand-mark-frame { display: inline-flex; align-items: center; justify-content: center; width: 4rem; height: 4rem; flex-shrink: 0; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-brand); box-shadow: var(--shadow-brand); }
 .button-text { display: inline-flex; align-items: center; justify-content: center; padding: var(--spacing-control-y) var(--spacing-control-x); color: var(--color-muted); border-radius: var(--radius-control); font-size: var(--text-sm); font-weight: 500; }
 .button-text:hover { background: var(--color-brand-soft); color: var(--color-brand); }
 .brand-header #header-reset-btn { margin-inline-start: .75rem; }
