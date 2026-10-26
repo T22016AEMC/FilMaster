@@ -5,8 +5,8 @@ import ts from 'typescript';
 
 const baseline = 'v2.2.0';
 const git = (...args) => execFileSync('git', args, {encoding: 'utf8'}).trim();
-assert.equal(git('diff', baseline, '--', 'src/utils', 'src/hooks', 'src/types.ts',
-  'package.json', 'package-lock.json', 'CHANGELOG.md'), '', '計算、狀態、版本與輸出檔案不可變更');
+assert.equal(git('diff', baseline, '--', 'src/utils', 'src/hooks', 'src/types.ts'), '',
+  '計算、狀態與輸出檔案不可變更'); // V2 發布僅允許另行更新版本與變更紀錄。
 const tests = git('diff', '--name-only', baseline, '--', 'src').split('\n').filter(p => /\.test\./.test(p));
 assert.deepEqual(tests, ['src/components/Header.test.tsx'], '僅允許指定的品牌圖示測試變更');
 
@@ -53,11 +53,13 @@ for (const [foreground, background] of [
   contrasts[`${foreground}/${background}`] = Number(ratio.toFixed(2));
 }
 
-const brand = readFileSync('src/components/BrandMark.tsx', 'utf8');
-const favicon = readFileSync('public/favicon.svg', 'utf8');
-const paths = source => [...source.matchAll(/\bd="([^"]+)"/g)].map(match => match[1]);
-assert.deepEqual(paths(favicon), paths(brand), 'favicon 與 BrandMark 圖形必須一致');
-assert.ok(favicon.includes(color('brand')) && favicon.includes(color('brand-accent')));
-assert.ok(readFileSync('index.html', 'utf8').includes('%BASE_URL%favicon.svg'));
+// V2 以正式圖檔取代自製 SVG；此檢查延續 V1 的功能範圍與色票驗證。
+for (const size of [32, 180, 512]) {
+  const png = readFileSync(`public/favicon-${size}.png`);
+  assert.equal(png.readUInt32BE(16), size);
+  assert.equal(png.readUInt32BE(20), size);
+  assert.ok(readFileSync('index.html', 'utf8').includes(`%BASE_URL%favicon-${size}.png`));
+}
+assert.ok(readFileSync('public/brand/filmaster-logo.webp').length < 200_000);
 console.log(JSON.stringify({baseline, checkedComponents: changed.length,
   modifiedExistingTests: tests, colors: {brand: color('brand'), page: color('page')}, contrasts}, null, 2));

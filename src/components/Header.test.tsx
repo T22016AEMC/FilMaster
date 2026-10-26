@@ -5,19 +5,21 @@ import {Header} from './Header';
 
 afterEach(cleanup);
 
-it('Header 名稱左側顯示原創旋塗 BrandMark 裝飾圖示', () => {
+it('Header 顯示正式 LOGO、替代文字與視覺隱藏的產品標題', () => {
   render(<Header onSelectPreset={vi.fn()} onOpenFormula={vi.fn()} onOpenCurves={vi.fn()} onReset={vi.fn()} />);
   const header = screen.getByRole('banner');
-  const frame = within(header).getByTestId('header-logo');
-  expect(frame.className).toContain('brand-mark-frame');
-  expect(frame.className).toContain('rounded-brand');
-  expect(frame.getAttribute('aria-hidden')).toBe('true');
-  const icon = within(frame).getByTestId('brand-mark');
-  expect(icon).not.toBeNull();
-  expect(icon!.getAttribute('width')).toBe('48');
-  expect(icon!.getAttribute('height')).toBe('48');
-  expect(icon!.getAttribute('aria-hidden')).toBe('true');
-  expect(within(header).getByRole('heading', {level: 1}).textContent).toBe('FilMaster');
-  expect(frame.parentElement!.firstElementChild).toBe(frame);
-  expect(within(header).queryByRole('img')).toBeNull();
+  const logo = within(header).getByRole('img', {name: 'FilMaster 半導體旋塗膜厚與固含量預測'});
+  expect(logo.className).toContain('brand-logo');
+  expect(logo.getAttribute('src')).toBe(`${import.meta.env.BASE_URL}brand/filmaster-logo.webp`);
+  expect(logo.getAttribute('width')).toBe('1000');
+  expect(logo.getAttribute('height')).toBe('259');
+  expect(logo.hasAttribute('loading')).toBe(false);
+  expect(logo.hasAttribute('aria-hidden')).toBe(false);
+  const heading = within(header).getByRole('heading', {level: 1});
+  expect(heading.textContent).toBe('FilMaster');
+  expect(heading.className).toBe('sr-only');
+  expect(logo.previousElementSibling).toBe(heading);
+  expect(within(header).queryByTestId('brand-mark')).toBeNull();
+  expect(within(header).getByText(`版本 v${__APP_VERSION__}`)).not.toBeNull();
+  expect(within(header).getAllByRole('img')).toHaveLength(1);
 });
