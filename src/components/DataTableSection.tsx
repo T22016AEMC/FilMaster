@@ -63,7 +63,7 @@ export const DataTableSection: React.FC<DataTableSectionProps> = ({
             id="btn-copy-structured-report"
             type="button"
             onClick={onCopyReport}
-            className="flex items-center gap-1.5 px-3 py-1.5 font-semibold text-slate-900 bg-slate-100 hover:bg-slate-100 border border-slate-200 rounded-lg transition-colors shadow-xs"
+            className="button-secondary"
             title="複製符合規範之結構化文字報告"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-blue-700" /> : <Copy className="w-3.5 h-3.5 text-slate-600" />}
@@ -74,7 +74,7 @@ export const DataTableSection: React.FC<DataTableSectionProps> = ({
             id="btn-export-csv"
             type="button"
             onClick={onDownloadCSV}
-            className="flex items-center gap-1.5 px-3 py-1.5 font-semibold text-slate-900      rounded-lg transition-all "
+            className="button-secondary"
             title="匯出為標準 CSV 檔案"
           >
             <Download className="w-3.5 h-3.5" />
@@ -114,7 +114,7 @@ export const DataTableSection: React.FC<DataTableSectionProps> = ({
           </div>
           <button
             type="submit"
-            className="px-3 py-1.5 bg-slate-100 hover:bg-slate-100 text-slate-900 border border-slate-200 font-medium rounded-lg text-xs transition-colors flex items-center gap-1 "
+            className="button-secondary"
           >
             <Plus className="w-3.5 h-3.5 text-blue-700" />
             <span>插入點位</span>

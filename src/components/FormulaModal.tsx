@@ -82,7 +82,7 @@ h = C * (S ^ alpha) * (w ^ -beta) * (t ^ -gamma)
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors"
+            className="button-secondary"
           >
             <X className="w-5 h-5" />
           </button>
@@ -217,7 +217,7 @@ h = C * (S ^ alpha) * (w ^ -beta) * (t ^ -gamma)
               <button
                 type="button"
                 onClick={handleCopySystemPrompt}
-                className="flex items-center gap-1.5 px-3 py-1 bg-slate-100 hover:bg-slate-100 text-slate-900 border border-slate-200 rounded-lg text-xs  font-medium transition-colors"
+                className="button-secondary"
               >
                 {copiedPrompt ? (
                   <>
@@ -242,7 +242,7 @@ h = C * (S ^ alpha) * (w ^ -beta) * (t ^ -gamma)
         <div className="bg-slate-50 px-8 py-3 border-t border-slate-200 rounded-b-2xl flex items-center justify-end ">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-slate-100 hover:bg-slate-100 text-slate-900 text-xs font-semibold rounded-lg transition-colors border border-slate-200"
+            className="button-secondary"
           >
             關閉說明視窗
           </button>

@@ -159,7 +159,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="text-slate-600 hover:text-slate-900 p-1 rounded-lg hover:bg-slate-100 transition-colors"
+            className="button-secondary"
           >
             <X className="w-5 h-5" />
           </button>
@@ -205,7 +205,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="text-xs font-medium text-slate-700 hover:text-slate-900 bg-slate-100 border border-slate-200 hover:bg-slate-100 px-2.5 py-1 rounded-lg flex items-center gap-1 transition-colors "
+              className="button-secondary"
               title="從 JSON 檔案匯入校正曲線"
             >
               <Upload className="w-3.5 h-3.5 text-blue-700" />
@@ -214,7 +214,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
             <button
               type="button"
               onClick={handleExportAll}
-              className="text-xs font-medium text-slate-700 hover:text-slate-900 bg-slate-100 border border-slate-200 hover:bg-slate-100 px-2.5 py-1 rounded-lg flex items-center gap-1 transition-colors "
+              className="button-secondary"
               title="備份所有自訂曲線為 JSON"
             >
               <Download className="w-3.5 h-3.5 text-blue-700" />
@@ -304,14 +304,14 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-4 py-2 text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-100 rounded-lg transition-colors "
+                  className="button-secondary"
                 >
                   取消
                 </button>
                 <button
                   type="submit"
                   disabled={saveSuccess || saveDisabled}
-                  className="px-5 py-2 text-xs font-bold text-slate-900      rounded-lg  transition-all flex items-center gap-1.5 "
+                  className="button-secondary"
                 >
                   <Save className="w-4 h-4" />
                   <span>{saveSuccess ? '儲存成功' : '確認存為材料基本值'}</span>
@@ -424,7 +424,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
                             onApplyCurve(curve);
                             onClose();
                           }}
-                          className="px-3 py-1.5 text-xs font-bold text-slate-900      rounded-lg transition-all flex items-center gap-1 "
+                          className="button-secondary"
                           title="載入此材料之校正常數作為基本值，並清空實測點位以利二次校正"
                         >
                           <Check className="w-3.5 h-3.5" />
@@ -452,7 +452,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
           <span>支援隨機存取、JSON 格式無縫匯出/匯入</span>
           <button
             onClick={onClose}
-            className="px-4 py-1.5 text-xs font-medium text-slate-700 bg-slate-100 border border-slate-200 hover:bg-slate-100 rounded-lg transition-colors"
+            className="button-secondary"
           >
             關閉
           </button>

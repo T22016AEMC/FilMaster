@@ -42,16 +42,16 @@ export function FitQualityPanel({resin, calibration, measuredPoints, fallbackCon
           : open && <div className="h-64 w-full" role="img" aria-label="實測點殘差圖">
             <ResponsiveContainer width="100%" height="100%">
               <ScatterChart margin={{top: 20, right: 15, bottom: 25, left: 5}}>
-                <CartesianGrid stroke="#e2e8f0" strokeDasharray="3 3" />
-                <XAxis type="number" dataKey="solidsContent" name="固含量" unit=" wt%" tick={{fill: '#475569', fontSize: 12}}
-                  label={{value: '固含量（wt%）', position: 'insideBottom', offset: -18, fill: '#475569', fontSize: 12}} />
-                <YAxis type="number" dataKey="residualPercent" name="殘差" unit="%" tick={{fill: '#475569', fontSize: 12}}
-                  label={{value: '殘差（%）', angle: -90, position: 'insideLeft', fill: '#475569', fontSize: 12}} />
-                <ReferenceLine y={0} stroke="#64748b" strokeDasharray="4 4" ifOverflow="extendDomain"
-                  label={{value: '0%', position: 'insideTopRight', fill: '#475569', fontSize: 12}} />
-                <Scatter data={quality.points} fill="#2563eb" shape="circle" isAnimationActive={false} />
+                <CartesianGrid stroke="var(--color-line)" strokeDasharray="3 3" />
+                <XAxis type="number" dataKey="solidsContent" name="固含量" unit=" wt%" tick={{fill: 'var(--color-muted)', fontSize: 'var(--text-xs)'}}
+                  label={{value: '固含量（wt%）', position: 'insideBottom', offset: -18, fill: 'var(--color-muted)', fontSize: 'var(--text-xs)'}} />
+                <YAxis type="number" dataKey="residualPercent" name="殘差" unit="%" tick={{fill: 'var(--color-muted)', fontSize: 'var(--text-xs)'}}
+                  label={{value: '殘差（%）', angle: -90, position: 'insideLeft', fill: 'var(--color-muted)', fontSize: 'var(--text-xs)'}} />
+                <ReferenceLine y={0} stroke="var(--color-muted)" strokeDasharray="4 4" ifOverflow="extendDomain"
+                  label={{value: '0%', position: 'insideTopRight', fill: 'var(--color-muted)', fontSize: 'var(--text-xs)'}} />
+                <Scatter data={quality.points} fill="var(--color-measured)" shape="circle" isAnimationActive={false} />
                 <Tooltip formatter={(value, name) => [format(Number(value)), name]}
-                  contentStyle={{fontSize: 12, borderColor: '#cbd5e1', borderRadius: 8}} />
+                  contentStyle={{fontSize: 'var(--text-xs)', borderColor: 'var(--color-line-strong)', borderRadius: 'var(--radius-control)'}} />
               </ScatterChart>
             </ResponsiveContainer>
           </div>}

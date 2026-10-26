@@ -94,17 +94,17 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
         <ResponsiveContainer width="100%" height="100%">
           {activeTab === 'rpm' ? (
             <LineChart data={rpmData} margin={{ top: 10, right: 30, left: 10, bottom: 20 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--color-line)" />
               <XAxis
                 dataKey="rpm"
                 label={{
                   value: '主轉速 ω (RPM)',
                   position: 'insideBottom',
                   offset: -12,
-                  fill: '#475569',
-                  fontSize: 12,
+                  fill: 'var(--color-muted)',
+                  fontSize: 'var(--text-xs)',
                 }}
-                tick={{ fill: '#475569', fontSize: 12 }}
+                tick={{ fill: 'var(--color-muted)', fontSize: 'var(--text-xs)' }}
                 tickFormatter={val => `${val}`}
               />
               <YAxis
@@ -113,50 +113,50 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
                   angle: -90,
                   position: 'insideLeft',
                   offset: 10,
-                  fill: '#475569',
-                  fontSize: 12,
+                  fill: 'var(--color-muted)',
+                  fontSize: 'var(--text-xs)',
                 }}
-                tick={{ fill: '#475569', fontSize: 12 }}
+                tick={{ fill: 'var(--color-muted)', fontSize: 'var(--text-xs)' }}
                 domain={['auto', 'auto']}
               />
               <Tooltip
                 formatter={(val: any) => [`${Number(val).toFixed(3)} nm`, '預估膜厚']}
                 labelFormatter={label => `轉速: ${label} RPM`}
                 contentStyle={{
-                  backgroundColor: '#ffffff',
-                  borderColor: '#e2e8f0',
-                  color: '#1d4ed8',
+                  backgroundColor: 'var(--color-surface)',
+                  borderColor: 'var(--color-line)',
+                  color: 'var(--color-brand)',
                   borderRadius: '0.75rem',
-                  fontSize: '12px',
+                  fontSize: 'var(--text-xs)',
                   fontFamily: 'monospace',
                 }}
               />
               <ReferenceLine
                 x={spinSpeed}
-                stroke="#2563eb"
+                stroke="var(--color-brand)"
                 strokeDasharray="3 3"
                 label={{
                   value: `設定轉速 ${spinSpeed} RPM`,
                   position: 'top',
-                  fill: '#1d4ed8',
-                  fontSize: 12,
+                  fill: 'var(--color-brand)',
+                  fontSize: 'var(--text-xs)',
                 }}
               />
               <ReferenceLine
                 y={targetThickness}
-                stroke="#2563eb"
+                stroke="var(--color-brand)"
                 strokeDasharray="3 3"
                 label={{
                   value: `目標膜厚 ${targetThickness.toFixed(3)} nm`,
                   position: 'insideTopRight',
-                  fill: '#1d4ed8',
-                  fontSize: 12,
+                  fill: 'var(--color-brand)',
+                  fontSize: 'var(--text-xs)',
                 }}
               />
               <Line
                 type="monotone"
                 dataKey="thickness"
-                stroke="#2563eb"
+                stroke="var(--color-brand)"
                 strokeWidth={2.5}
                 dot={false}
                 name="膜厚反應"
@@ -164,17 +164,17 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
             </LineChart>
           ) : (
             <LineChart data={timeData} margin={{ top: 10, right: 30, left: 10, bottom: 20 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--color-line)" />
               <XAxis
                 dataKey="time"
                 label={{
                   value: '旋塗時間 t (sec)',
                   position: 'insideBottom',
                   offset: -12,
-                  fill: '#475569',
-                  fontSize: 12,
+                  fill: 'var(--color-muted)',
+                  fontSize: 'var(--text-xs)',
                 }}
-                tick={{ fill: '#475569', fontSize: 12 }}
+                tick={{ fill: 'var(--color-muted)', fontSize: 'var(--text-xs)' }}
                 tickFormatter={val => `${val}s`}
               />
               <YAxis
@@ -183,50 +183,50 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
                   angle: -90,
                   position: 'insideLeft',
                   offset: 10,
-                  fill: '#475569',
-                  fontSize: 12,
+                  fill: 'var(--color-muted)',
+                  fontSize: 'var(--text-xs)',
                 }}
-                tick={{ fill: '#475569', fontSize: 12 }}
+                tick={{ fill: 'var(--color-muted)', fontSize: 'var(--text-xs)' }}
                 domain={['auto', 'auto']}
               />
               <Tooltip
                 formatter={(val: any) => [`${Number(val).toFixed(3)} nm`, '預估膜厚']}
                 labelFormatter={label => `時間: ${label} 秒`}
                 contentStyle={{
-                  backgroundColor: '#ffffff',
-                  borderColor: '#e2e8f0',
-                  color: '#1d4ed8',
+                  backgroundColor: 'var(--color-surface)',
+                  borderColor: 'var(--color-line)',
+                  color: 'var(--color-brand)',
                   borderRadius: '0.75rem',
-                  fontSize: '12px',
+                  fontSize: 'var(--text-xs)',
                   fontFamily: 'monospace',
                 }}
               />
               <ReferenceLine
                 x={spinTime}
-                stroke="#2563eb"
+                stroke="var(--color-brand)"
                 strokeDasharray="3 3"
                 label={{
                   value: `設定時間 ${spinTime} s`,
                   position: 'top',
-                  fill: '#1d4ed8',
-                  fontSize: 12,
+                  fill: 'var(--color-brand)',
+                  fontSize: 'var(--text-xs)',
                 }}
               />
               <ReferenceLine
                 y={targetThickness}
-                stroke="#2563eb"
+                stroke="var(--color-brand)"
                 strokeDasharray="3 3"
                 label={{
                   value: `目標膜厚 ${targetThickness.toFixed(3)} nm`,
                   position: 'insideTopRight',
-                  fill: '#1d4ed8',
-                  fontSize: 12,
+                  fill: 'var(--color-brand)',
+                  fontSize: 'var(--text-xs)',
                 }}
               />
               <Line
                 type="monotone"
                 dataKey="thickness"
-                stroke="#2563eb"
+                stroke="var(--color-brand)"
                 strokeWidth={2.5}
                 dot={false}
                 name="膜厚反應"

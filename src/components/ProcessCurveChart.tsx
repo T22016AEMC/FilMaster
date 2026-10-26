@@ -20,19 +20,19 @@ export function ProcessCurveChart({result}: {result: ProcessPredictionResult}) {
     {result.recommended === null ? <p className="py-16 text-center text-slate-600">無法求解，請確認輸入條件。</p> : <div className="h-80 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart data={data} margin={{top: 28, right: 25, left: 5, bottom: 25}}>
-          <CartesianGrid stroke="#e2e8f0" strokeDasharray="3 3" />
-          <XAxis dataKey="x" type="number" domain={[domainMin, domainMax]} tick={{fill: '#475569', fontSize: 12}}
-            tickFormatter={v => Number(v).toFixed(speed ? 0 : 1)} label={{value: `${speed ? '轉速' : '時間'}（${unit}）`, position: 'insideBottom', offset: -18, fill: '#475569', fontSize: 12}} />
-          <YAxis tick={{fill: '#475569', fontSize: 12}} label={{value: '膜厚（nm）', angle: -90, position: 'insideLeft', fill: '#475569', fontSize: 12}} />
-          {domainMin < min && <ReferenceArea x1={domainMin} x2={min} fill="#e2e8f0" fillOpacity={0.6} />}
-          {domainMax > max && <ReferenceArea x1={max} x2={domainMax} fill="#e2e8f0" fillOpacity={0.6} />}
-          <ReferenceArea y1={result.lowerThickness} y2={result.upperThickness} fill="#dbeafe" fillOpacity={0.7} ifOverflow="extendDomain" />
-          <Line dataKey="thickness" name="校正膜厚（nm）" stroke="#2563eb" strokeWidth={2} dot={false} isAnimationActive={false} />
-          <ReferenceLine y={result.targetThickness} stroke="#1d4ed8" strokeDasharray="4 4" label={{value: `目標 ${result.targetThickness} nm`, position: 'insideTopRight', fill: '#1d4ed8', fontSize: 12}} />
-          {[min, max].map(x => <ReferenceLine key={x} x={x} stroke="#64748b" strokeDasharray="3 3" label={{value: `${x} ${unit}`, position: 'top', fill: '#475569', fontSize: 12}} />)}
-          <ReferenceLine x={result.recommended} stroke="#2563eb" strokeDasharray="4 4" />
-          <ReferenceDot x={result.recommended} y={result.targetThickness} r={5} fill="#2563eb" stroke="#fff" />
-          <Tooltip labelFormatter={v => `${Number(v).toFixed(3)} ${unit}`} formatter={v => `${Number(v).toFixed(3)} nm`} contentStyle={{borderRadius: 8, borderColor: '#cbd5e1', fontSize: 12}} />
+          <CartesianGrid stroke="var(--color-line)" strokeDasharray="3 3" />
+          <XAxis dataKey="x" type="number" domain={[domainMin, domainMax]} tick={{fill: 'var(--color-muted)', fontSize: 'var(--text-xs)'}}
+            tickFormatter={v => Number(v).toFixed(speed ? 0 : 1)} label={{value: `${speed ? '轉速' : '時間'}（${unit}）`, position: 'insideBottom', offset: -18, fill: 'var(--color-muted)', fontSize: 'var(--text-xs)'}} />
+          <YAxis tick={{fill: 'var(--color-muted)', fontSize: 'var(--text-xs)'}} label={{value: '膜厚（nm）', angle: -90, position: 'insideLeft', fill: 'var(--color-muted)', fontSize: 'var(--text-xs)'}} />
+          {domainMin < min && <ReferenceArea x1={domainMin} x2={min} fill="var(--color-line)" fillOpacity={0.6} />}
+          {domainMax > max && <ReferenceArea x1={max} x2={domainMax} fill="var(--color-line)" fillOpacity={0.6} />}
+          <ReferenceArea y1={result.lowerThickness} y2={result.upperThickness} fill="var(--color-brand-soft)" fillOpacity={0.7} ifOverflow="extendDomain" />
+          <Line dataKey="thickness" name="校正膜厚（nm）" stroke="var(--color-brand)" strokeWidth={2} dot={false} isAnimationActive={false} />
+          <ReferenceLine y={result.targetThickness} stroke="var(--color-brand)" strokeDasharray="4 4" label={{value: `目標 ${result.targetThickness} nm`, position: 'insideTopRight', fill: 'var(--color-brand)', fontSize: 'var(--text-xs)'}} />
+          {[min, max].map(x => <ReferenceLine key={x} x={x} stroke="var(--color-muted)" strokeDasharray="3 3" label={{value: `${x} ${unit}`, position: 'top', fill: 'var(--color-muted)', fontSize: 'var(--text-xs)'}} />)}
+          <ReferenceLine x={result.recommended} stroke="var(--color-brand)" strokeDasharray="4 4" />
+          <ReferenceDot x={result.recommended} y={result.targetThickness} r={5} fill="var(--color-brand)" stroke="var(--color-surface)" />
+          <Tooltip labelFormatter={v => `${Number(v).toFixed(3)} ${unit}`} formatter={v => `${Number(v).toFixed(3)} nm`} contentStyle={{borderRadius: 'var(--radius-control)', borderColor: 'var(--color-line-strong)', fontSize: 'var(--text-xs)'}} />
         </ComposedChart>
       </ResponsiveContainer>
     </div>}
