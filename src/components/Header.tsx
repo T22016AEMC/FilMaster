@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {Cpu} from 'lucide-react';
 import {PRESET_SCENARIOS} from '../utils/resinConfigs';
 import type {PresetScenario} from '../types';
 
@@ -9,7 +10,12 @@ export function Header({onSelectPreset, activePresetId, onOpenFormula, onOpenCur
   const [presetsOpen, setPresetsOpen] = useState(false);
   return <header className="border-b border-slate-200 bg-white">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex flex-wrap justify-between items-center gap-4">
-      <div className="flex items-baseline gap-3"><h1 className="text-xl font-bold tracking-tight">FilMaster</h1><span className="text-xs text-slate-600">v{__APP_VERSION__}</span></div>
+      <div className="flex items-center gap-3">
+        <span data-testid="header-logo" aria-hidden="true" className="h-10 w-10 shrink-0 rounded-xl border border-blue-200 bg-blue-50 flex items-center justify-center">
+          <Cpu size={20} className="h-5 w-5 text-blue-700" aria-hidden="true" />
+        </span>
+        <div className="flex items-baseline gap-3"><h1 className="text-xl font-bold tracking-tight">FilMaster</h1><span className="text-xs text-slate-600">v{__APP_VERSION__}</span></div>
+      </div>
       <nav className="flex flex-wrap gap-2" aria-label="次要操作">
         <div className="relative">
           <button className="button-secondary" aria-expanded={presetsOpen} onClick={() => setPresetsOpen(!presetsOpen)}>預設情境</button>
