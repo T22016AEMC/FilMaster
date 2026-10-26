@@ -1,6 +1,7 @@
 import {Header} from './components/Header';
 import {ProcessInputs} from './components/ProcessInputs';
 import {CalibrationManager} from './components/CalibrationManager';
+import {FitQualityPanel} from './components/FitQualityPanel';
 import {PredictionSummary} from './components/PredictionSummary';
 import {CalibrationDetails} from './components/CalibrationDetails';
 import {WarningPanel} from './components/WarningPanel';
@@ -47,6 +48,8 @@ export default function App() {
           <CalibrationManager key={`${s.calculationMode}-${s.processSolveMode}`} measuredPoints={s.measuredPoints} onUpdatePoints={s.handleUpdatePoints}
             calibration={result.calibration} spinSpeed={s.spinSpeed} spinTime={s.spinTime} currentResin={s.currentResin}
             unknownCondition={process ? s.processSolveMode : undefined} />
+          <FitQualityPanel resin={s.currentResin} calibration={result.calibration} measuredPoints={s.measuredPoints}
+            fallbackConditions={{spinSpeed: s.spinSpeed, spinTime: s.spinTime}} />
           {process && <EquipmentSettings limits={s.equipmentLimits} onChange={s.handleEquipmentLimitsChange}
             onReset={s.resetEquipmentLimits} storageError={s.equipmentStorageError} />}
         </div>
