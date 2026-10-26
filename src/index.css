@@ -1,27 +1,95 @@
 @import "tailwindcss";
 
+/* V1 視覺規格唯一來源；既有色票名稱保留為別名，避免影響元件邏輯。 */
+@theme {
+  --color-brand: #0f5c6e;
+  --color-brand-strong: #0b4857;
+  --color-brand-soft: #e3f0f3;
+  --color-brand-accent: #72b9c5;
+  --color-page: #f2f6f7;
+  --color-surface: #ffffff;
+  --color-inset: #eef3f5;
+  --color-line: #e1e8ea;
+  --color-line-strong: #bdcbd0;
+  --color-ink: #1f2d33;
+  --color-muted: #5b6b72;
+  --color-measured: #c2410c;
+  --color-warning: #92400e;
+  --color-warning-soft: #fffbeb;
+  --color-warning-line: #fde68a;
+  --color-error: #b91c1c;
+  --color-error-soft: #fef2f2;
+  --color-error-line: #ef4444;
+  --color-white: var(--color-surface);
+  --color-slate-50: var(--color-inset);
+  --color-slate-100: var(--color-inset);
+  --color-slate-200: var(--color-line);
+  --color-slate-300: var(--color-line-strong);
+  --color-slate-400: var(--color-muted);
+  --color-slate-500: var(--color-muted);
+  --color-slate-600: var(--color-muted);
+  --color-slate-700: var(--color-ink);
+  --color-slate-800: var(--color-ink);
+  --color-slate-900: var(--color-ink);
+  --color-blue-50: var(--color-brand-soft);
+  --color-blue-100: var(--color-brand-soft);
+  --color-blue-200: var(--color-line-strong);
+  --color-blue-600: var(--color-brand);
+  --color-blue-700: var(--color-brand);
+  --color-blue-900: var(--color-brand-strong);
+  --color-amber-50: var(--color-warning-soft);
+  --color-amber-200: var(--color-warning-line);
+  --color-amber-700: var(--color-warning);
+  --color-amber-800: var(--color-warning);
+  --color-red-700: var(--color-error);
+  --color-rose-50: var(--color-error-soft);
+  --color-rose-500: var(--color-error-line);
+  --color-rose-700: var(--color-error);
+  --radius-control: 0.75rem;
+  --radius-panel: 1rem;
+  --radius-card: 1.5rem;
+  --radius-brand: 1.25rem;
+  --radius-lg: var(--radius-control);
+  --radius-xl: var(--radius-control);
+  --radius-2xl: var(--radius-panel);
+  --shadow-card: 0 2px 8px color-mix(in srgb, var(--color-ink) 3%, transparent);
+  --shadow-brand: 0 3px 12px color-mix(in srgb, var(--color-brand) 5%, transparent);
+  --spacing-card: 2rem;
+  --spacing-section: 1.75rem;
+  --spacing-control-y: 0.65rem;
+  --spacing-control-x: 0.9rem;
+  --spacing-page-block: 2.5rem;
+  --text-xs: 0.875rem;
+  --text-xs--line-height: 1.65;
+  --text-sm: 1rem;
+  --text-sm--line-height: 1.65;
+  --text-base--line-height: 1.65;
+  --text-card-title: 1.25rem;
+  --text-brand-title: 2.5rem;
+}
+
 @layer base {
- body { background: #f8fafc; color: #0f172a; font-family: Inter, "Noto Sans TC", system-ui, sans-serif; font-size: 14px; }
- button, summary, select { cursor: pointer; }
- button:disabled { cursor: not-allowed; opacity: .55; }
- summary { font-weight: 600; }
- button:focus-visible, summary:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid #2563eb; outline-offset: 3px; }
- input[type="range"] { accent-color: #2563eb; }
- ::-webkit-scrollbar { width: 8px; height: 8px; }
- ::-webkit-scrollbar-track { background: #f1f5f9; }
- ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
- ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+  body { background: var(--color-page); color: var(--color-ink); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 16px; line-height: 1.65; }
+  button, summary, select { cursor: pointer; }
+  button:disabled { cursor: not-allowed; opacity: .55; }
+  summary { font-weight: 600; }
+  button:focus-visible, summary:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 3px; }
+  input[type="range"], input[type="checkbox"] { accent-color: var(--color-brand); }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--color-inset); }
+  ::-webkit-scrollbar-thumb { background: var(--color-line-strong); border-radius: var(--radius-control); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
 }
 
 @layer components {
- .card { @apply rounded-xl border border-slate-200 bg-white p-5 shadow-xs; }
- .numeric-input { @apply block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900; font-variant-numeric: tabular-nums; }
- .button-secondary { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50; }
- .button-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700; }
- .segmented { @apply inline-flex flex-wrap gap-1 rounded-xl bg-slate-200/70 p-1; }
- .segment { @apply rounded-lg px-4 py-2 text-sm font-medium text-slate-600; }
- .segment[aria-pressed="true"] { @apply bg-white text-blue-700 shadow-xs; }
+  .card { @apply rounded-xl border border-slate-200 bg-white p-5 shadow-xs; }
+  .numeric-input { @apply block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900; font-variant-numeric: tabular-nums; }
+  .button-secondary { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50; }
+  .button-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700; }
+  .segmented { @apply inline-flex flex-wrap gap-1 rounded-xl bg-slate-200/70 p-1; }
+  .segment { @apply rounded-lg px-4 py-2 text-sm font-medium text-slate-600; }
+  .segment[aria-pressed="true"] { @apply bg-white text-blue-700 shadow-xs; }
 }
 
-.tech-grid-bg { background: #f8fafc; }
-.tech-card, .tech-card-glow { background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 1px 2px #0f172a08; }
+.tech-grid-bg { background: var(--color-page); }
+.tech-card, .tech-card-glow { background: var(--color-surface); border: 1px solid var(--color-line); box-shadow: var(--shadow-card); }
