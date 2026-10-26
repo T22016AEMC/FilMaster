@@ -67,94 +67,94 @@ h = C * (S ^ alpha) * (w ^ -beta) * (t ^ -gamma)
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="bg-slate-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl shadow-black/90 border border-slate-800">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80  flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-sm shadow-black/90 border border-slate-200">
         {/* Header */}
-        <div className="sticky top-0 bg-slate-950 text-white px-6 py-4 flex items-center justify-between border-b border-slate-800 rounded-t-2xl z-10">
+        <div className="sticky top-0 bg-slate-50 text-slate-900 px-6 py-4 flex items-center justify-between border-b border-slate-200 rounded-t-2xl z-10">
           <div className="flex items-center space-x-3">
-            <div className="p-2 bg-cyan-500/10 rounded-xl border border-cyan-500/30 text-cyan-400">
+            <div className="p-2 bg-blue-50 rounded-xl border border-blue-200 text-blue-700">
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-slate-100 font-mono">半導體旋塗 Meyerhofer 模型物理與校正原理</h2>
-              <p className="text-xs text-slate-400 font-mono">Mathematical Physics & Calibration Mechanics</p>
+              <h2 className="text-base font-bold text-slate-900 ">半導體旋塗 Meyerhofer 模型物理與校正原理</h2>
+              <p className="text-xs text-slate-600 ">Mathematical Physics & Calibration Mechanics</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+            className="p-1.5 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content Body */}
-        <div className="p-6 space-y-6 text-slate-300 text-sm">
+        <div className="p-6 space-y-6 text-slate-700 text-sm">
           {/* Section 1: Fundamental Equation */}
           <div className="space-y-3">
-            <h3 className="text-sm font-bold text-slate-100 flex items-center gap-2 border-b border-slate-800 pb-2 font-mono">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_6px_rgba(6,182,212,0.8)]" />
+            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2 border-b border-slate-200 pb-2 ">
+              <span className="w-2 h-2 rounded-full bg-blue-50 " />
               一、 理論基礎：Meyerhofer 蒸發-流體力學模型
             </h3>
-            <p className="text-xs leading-relaxed text-slate-400">
+            <p className="text-xs leading-relaxed text-slate-600">
               在晶圓旋塗製程中，薄膜最終厚度由液態樹脂在離心力驅動下的徑向流動（Fluid Flow）與溶劑揮發（Solvent Evaporation）共同主導。Meyerhofer 模型以冪律形式描述各關鍵製程參數與物理常數之關係：
             </p>
 
-            <div className="bg-slate-950 text-cyan-400 p-4 rounded-xl font-mono text-center text-base sm:text-lg shadow-inner border border-slate-800">
+            <div className="bg-slate-50 text-blue-700 p-4 rounded-xl  text-center text-base sm:text-lg shadow-sm border border-slate-200">
               h = C · S<sup>α</sup> · ω<sup>-β</sup> · t<sup>-γ</sup>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="p-3 bg-slate-950/80 rounded-xl border border-slate-800 space-y-1">
-                <div className="font-semibold text-slate-200 font-mono">主要物理變數：</div>
-                <div>• <strong className="font-mono text-cyan-300">h</strong>: 旋塗成膜厚度 (nm)</div>
-                <div>• <strong className="font-mono text-cyan-300">S</strong>: 樹脂固含量 (Solids Content, wt%)</div>
-                <div>• <strong className="font-mono text-cyan-300">ω</strong>: 主旋塗轉速 (Spin Speed, 500–5000 RPM)</div>
-                <div>• <strong className="font-mono text-cyan-300">t</strong>: 旋塗持續秒數 (Spin Duration, 1–60 s)</div>
+              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+                <div className="font-semibold text-slate-900 ">主要物理變數：</div>
+                <div>• <strong className=" text-blue-700">h</strong>: 旋塗成膜厚度 (nm)</div>
+                <div>• <strong className=" text-blue-700">S</strong>: 樹脂固含量 (Solids Content, wt%)</div>
+                <div>• <strong className=" text-blue-700">ω</strong>: 主旋塗轉速 (Spin Speed, 500–5000 RPM)</div>
+                <div>• <strong className=" text-blue-700">t</strong>: 旋塗持續秒數 (Spin Duration, 1–60 s)</div>
               </div>
-              <div className="p-3 bg-slate-950/80 rounded-xl border border-slate-800 space-y-1">
-                <div className="font-semibold text-slate-200 font-mono">材料與溶劑常數：</div>
-                <div>• <strong className="font-mono text-cyan-300">C</strong>: 比例因子（反映溶劑飽和蒸氣壓、初黏度）</div>
-                <div>• <strong className="font-mono text-cyan-300">α</strong>: 固含量指數 (1.25 ~ 1.45)</div>
-                <div>• <strong className="font-mono text-cyan-300">β</strong>: 轉速指數 (0.48 ~ 0.50)</div>
-                <div>• <strong className="font-mono text-cyan-300">γ</strong>: 蒸發時間指數 (0.15 ~ 0.25)</div>
+              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+                <div className="font-semibold text-slate-900 ">材料與溶劑常數：</div>
+                <div>• <strong className=" text-blue-700">C</strong>: 比例因子（反映溶劑飽和蒸氣壓、初黏度）</div>
+                <div>• <strong className=" text-blue-700">α</strong>: 固含量指數 (1.25 ~ 1.45)</div>
+                <div>• <strong className=" text-blue-700">β</strong>: 轉速指數 (0.48 ~ 0.50)</div>
+                <div>• <strong className=" text-blue-700">γ</strong>: 蒸發時間指數 (0.15 ~ 0.25)</div>
               </div>
             </div>
           </div>
 
           {/* Section 2: Resin Presets Table */}
           <div className="space-y-3">
-            <h3 className="text-sm font-bold text-slate-100 flex items-center gap-2 border-b border-slate-800 pb-2 font-mono">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_6px_rgba(6,182,212,0.8)]" />
+            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2 border-b border-slate-200 pb-2 ">
+              <span className="w-2 h-2 rounded-full bg-blue-50 " />
               二、 基礎材料庫與預設物理常數 (微影、中厚膜至超厚膜 PI/SU-8)
             </h3>
-            <div className="border border-slate-800 rounded-xl overflow-hidden shadow-inner">
+            <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
               <table className="min-w-full divide-y divide-slate-800 text-xs">
-                <thead className="bg-slate-950 text-slate-400 font-mono font-semibold">
+                <thead className="bg-slate-50 text-slate-600  font-semibold">
                   <tr>
                     <th className="px-3 py-2 text-left">樹脂類別</th>
                     <th className="px-3 py-2 text-left">建議適用膜厚</th>
                     <th className="px-3 py-2 text-left">建議理論模型</th>
-                    <th className="px-3 py-2 text-center font-mono">α (固含量)</th>
-                    <th className="px-3 py-2 text-center font-mono">β (轉速)</th>
-                    <th className="px-3 py-2 text-center font-mono">γ (時間)</th>
-                    <th className="px-3 py-2 text-center font-mono">預設 C₀</th>
+                    <th className="px-3 py-2 text-center ">α (固含量)</th>
+                    <th className="px-3 py-2 text-center ">β (轉速)</th>
+                    <th className="px-3 py-2 text-center ">γ (時間)</th>
+                    <th className="px-3 py-2 text-center ">預設 C₀</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 bg-slate-900/60 font-mono">
+                <tbody className="divide-y divide-slate-800/60 bg-white ">
                   {(Object.keys(RESIN_CONFIGS) as ResinType[]).map(type => {
                     const c = RESIN_CONFIGS[type];
                     return (
-                      <tr key={type} className="hover:bg-slate-800/50">
-                        <td className="px-3 py-2 font-bold text-slate-200">{c.name}</td>
-                        <td className="px-3 py-2 text-slate-400">
+                      <tr key={type} className="hover:bg-slate-100">
+                        <td className="px-3 py-2 font-bold text-slate-900">{c.name}</td>
+                        <td className="px-3 py-2 text-slate-600">
                           {c.recommendedThicknessRange[0]} ~ {c.recommendedThicknessRange[1]} nm
                         </td>
-                        <td className="px-3 py-2 text-slate-300">{c.modelName}</td>
-                        <td className="px-3 py-2 text-center font-mono font-semibold text-cyan-300">{c.alpha}</td>
-                        <td className="px-3 py-2 text-center font-mono text-slate-400">{c.beta}</td>
-                        <td className="px-3 py-2 text-center font-mono text-slate-400">{c.gamma}</td>
-                        <td className="px-3 py-2 text-center font-mono font-bold text-cyan-400">
+                        <td className="px-3 py-2 text-slate-700">{c.modelName}</td>
+                        <td className="px-3 py-2 text-center  font-semibold text-blue-700">{c.alpha}</td>
+                        <td className="px-3 py-2 text-center  text-slate-600">{c.beta}</td>
+                        <td className="px-3 py-2 text-center  text-slate-600">{c.gamma}</td>
+                        <td className="px-3 py-2 text-center  font-bold text-blue-700">
                           {c.defaultC}
                         </td>
                       </tr>
@@ -167,40 +167,40 @@ h = C * (S ^ alpha) * (w ^ -beta) * (t ^ -gamma)
 
           {/* Section 3: Calibration Mechanism */}
           <div className="space-y-3">
-            <h3 className="text-sm font-bold text-slate-100 flex items-center gap-2 border-b border-slate-800 pb-2 font-mono">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_6px_rgba(6,182,212,0.8)]" />
+            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2 border-b border-slate-200 pb-2 ">
+              <span className="w-2 h-2 rounded-full bg-blue-50 " />
               三、 多模式校正運算機制 (0 點 / 1 點平移 / 多點擬合)
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs ">
               {/* 0 points */}
-              <div className="p-3 bg-slate-950/80 rounded-xl border border-slate-800 space-y-1">
-                <div className="font-bold text-slate-200 text-sm">1. 0 個真實數據</div>
-                <div className="text-slate-400 font-medium">純理論預設推算</div>
-                <p className="text-slate-400 mt-1 font-sans text-xs">
+              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+                <div className="font-bold text-slate-900 text-sm">1. 0 個真實數據</div>
+                <div className="text-slate-600 font-medium">純理論預設推算</div>
+                <p className="text-slate-600 mt-1 font-sans text-xs">
                   完全使用文獻與該樹脂種類之理論參數預測，適用於新材料初步配方探索。
                 </p>
               </div>
 
               {/* 1 point */}
-              <div className="p-3 bg-cyan-950/40 rounded-xl border border-cyan-800/60 space-y-1">
-                <div className="font-bold text-cyan-300 text-sm">2. 1 個真實數據 (S₁, h₁)</div>
-                <div className="text-cyan-400 font-medium">乘法縮放平移 (Scaling Shift)</div>
-                <p className="text-cyan-300 mt-1 font-mono text-[11px]">
+              <div className="p-3 bg-blue-50 rounded-xl border border-blue-200 space-y-1">
+                <div className="font-bold text-blue-700 text-sm">2. 1 個真實數據 (S₁, h₁)</div>
+                <div className="text-blue-700 font-medium">乘法縮放平移 (Scaling Shift)</div>
+                <p className="text-blue-700 mt-1  text-xs">
                   C_cal = C_theo · [ h₁ / h_model(S₁) ]
                 </p>
-                <p className="text-slate-400 font-sans text-xs">
+                <p className="text-slate-600 font-sans text-xs">
                   修正整體比例因子，確保理論曲線精確通過該實測點。
                 </p>
               </div>
 
               {/* >= 2 points */}
-              <div className="p-3 bg-emerald-950/40 rounded-xl border border-emerald-800/60 space-y-1">
-                <div className="font-bold text-emerald-300 text-sm">3. ≥ 2 個真實數據</div>
-                <div className="text-emerald-400 font-medium">最小平方法擬合 (Least Squares)</div>
-                <p className="text-emerald-300 mt-1 font-mono text-[11px]">
+              <div className="p-3 bg-blue-50 rounded-xl border border-blue-200 space-y-1">
+                <div className="font-bold text-blue-700 text-sm">3. ≥ 2 個真實數據</div>
+                <div className="text-blue-700 font-medium">最小平方法擬合 (Least Squares)</div>
+                <p className="text-blue-700 mt-1  text-xs">
                   ln(h) = ln(K) + α · ln(S)
                 </p>
-                <p className="text-slate-400 font-sans text-xs">
+                <p className="text-slate-600 font-sans text-xs">
                   在對數空間回歸擬合出專屬於該批次/配方的最佳指數 α 與常數 C。
                 </p>
               </div>
@@ -209,40 +209,40 @@ h = C * (S ^ alpha) * (w ^ -beta) * (t ^ -gamma)
 
           {/* Section 4: System Instructions Copyable Block */}
           <div className="space-y-3">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-              <h3 className="text-sm font-bold text-slate-100 flex items-center gap-2 font-mono">
-                <Terminal className="w-4 h-4 text-cyan-400" />
+            <div className="flex items-center justify-between border-b border-slate-200 pb-2">
+              <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2 ">
+                <Terminal className="w-4 h-4 text-blue-700" />
                 四、 AI 助理 System Instructions (可直接複製使用)
               </h3>
               <button
                 type="button"
                 onClick={handleCopySystemPrompt}
-                className="flex items-center gap-1.5 px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-mono font-medium transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1 bg-slate-100 hover:bg-slate-100 text-slate-900 border border-slate-200 rounded-lg text-xs  font-medium transition-colors"
               >
                 {copiedPrompt ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <Check className="w-3.5 h-3.5 text-blue-700" />
                     <span>已複製到剪貼簿</span>
                   </>
                 ) : (
                   <>
-                    <Copy className="w-3.5 h-3.5 text-cyan-400" />
+                    <Copy className="w-3.5 h-3.5 text-blue-700" />
                     <span>複製 System Instructions</span>
                   </>
                 )}
               </button>
             </div>
-            <pre className="bg-slate-950 text-cyan-300/90 p-4 rounded-xl text-[11px] font-mono leading-relaxed overflow-x-auto max-h-48 border border-slate-800">
+            <pre className="bg-slate-50 text-blue-700 p-4 rounded-xl text-xs  leading-relaxed overflow-x-auto max-h-48 border border-slate-200">
               {systemInstructionsText}
             </pre>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="bg-slate-950 px-6 py-3 border-t border-slate-800 rounded-b-2xl flex items-center justify-end font-mono">
+        <div className="bg-slate-50 px-6 py-3 border-t border-slate-200 rounded-b-2xl flex items-center justify-end ">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg transition-colors border border-slate-700"
+            className="px-4 py-2 bg-slate-100 hover:bg-slate-100 text-slate-900 text-xs font-semibold rounded-lg transition-colors border border-slate-200"
           >
             關閉說明視窗
           </button>

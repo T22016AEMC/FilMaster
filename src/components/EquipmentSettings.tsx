@@ -38,6 +38,6 @@ export function EquipmentSettings({limits, onChange, onReset, storageError}: {
         <LimitField key={field} field={field} limits={limits} onChange={onChange} />)}
     </div>
     <button type="button" className="button-secondary mt-4" onClick={onReset}>恢復預設</button>
-    {storageError && <p className="text-sm text-amber-800 mt-2">設定已套用，但瀏覽器無法儲存；重新載入後可能恢復預設。</p>}
+    {storageError && <p className="text-sm text-amber-700 mt-2">設定已套用，但瀏覽器無法儲存；重新載入後可能恢復預設。</p>}
   </details>;
 }

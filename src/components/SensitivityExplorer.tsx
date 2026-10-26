@@ -44,34 +44,34 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
   }
 
   return (
-    <div className="bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-xl shadow-black/50 border border-slate-800 p-5 space-y-4">
+    <div className="bg-white  rounded-2xl shadow-sm shadow-sm border border-slate-200 p-5 space-y-4">
       {/* Header & Tab Selector */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-blue-50 " />
           <div>
-            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-100 flex items-center gap-2 font-mono">
-              <SlidersHorizontal className="w-4 h-4 text-emerald-400" />
+            <h2 className="text-sm font-bold   text-slate-900 flex items-center gap-2 ">
+              <SlidersHorizontal className="w-4 h-4 text-blue-700" />
               05. 機台製程窗型靈敏度分析 (Process Window & Sensitivity)
             </h2>
-            <p className="text-xs text-slate-400 font-mono">
+            <p className="text-xs text-slate-600 ">
               固定建議固含量 S = {recommendedSolids.toFixed(4)} wt% 下之機台塗佈反應
             </p>
           </div>
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-semibold font-mono">
+        <div className="flex items-center bg-slate-50 p-1 rounded-xl border border-slate-200 text-xs font-semibold ">
           <button
             type="button"
             onClick={() => setActiveTab('rpm')}
             className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
               activeTab === 'rpm'
-                ? 'bg-slate-800 text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.2)] border border-cyan-500/30'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-slate-100 text-blue-700  border border-blue-200'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Gauge className="w-3.5 h-3.5 text-cyan-400" />
+            <Gauge className="w-3.5 h-3.5 text-blue-700" />
             <span>主轉速靈敏度 (h vs. RPM)</span>
           </button>
           <button
@@ -79,11 +79,11 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
             onClick={() => setActiveTab('time')}
             className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
               activeTab === 'time'
-                ? 'bg-slate-800 text-blue-300 shadow-[0_0_10px_rgba(59,130,246,0.2)] border border-blue-500/30'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-slate-100 text-blue-700  border border-blue-200'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Clock className="w-3.5 h-3.5 text-blue-400" />
+            <Clock className="w-3.5 h-3.5 text-blue-700" />
             <span>旋塗時間動態 (h vs. Time)</span>
           </button>
         </div>
@@ -94,17 +94,17 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
         <ResponsiveContainer width="100%" height="100%">
           {activeTab === 'rpm' ? (
             <LineChart data={rpmData} margin={{ top: 10, right: 30, left: 10, bottom: 20 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
               <XAxis
                 dataKey="rpm"
                 label={{
                   value: '主轉速 ω (RPM)',
                   position: 'insideBottom',
                   offset: -12,
-                  fill: '#94a3b8',
-                  fontSize: 11,
+                  fill: '#475569',
+                  fontSize: 12,
                 }}
-                tick={{ fill: '#64748b', fontSize: 11 }}
+                tick={{ fill: '#475569', fontSize: 12 }}
                 tickFormatter={val => `${val}`}
               />
               <YAxis
@@ -113,10 +113,10 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
                   angle: -90,
                   position: 'insideLeft',
                   offset: 10,
-                  fill: '#94a3b8',
-                  fontSize: 11,
+                  fill: '#475569',
+                  fontSize: 12,
                 }}
-                tick={{ fill: '#64748b', fontSize: 11 }}
+                tick={{ fill: '#475569', fontSize: 12 }}
                 domain={['auto', 'auto']}
               />
               <Tooltip
@@ -124,7 +124,7 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
                 labelFormatter={label => `轉速: ${label} RPM`}
                 contentStyle={{
                   backgroundColor: '#030712',
-                  borderColor: '#1e293b',
+                  borderColor: '#e2e8f0',
                   color: '#38bdf8',
                   borderRadius: '0.75rem',
                   fontSize: '12px',
@@ -133,24 +133,24 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
               />
               <ReferenceLine
                 x={spinSpeed}
-                stroke="#f43f5e"
+                stroke="#2563eb"
                 strokeDasharray="3 3"
                 label={{
                   value: `設定轉速 ${spinSpeed} RPM`,
                   position: 'top',
-                  fill: '#fb7185',
-                  fontSize: 11,
+                  fill: '#1d4ed8',
+                  fontSize: 12,
                 }}
               />
               <ReferenceLine
                 y={targetThickness}
-                stroke="#06b6d4"
+                stroke="#2563eb"
                 strokeDasharray="3 3"
                 label={{
                   value: `目標膜厚 ${targetThickness.toFixed(3)} nm`,
                   position: 'insideTopRight',
                   fill: '#38bdf8',
-                  fontSize: 11,
+                  fontSize: 12,
                 }}
               />
               <Line
@@ -164,17 +164,17 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
             </LineChart>
           ) : (
             <LineChart data={timeData} margin={{ top: 10, right: 30, left: 10, bottom: 20 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
               <XAxis
                 dataKey="time"
                 label={{
                   value: '旋塗時間 t (sec)',
                   position: 'insideBottom',
                   offset: -12,
-                  fill: '#94a3b8',
-                  fontSize: 11,
+                  fill: '#475569',
+                  fontSize: 12,
                 }}
-                tick={{ fill: '#64748b', fontSize: 11 }}
+                tick={{ fill: '#475569', fontSize: 12 }}
                 tickFormatter={val => `${val}s`}
               />
               <YAxis
@@ -183,10 +183,10 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
                   angle: -90,
                   position: 'insideLeft',
                   offset: 10,
-                  fill: '#94a3b8',
-                  fontSize: 11,
+                  fill: '#475569',
+                  fontSize: 12,
                 }}
-                tick={{ fill: '#64748b', fontSize: 11 }}
+                tick={{ fill: '#475569', fontSize: 12 }}
                 domain={['auto', 'auto']}
               />
               <Tooltip
@@ -194,7 +194,7 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
                 labelFormatter={label => `時間: ${label} 秒`}
                 contentStyle={{
                   backgroundColor: '#030712',
-                  borderColor: '#1e293b',
+                  borderColor: '#e2e8f0',
                   color: '#38bdf8',
                   borderRadius: '0.75rem',
                   fontSize: '12px',
@@ -203,24 +203,24 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
               />
               <ReferenceLine
                 x={spinTime}
-                stroke="#f43f5e"
+                stroke="#2563eb"
                 strokeDasharray="3 3"
                 label={{
                   value: `設定時間 ${spinTime} s`,
                   position: 'top',
-                  fill: '#fb7185',
-                  fontSize: 11,
+                  fill: '#1d4ed8',
+                  fontSize: 12,
                 }}
               />
               <ReferenceLine
                 y={targetThickness}
-                stroke="#06b6d4"
+                stroke="#2563eb"
                 strokeDasharray="3 3"
                 label={{
                   value: `目標膜厚 ${targetThickness.toFixed(3)} nm`,
                   position: 'insideTopRight',
                   fill: '#38bdf8',
-                  fontSize: 11,
+                  fontSize: 12,
                 }}
               />
               <Line
@@ -236,13 +236,13 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
         </ResponsiveContainer>
       </div>
 
-      <div className="text-[11px] text-slate-400 bg-slate-950/80 p-3 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 font-mono">
+      <div className="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 ">
         <span>
           {activeTab === 'rpm'
             ? `隨轉速提高，流體剪切力增強且溶劑揮發加速，膜厚呈現 ω^(-${calibration.beta.toFixed(2)}) 冪律衰減。`
             : `隨秒數推進，多餘樹脂甩出後主要由溶劑蒸發主導，膜厚呈現 t^(-${calibration.gamma.toFixed(2)}) 緩慢收斂。`}
         </span>
-        <span className="font-mono font-semibold text-cyan-300 shrink-0">
+        <span className=" font-semibold text-blue-700 shrink-0">
           當前製程點: {spinSpeed} RPM / {spinTime} s → {targetThickness.toFixed(3)} nm
         </span>
       </div>

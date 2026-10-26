@@ -88,29 +88,29 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
     if (calibration.mode === 'theoretical') {
       if (isCustomBase) {
         return {
-          bg: 'bg-cyan-950/70 text-cyan-200 border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.15)]',
-          dot: 'bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]',
+          bg: 'bg-blue-50 text-blue-700 border-blue-200 ',
+          dot: 'bg-blue-50 ',
           title: '已套用自訂材料基本值 (0 實測點基準狀態)',
           desc: `採用「${currentResin?.name}」固化之基本常數 (C₀=${currentResin?.defaultC.toFixed(2)}, α₀=${currentResin?.alpha.toFixed(4)})。點位已歸零為基本值，輸入新樣品可直接二次校正。`,
         };
       }
       return {
-        bg: 'bg-slate-950/70 text-slate-300 border-slate-800',
-        dot: 'bg-slate-500',
+        bg: 'bg-slate-50 text-slate-700 border-slate-200',
+        dot: 'bg-slate-100',
         title: '理論預設模式 (0 數據點)',
         desc: '未提供實測數據，系統依據文獻及該樹脂類型之理論物理常數進行預測。',
       };
     } else if (calibration.mode === 'single_point_shift') {
       return {
-        bg: 'bg-blue-950/70 text-blue-200 border-blue-500/40 shadow-[0_0_15px_rgba(59,130,246,0.15)]',
-        dot: 'bg-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.8)]',
+        bg: 'bg-blue-50 text-blue-700 border-blue-200 ',
+        dot: 'bg-blue-50 ',
         title: isCustomBase ? '二次單點平移校正 (1 數據點)' : '單點乘法平移校正 (1 數據點)',
         desc: `比例縮放因子 Scale = ${calibration.scaleFactor.toFixed(4)}，曲線已精確平移通過新實測點（基準 C₀: ${calibration.theoreticalC.toFixed(2)} → 校正 C_cal: ${calibration.calibratedC.toFixed(2)}）。`,
       };
     } else {
       return {
-        bg: 'bg-emerald-950/70 text-emerald-200 border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.15)]',
-        dot: 'bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]',
+        bg: 'bg-blue-50 text-blue-700 border-blue-200 ',
+        dot: 'bg-blue-50 ',
         title: isCustomBase ? `二次多點最小平方法擬合 (${calibration.pointsCount} 數據點)` : `多點最小平方法擬合 (${calibration.pointsCount} 數據點)`,
         desc: `Least Squares 回歸最佳化指數 α = ${calibration.calibratedAlpha.toFixed(4)}，決定係數 R² = ${
           rSquaredDisplay.reason === null ? rSquaredDisplay.text : `${rSquaredDisplay.text} (${rSquaredDisplay.reason})`
@@ -122,30 +122,30 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
   const modeBadge = getModeBadge();
 
   return (
-    <div className="bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-xl shadow-black/50 border border-slate-800 p-5 space-y-5">
+    <div className="bg-white  rounded-2xl shadow-sm shadow-sm border border-slate-200 p-5 space-y-5">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-100 font-mono flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-blue-50 " />
+          <h2 className="text-sm font-bold   text-slate-900  flex items-center gap-2">
             <span>02. 實驗實測數據校正機制</span>
-            <span className="text-xs text-slate-500 font-normal hidden sm:inline">(Calibration)</span>
+            <span className="text-xs text-slate-600 font-normal hidden sm:inline">(Calibration)</span>
           </h2>
         </div>
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={handleLoadOfficialTestExample}
-            className="text-[11px] font-medium text-cyan-300 bg-cyan-950/80 hover:bg-cyan-900/80 px-2 py-1 rounded-lg border border-cyan-600/40 transition-colors flex items-center gap-1 shadow-sm font-mono"
+            className="text-xs font-medium text-blue-700 bg-blue-50 hover:bg-blue-50 px-2 py-1 rounded-lg border border-blue-200 transition-colors flex items-center gap-1 shadow-sm "
             title="載入題目測試範例: 8.0 wt% -> 180.000 nm"
           >
-            <Sparkles className="w-3 h-3 text-cyan-400" />
+            <Sparkles className="w-3 h-3 text-blue-700" />
             1 點測試範例 (8.0 wt%, 180 nm)
           </button>
           <button
             type="button"
             onClick={handleLoadMultiPointDemo}
-            className="text-[11px] font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded-lg border border-slate-700 transition-colors font-mono"
+            className="text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-100 px-2 py-1 rounded-lg border border-slate-200 transition-colors "
             title="載入 4 組實測濃度多點擬合"
           >
             多點擬合範例
@@ -160,22 +160,22 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
             <span className={`w-2.5 h-2.5 rounded-full ${modeBadge.dot}`} />
             <span>{modeBadge.title}</span>
           </div>
-          <p className="opacity-90 font-medium text-[11px]">{modeBadge.desc}</p>
+          <p className="opacity-90 font-medium text-xs">{modeBadge.desc}</p>
         </div>
 
-        <div className="flex items-center gap-2 font-mono text-[11px] shrink-0">
-          <span className="bg-slate-950/80 text-cyan-300 px-2.5 py-1 rounded-md border border-cyan-800/60 font-semibold shadow-xs">
+        <div className="flex items-center gap-2  text-xs shrink-0">
+          <span className="bg-slate-50 text-blue-700 px-2.5 py-1 rounded-md border border-blue-200 font-semibold shadow-xs">
             C_cal: {calibration.calibratedC.toFixed(2)}
           </span>
-          <span className="bg-slate-950/80 text-cyan-300 px-2.5 py-1 rounded-md border border-cyan-800/60 font-semibold shadow-xs">
+          <span className="bg-slate-50 text-blue-700 px-2.5 py-1 rounded-md border border-blue-200 font-semibold shadow-xs">
             α_cal: {calibration.calibratedAlpha.toFixed(4)}
           </span>
           {rSquaredDisplay.reason === null ? (
-            <span className="bg-emerald-950/90 text-emerald-300 px-2.5 py-1 rounded-md border border-emerald-500/50 font-semibold shadow-[0_0_8px_rgba(16,185,129,0.3)]">
+            <span className="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-md border border-blue-200 font-semibold ">
               R²: {rSquaredDisplay.text}
             </span>
           ) : (
-            <span className="bg-slate-950/80 text-slate-400 px-2.5 py-1 rounded-md border border-slate-700 font-semibold">
+            <span className="bg-slate-50 text-slate-600 px-2.5 py-1 rounded-md border border-slate-200 font-semibold">
               R²: {rSquaredDisplay.text}（{rSquaredDisplay.reason}）
             </span>
           )}
@@ -183,17 +183,17 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
       </div>
 
       {/* Add New Measured Point Form */}
-      <form onSubmit={handleAddPoint} className="bg-slate-950/70 border border-slate-800 rounded-xl p-3 space-y-2 shadow-inner">
-        <div className="flex items-center justify-between text-xs font-semibold text-slate-300">
-          <span className="flex items-center gap-1.5 font-mono">
+      <form onSubmit={handleAddPoint} className="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-2 shadow-sm">
+        <div className="flex items-center justify-between text-xs font-semibold text-slate-700">
+          <span className="flex items-center gap-1.5 ">
             <span>新增實測數據點 (Add New Data Point)</span>
             {isCustomBase && (
-              <span className="text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-600/50 px-1.5 py-0.5 rounded font-normal">
+              <span className="text-xs bg-blue-50 text-blue-700 border border-blue-200 px-1.5 py-0.5 rounded font-normal">
                 二次校正
               </span>
             )}
           </span>
-          <span className="text-[11px] text-slate-500 font-normal">
+          <span className="text-xs text-slate-600 font-normal">
             輸入特定固含量在相同條件下測得之膜厚
           </span>
         </div>
@@ -209,10 +209,10 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
               placeholder="固含量 S (wt%)"
               value={newSolids}
               onChange={e => setNewSolids(e.target.value)}
-              className="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded-lg font-mono text-xs text-cyan-300 placeholder:text-slate-500 focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400"
+              className="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg  text-xs text-blue-700 text-slate-600 focus:ring-1 focus:ring-blue-200 focus:border-blue-200"
               required
             />
-            <span className="absolute right-2 top-1.5 text-slate-500 text-[10px] pointer-events-none">wt%</span>
+            <span className="absolute right-2 top-1.5 text-slate-600 text-xs pointer-events-none">wt%</span>
           </div>
 
           <div className="sm:col-span-3 relative">
@@ -225,10 +225,10 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
               placeholder="實測膜厚 h (nm)"
               value={newThickness}
               onChange={e => setNewThickness(e.target.value)}
-              className="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded-lg font-mono text-xs text-cyan-300 placeholder:text-slate-500 focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400"
+              className="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg  text-xs text-blue-700 text-slate-600 focus:ring-1 focus:ring-blue-200 focus:border-blue-200"
               required
             />
-            <span className="absolute right-2 top-1.5 text-slate-500 text-[10px] pointer-events-none">nm</span>
+            <span className="absolute right-2 top-1.5 text-slate-600 text-xs pointer-events-none">nm</span>
           </div>
 
           <div className="sm:col-span-4">
@@ -238,7 +238,7 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
               placeholder="樣品備註 (如: Lot-2026B)"
               value={newNote}
               onChange={e => setNewNote(e.target.value)}
-              className="w-full px-2.5 py-1.5 bg-slate-900 border border-slate-700 rounded-lg text-xs text-slate-200 placeholder:text-slate-500 focus:ring-1 focus:ring-cyan-400 focus:border-cyan-400"
+              className="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg text-xs text-slate-900 text-slate-600 focus:ring-1 focus:ring-blue-200 focus:border-blue-200"
             />
           </div>
 
@@ -246,7 +246,7 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
             <button
               id="btn-add-point"
               type="submit"
-              className="w-full px-3 py-1.5 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold rounded-lg text-xs transition-all flex items-center justify-center gap-1 shadow-[0_0_10px_rgba(6,182,212,0.3)]"
+              className="w-full px-3 py-1.5      text-slate-900 font-semibold rounded-lg text-xs transition-all flex items-center justify-center gap-1 "
             >
               <Plus className="w-3.5 h-3.5" />
               <span>加入校正</span>
@@ -258,12 +258,12 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
       {/* Measured Points Table */}
       {measuredPoints.length > 0 ? (
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span>目前已匯入 <strong className="text-cyan-400">{measuredPoints.length}</strong> 組新實驗點</span>
+          <div className="flex items-center justify-between text-xs text-slate-600">
+            <span>目前已匯入 <strong className="text-blue-700">{measuredPoints.length}</strong> 組新實驗點</span>
             <button
               type="button"
               onClick={handleClearAll}
-              className="text-rose-400 hover:text-rose-300 flex items-center gap-1 font-medium transition-colors"
+              className="text-rose-700 hover:text-rose-700 flex items-center gap-1 font-medium transition-colors"
               title="清空所有實測點位，回到材料基本值模型"
             >
               <RotateCcw className="w-3 h-3" />
@@ -271,9 +271,9 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
             </button>
           </div>
 
-          <div className="border border-slate-800 rounded-xl overflow-hidden shadow-inner">
+          <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
             <table className="min-w-full divide-y divide-slate-800 text-xs">
-              <thead className="bg-slate-950 text-slate-400 font-mono font-semibold">
+              <thead className="bg-slate-50 text-slate-600  font-semibold">
                 <tr>
                   <th className="px-3 py-2 text-left">序號</th>
                   <th className="px-3 py-2 text-right">實測固含量 (wt%)</th>
@@ -284,7 +284,7 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
                   <th className="px-3 py-2 text-center">操作</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 bg-slate-900/60">
+              <tbody className="divide-y divide-slate-800/60 bg-white">
                 {measuredPoints.map((pt, idx) => {
                   const modelPred = calculateThickness(
                     pt.solidsContent,
@@ -299,23 +299,23 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
                   const residualPercent = modelPred > 0 ? (residual / modelPred) * 100 : 0;
 
                   return (
-                    <tr key={pt.id} className="hover:bg-slate-800/50 transition-colors">
-                      <td className="px-3 py-2 font-mono text-slate-500">#{idx + 1}</td>
-                      <td className="px-3 py-2 text-right font-mono font-bold text-slate-200">
+                    <tr key={pt.id} className="hover:bg-slate-100 transition-colors">
+                      <td className="px-3 py-2  text-slate-600">#{idx + 1}</td>
+                      <td className="px-3 py-2 text-right  font-bold text-slate-900">
                         {pt.solidsContent.toFixed(4)} %
                       </td>
-                      <td className="px-3 py-2 text-right font-mono font-bold text-cyan-400">
+                      <td className="px-3 py-2 text-right  font-bold text-blue-700">
                         {pt.thickness.toFixed(3)} nm
                       </td>
-                      <td className="px-3 py-2 text-right font-mono text-slate-400">
+                      <td className="px-3 py-2 text-right  text-slate-600">
                         {modelPred.toFixed(3)} nm
                       </td>
-                      <td className="px-3 py-2 text-right font-mono">
+                      <td className="px-3 py-2 text-right ">
                         <span
-                          className={`px-1.5 py-0.5 rounded text-[11px] font-medium border ${
+                          className={`px-1.5 py-0.5 rounded text-xs font-medium border ${
                             Math.abs(residual) < 1.0
-                              ? 'text-emerald-300 bg-emerald-950/80 border-emerald-700/50'
-                              : 'text-amber-300 bg-amber-950/80 border-amber-700/50'
+                              ? 'text-blue-700 bg-blue-50 border-blue-200'
+                              : 'text-amber-700 bg-amber-50 border-amber-200'
                           }`}
                         >
                           {residual >= 0 ? '+' : ''}
@@ -323,9 +323,9 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
                           {residualPercent.toFixed(1)}%)
                         </span>
                       </td>
-                      <td className="px-3 py-2 text-slate-400 max-w-[160px]">
+                      <td className="px-3 py-2 text-slate-600 max-w-[160px]">
                         <div className="truncate">{pt.note || '—'}</div>
-                        <div className="text-[10px] text-slate-500 font-mono" title="此點的量測條件（僅記錄，不參與計算）">
+                        <div className="text-xs text-slate-600 " title="此點的量測條件（僅記錄，不參與計算）">
                           {formatMeasureCondition(pt)}
                         </div>
                       </td>
@@ -333,7 +333,7 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
                         <button
                           type="button"
                           onClick={() => handleRemovePoint(pt.id)}
-                          className="text-slate-500 hover:text-rose-400 transition-colors p-1 rounded hover:bg-rose-950/50"
+                          className="text-slate-600 hover:text-rose-700 transition-colors p-1 rounded hover:bg-rose-50"
                           title="刪除此點"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -347,24 +347,24 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
           </div>
         </div>
       ) : (
-        <div className="text-center py-4 px-3 bg-slate-950/50 border border-dashed border-slate-800 rounded-xl text-xs text-slate-400 space-y-1">
+        <div className="text-center py-4 px-3 bg-slate-50 border border-dashed border-slate-200 rounded-xl text-xs text-slate-600 space-y-1">
           {isCustomBase ? (
             <>
-              <p className="font-semibold text-cyan-300 flex items-center justify-center gap-1.5">
-                <BookmarkCheck className="w-4 h-4 text-cyan-400" />
+              <p className="font-semibold text-blue-700 flex items-center justify-center gap-1.5">
+                <BookmarkCheck className="w-4 h-4 text-blue-700" />
                 已套用「{currentResin?.name}」自訂材料基本值
               </p>
-              <p className="text-[11px] text-slate-400">
-                目前點位處於乾淨基準狀態 (C₀ = <span className="text-cyan-400">{currentResin?.defaultC.toFixed(2)}</span>, α₀ = <span className="text-cyan-400">{currentResin?.alpha.toFixed(4)}</span>)。
+              <p className="text-xs text-slate-600">
+                目前點位處於乾淨基準狀態 (C₀ = <span className="text-blue-700">{currentResin?.defaultC.toFixed(2)}</span>, α₀ = <span className="text-blue-700">{currentResin?.alpha.toFixed(4)}</span>)。
               </p>
-              <p className="text-[11px] text-cyan-400 font-medium">
+              <p className="text-xs text-blue-700 font-medium">
                 若有新配方或新批次實驗數據，可直接在上方輸入進行二次校正，完全避免舊點位干擾！
               </p>
             </>
           ) : (
             <>
-              <p className="font-medium text-slate-300">目前為「0 數據點理論推算模式」</p>
-              <p className="text-[11px] text-slate-500 mt-0.5">
+              <p className="font-medium text-slate-700">目前為「0 數據點理論推算模式」</p>
+              <p className="text-xs text-slate-600 mt-0.5">
                 若產線已有樣品實測膜厚，可於上方輸入 1 組數據平移校正，或輸入 2 組以上進行迴歸擬合。
               </p>
             </>
