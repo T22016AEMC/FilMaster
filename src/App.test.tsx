@@ -1,9 +1,14 @@
 // @vitest-environment jsdom
-import {cleanup, render, screen, within} from '@testing-library/react';
+import {cleanup, fireEvent, render, screen, within} from '@testing-library/react';
+import {useState} from 'react';
 import userEvent from '@testing-library/user-event';
 import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 import App from './App';
 import type {SavedCalibratedCurve} from './types';
+import {CalibrationManager} from './components/CalibrationManager';
+import {runPredictionWithConditions} from './utils/predictionWithConditions';
+import {RESIN_CONFIGS} from './utils/resinConfigs';
+import {EQUIPMENT_STORAGE_KEY} from './utils/equipmentLimits';
 
 // 與 customCurves.ts 內的 STORAGE_KEY 相同（不可變更）
 const STORAGE_KEY = 'spin_coating_custom_calibrated_curves_v2';
@@ -58,13 +63,16 @@ describe('App 基本畫面', () => {
     render(<App />);
     expect(screen.getAllByText('9.1874').length).toBeGreaterThan(0);
     expect(screen.getByLabelText('建議固含量').textContent).toContain('9.1874');
+    expect(screen.getByRole('button', {name: '求固含量'}).getAttribute('aria-pressed')).toBe('true');
     // 預設情境沒有任何警告
     expect(screen.queryByRole('alert')).toBeNull();
     expect(document.getElementById('status-warning-badge')).toBeNull();
   });
 
-  it('單點校正時 R² 顯示「不適用」與原因，且不再出現「1.0000 (Exact)」', () => {
+  it('單點校正時 R² 顯示「不適用」與原因，且不再出現「1.0000 (Exact)」', async () => {
+    const user = userEvent.setup();
     render(<App />);
+    await user.click(screen.getByText('校正參數詳情', {selector: 'summary'}));
     const card = screen.getByText('決定係數 R²').parentElement as HTMLElement;
     expect(card.textContent).toContain('不適用');
     expect(card.textContent).toContain('單點校正');
@@ -78,6 +86,7 @@ describe('多點校正的 R² 顯示', () => {
     const user = userEvent.setup();
     render(<App />);
     await user.click(screen.getByRole('button', {name: '多點擬合範例'}));
+    await user.click(screen.getByText('校正參數詳情', {selector: 'summary'}));
 
     const card = screen.getByText('決定係數 R²').parentElement as HTMLElement;
     expect(card.textContent).not.toContain('不適用');
@@ -98,6 +107,7 @@ describe('多點校正的 R² 顯示', () => {
     const panel = screen.getByRole('alert');
     expect(panel.textContent).toContain('固含量相同');
     expect(panel.textContent).toContain('平均縮放');
+    await user.click(screen.getByText('校正參數詳情', {selector: 'summary'}));
     const card = screen.getByText('決定係數 R²').parentElement as HTMLElement;
     expect(card.textContent).toContain('不適用');
     expect(card.textContent).toContain('未採用擬合');
@@ -263,6 +273,7 @@ describe('實測點的量測條件', () => {
   it('載入預設情境時，其實測點帶入該情境的轉速與時間', async () => {
     const user = userEvent.setup();
     render(<App />);
+    await user.click(screen.getByRole('button', {name: '預設情境'}));
     await user.click(document.getElementById('preset-btn-thick_1000_5000_preset') as HTMLElement);
     // 該情境：1500 RPM / 30 s，2 個實測點
     expect(screen.getAllByText('1500 rpm / 30 s')).toHaveLength(2);
@@ -373,5 +384,156 @@ describe('儲存與匯入校正曲線', () => {
     // 預設曲線 1：SOC Lot-A（1 個實測點，舊資料存有 R² = 1）；預設曲線 2：ArF（4 點，R² = 0.9982）
     expect(screen.getByText(/R²=不適用（單點校正）/)).toBeTruthy();
     expect(screen.getByText('R²=0.9982')).toBeTruthy();
+  });
+});
+
+describe('兩種模式與設備設定', () => {
+  it('報告複製依目前模式切換，求製程報告保留三位小數', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('button', {name: '複製報告'}));
+    expect(await navigator.clipboard.readText()).toContain('配方預測與校正報告');
+    await user.click(screen.getByRole('button', {name: '求製程'}));
+    await user.click(screen.getByRole('button', {name: '已複製'}));
+    const report = await navigator.clipboard.readText();
+    expect(report).toContain('FilMaster 求製程報告');
+    expect(report).toContain('建議值：1316.640 rpm');
+    expect(report).toContain('β、γ 為材料預設值，未經實測校正');
+  });
+  it('SOC 官方範例切換求轉速與求時間，顯示 1317 rpm 與 9.8 s', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('button', {name: '求製程'}));
+    expect(screen.getByLabelText('建議轉速').textContent).toBe('1317rpm');
+    expect((screen.getByLabelText('固定時間') as HTMLInputElement).value).toBe('30');
+    expect((screen.getByLabelText('固定固含量') as HTMLInputElement).value).toBe('8');
+    expect(screen.getByText(/β、γ 為材料預設值，未經實測校正/)).toBeTruthy();
+    expect(screen.getByRole('button', {name: '儲存為自訂曲線'}).hasAttribute('disabled')).toBe(true);
+    expect(screen.getByText('請在求固含量模式儲存')).toBeTruthy();
+    await user.click(screen.getByRole('button', {name: '求時間（轉速固定）'}));
+    expect(screen.getByLabelText('建議時間').textContent).toBe('9.8s');
+    expect((screen.getByLabelText('固定轉速') as HTMLInputElement).value).toBe('2000');
+    await user.click(screen.getByRole('button', {name: '求固含量'}));
+    expect(screen.getByLabelText('建議固含量').textContent).toBe('9.1874wt%');
+  });
+
+  it('設備範圍超界顯示警告，放寬後消失，重新載入仍保留', async () => {
+    const user = userEvent.setup();
+    const view = render(<App />);
+    await user.click(screen.getByRole('button', {name: '求製程'}));
+    await user.click(screen.getByText('進階設定', {selector: 'summary'}));
+    const input = screen.getByLabelText('轉速下限（rpm）') as HTMLInputElement;
+    fireEvent.change(input, {target: {value: '1500'}});
+    expect(screen.getByRole('alert').textContent).toContain('低於設備下限 1500');
+    expect(screen.getByLabelText('建議轉速').textContent).toBe('1317rpm');
+    fireEvent.change(input, {target: {value: '1000'}});
+    expect(screen.queryByRole('alert')).toBeNull();
+    expect(JSON.parse(localStorage.getItem(EQUIPMENT_STORAGE_KEY)!).minSpeed).toBe(1000);
+    view.unmount();
+    render(<App />);
+    await user.click(screen.getByRole('button', {name: '求製程'}));
+    await user.click(screen.getByText('進階設定', {selector: 'summary'}));
+    expect((screen.getByLabelText('轉速下限（rpm）') as HTMLInputElement).value).toBe('1000');
+    expect(screen.queryByRole('alert')).toBeNull();
+    await user.click(screen.getByRole('button', {name: '恢復預設'}));
+    expect((screen.getByLabelText('轉速下限（rpm）') as HTMLInputElement).value).toBe('500');
+    expect(JSON.parse(localStorage.getItem(EQUIPMENT_STORAGE_KEY)!).minSpeed).toBe(500);
+  });
+
+  it('設備範圍無效時不更新狀態、出現紅框提示且失焦恢復', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('button', {name: '求製程'}));
+    await user.click(screen.getByText('進階設定', {selector: 'summary'}));
+    for (const [label, value] of [['轉速下限（rpm）', '7000'], ['時間下限（s）', '0'], ['時間上限（s）', '4']]) {
+      const input = screen.getByLabelText(label) as HTMLInputElement;
+      const original = input.value;
+      fireEvent.change(input, {target: {value}});
+      expect(input.value).toBe(value);
+      expect(input.getAttribute('aria-invalid')).toBe('true');
+      expect(input.className).toContain('border-rose-500!');
+      expect(screen.getByText('請輸入大於 0 的數值，且下限須小於上限')).toBeTruthy();
+      expect(screen.getByLabelText('建議轉速').textContent).toBe('1317rpm');
+      fireEvent.blur(input);
+      expect(input.value).toBe(original);
+      expect(input.getAttribute('aria-invalid')).toBeNull();
+    }
+    expect(localStorage.getItem(EQUIPMENT_STORAGE_KEY)).toBeNull();
+  });
+
+  it('次要資訊預設收合，可點擊展開與收合', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    for (const title of ['校正參數詳情', '敏感度分析', '數據表']) {
+      const summary = screen.getByText(title, {selector: 'summary'});
+      const details = summary.closest('details')!;
+      expect(details.open).toBe(false);
+      await user.click(summary);
+      expect(details.open).toBe(true);
+      await user.click(summary);
+      expect(details.open).toBe(false);
+    }
+  });
+
+  it.each(['solve_speed', 'solve_time'] as const)('求製程 %s 新增點要求手填未知條件', async mode => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('button', {name: '求製程'}));
+    if (mode === 'solve_time') await user.click(screen.getByRole('button', {name: '求時間（轉速固定）'}));
+    await user.type(screen.getByLabelText('實測固含量'), '8');
+    await user.type(screen.getByLabelText('實測膜厚'), '180');
+    const add = screen.getByRole('button', {name: '加入校正'});
+    expect(add.hasAttribute('disabled')).toBe(true);
+    const input = screen.getByLabelText(mode === 'solve_speed' ? '新增點量測轉速' : '新增點量測時間');
+    expect((input as HTMLInputElement).value).toBe('');
+    await user.type(input, mode === 'solve_speed' ? '1500' : '40');
+    expect(add.hasAttribute('disabled')).toBe(false);
+    await user.click(add);
+    expect(screen.getByText(mode === 'solve_speed' ? '1500 rpm / 30 s' : '2000 rpm / 40 s')).toBeTruthy();
+  });
+
+  it('求製程可套用已存曲線，管理視窗停用儲存頁籤', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('button', {name: '求製程'}));
+    await user.click(screen.getByRole('button', {name: '自訂曲線'}));
+    expect(screen.getByRole('button', {name: /儲存當前為材料基本值/}).hasAttribute('disabled')).toBe(true);
+    const apply = screen.getAllByRole('button', {name: '載入為基本值'})[0];
+    await user.click(apply);
+    expect(screen.getByRole('button', {name: '求製程'}).getAttribute('aria-pressed')).toBe('true');
+    expect(screen.getByLabelText('建議轉速').textContent).not.toContain('無法求解');
+    expect(screen.getByText(/已載入自訂材料基本值/)).toBeTruthy();
+  });
+
+  it('重置恢復求固含量與官方範例', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('button', {name: '求製程'}));
+    await user.click(screen.getByRole('button', {name: '重置'}));
+    expect(screen.getByRole('button', {name: '求固含量'}).getAttribute('aria-pressed')).toBe('true');
+    expect(screen.getByLabelText('建議固含量').textContent).toBe('9.1874wt%');
+  });
+});
+
+// 舊曲線套用後依既有規則清空實測點，因此直接以共用表格測試舊資料補填流程。
+function LegacyPointsHarness() {
+  const [points, setPoints] = useState([{id: 'old', solidsContent: 8, thickness: 180}]);
+  const prediction = runPredictionWithConditions(RESIN_CONFIGS.SOC, 2000, 30, 220, points);
+  return <CalibrationManager measuredPoints={points} onUpdatePoints={setPoints} calibration={prediction.calibration}
+    spinSpeed={2000} spinTime={30} currentResin={RESIN_CONFIGS.SOC} />;
+}
+
+describe('舊實測點補填', () => {
+  it('缺量測條件顯示提示，補填後提示消失且顯示已記錄條件', async () => {
+    const user = userEvent.setup();
+    render(<LegacyPointsHarness />);
+    expect(screen.getByTestId('missing-conditions-hint').textContent).toContain('有 1 個實測點未記錄量測條件，目前假設為 2000 rpm / 30 s');
+    await user.type(screen.getByLabelText('實測點 1 轉速'), '1500');
+    await user.tab();
+    expect(screen.getByTestId('missing-conditions-hint')).toBeTruthy();
+    await user.type(screen.getByLabelText('實測點 1 時間'), '40');
+    await user.tab();
+    expect(screen.queryByTestId('missing-conditions-hint')).toBeNull();
+    expect(screen.getByText('1500 rpm / 40 s')).toBeTruthy();
   });
 });
