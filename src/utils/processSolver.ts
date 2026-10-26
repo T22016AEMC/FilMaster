@@ -8,7 +8,7 @@ import type {
   ProcessSolveResult,
   ResinConfig,
 } from '../types';
-import {calibrateModel, SOLIDS_MAX} from './meyerhofer';
+import {calculateThickness, calibrateModel, SOLIDS_MAX} from './meyerhofer';
 
 export const DEFAULT_EQUIPMENT_LIMITS: EquipmentLimits = {
   minSpeed: 500,
@@ -210,4 +210,23 @@ export function runProcessSolve(
     warnings,
     exponentsCalibrated: false,
   };
+}
+
+/** 在設備範圍內等距取樣，使用校正後參數與固定固含量。 */
+export function generateProcessCurvePoints(
+  result: ProcessSolveResult & {equipmentLimits?: EquipmentLimits},
+  count: number = 60
+): Array<{x: number; thickness: number}> {
+  if (!Number.isInteger(count) || count < 2 || result.recommended === null) return [];
+  const limits = result.equipmentLimits ?? DEFAULT_EQUIPMENT_LIMITS;
+  const min = result.mode === 'solve_speed' ? limits.minSpeed : limits.minTime;
+  const max = result.mode === 'solve_speed' ? limits.maxSpeed : limits.maxTime;
+  const c = result.calibration;
+  return Array.from({length: count}, (_, i) => {
+    const x = min + (max - min) * i / (count - 1);
+    return {x, thickness: calculateThickness(result.solids,
+      result.mode === 'solve_speed' ? x : result.fixedSpeed!,
+      result.mode === 'solve_time' ? x : result.fixedTime!,
+      c.calibratedC, c.calibratedAlpha, c.beta, c.gamma)};
+  });
 }

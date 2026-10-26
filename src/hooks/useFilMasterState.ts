@@ -5,6 +5,10 @@ import type {
   ResinConfig,
   ResinType,
   SavedCalibratedCurve,
+  CalculationMode,
+  ProcessSolveMode,
+  ProcessPredictionResult,
+  EquipmentLimits,
 } from '../types';
 import {RESIN_CONFIGS} from '../utils/resinConfigs';
 import {
@@ -14,6 +18,9 @@ import {
 } from '../utils/meyerhofer';
 import {runPredictionWithConditions} from '../utils/predictionWithConditions';
 import {getSavedCurves} from '../utils/customCurves';
+import {DEFAULT_EQUIPMENT_LIMITS, runProcessSolve} from '../utils/processSolver';
+import {getEquipmentLimits, isEquipmentLimits, saveEquipmentLimits} from '../utils/equipmentLimits';
+import {generateProcessCSV, generateProcessReport} from '../utils/reportProcess';
 
 // 預設（官方測試範例）：SOC、2000 RPM、30 s、1 個實測點 (8.0 wt%, 180 nm)、目標 220 nm
 const DEFAULT_SPIN_SPEED = 2000;
@@ -50,6 +57,17 @@ function buildCustomBaselineResin(custom: SavedCalibratedCurve): ResinConfig {
 
 /** App 的所有狀態、衍生計算與處理函式；App.tsx 只負責組合畫面 */
 export function useFilMasterState() {
+  const [calculationMode, setCalculationMode] = useState<CalculationMode>('solve_solids');
+  const [processSolveMode, setProcessSolveMode] = useState<ProcessSolveMode>('solve_speed');
+  const [fixedSolids, setFixedSolids] = useState(8.0);
+  const [equipmentLimits, setEquipmentLimits] = useState<EquipmentLimits>(getEquipmentLimits);
+  const [equipmentStorageError, setEquipmentStorageError] = useState(false);
+  const handleEquipmentLimitsChange = (limits: EquipmentLimits) => {
+    if (!isEquipmentLimits(limits)) return;
+    setEquipmentLimits(limits);
+    setEquipmentStorageError(!saveEquipmentLimits(limits));
+  };
+  const resetEquipmentLimits = () => handleEquipmentLimitsChange({...DEFAULT_EQUIPMENT_LIMITS});
   const [selectedResin, setSelectedResin] = useState<ResinType>('SOC');
   const [spinSpeed, setSpinSpeed] = useState<number>(DEFAULT_SPIN_SPEED);
   const [spinTime, setSpinTime] = useState<number>(DEFAULT_SPIN_TIME);
@@ -83,6 +101,15 @@ export function useFilMasterState() {
   );
 
   const curvePoints = useMemo(() => generateCurvePoints(prediction), [prediction]);
+  const processPrediction = useMemo<ProcessPredictionResult>(() => ({
+    ...runProcessSolve(currentResin, processSolveMode, {
+      solids: fixedSolids, targetThickness, tolerancePercent, fixedTime: spinTime, fixedSpeed: spinSpeed,
+      measuredPoints, fallbackConditions: {spinSpeed, spinTime}, limits: equipmentLimits,
+    }),
+    resin: currentResin,
+    equipmentLimits,
+  }), [currentResin, processSolveMode, fixedSolids, targetThickness, tolerancePercent,
+    spinTime, spinSpeed, measuredPoints, equipmentLimits]);
 
   const activeCurveObj = savedCurves.find(c => c.id === activeCustomCurveId);
 
@@ -153,6 +180,9 @@ export function useFilMasterState() {
   };
 
   const handleReset = () => {
+    setCalculationMode('solve_solids');
+    setProcessSolveMode('solve_speed');
+    setFixedSolids(8.0);
     setSelectedResin('SOC');
     setSpinSpeed(DEFAULT_SPIN_SPEED);
     setSpinTime(DEFAULT_SPIN_TIME);
@@ -165,14 +195,16 @@ export function useFilMasterState() {
 
   // ---- 匯出 ----
   const handleCopyReport = () => {
-    const reportText = generateStructuredReport(prediction, curvePoints);
+    const reportText = calculationMode === 'solve_process'
+      ? generateProcessReport(processPrediction) : generateStructuredReport(prediction, curvePoints);
     navigator.clipboard.writeText(reportText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
 
   const handleDownloadCSV = () => {
-    const csvContent = generateCSV(prediction, curvePoints);
+    const csvContent = calculationMode === 'solve_process'
+      ? generateProcessCSV(processPrediction) : generateCSV(prediction, curvePoints);
     const blob = new Blob([csvContent], {type: 'text/csv;charset=utf-8;'});
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -184,9 +216,13 @@ export function useFilMasterState() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   return {
+    calculationMode, setCalculationMode, processSolveMode, setProcessSolveMode,
+    fixedSolids, setFixedSolids, equipmentLimits, handleEquipmentLimitsChange, resetEquipmentLimits,
+    equipmentStorageError, processPrediction,
     // 狀態
     selectedResin,
     spinSpeed,

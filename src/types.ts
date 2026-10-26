@@ -123,6 +123,7 @@ export interface SavedCalibratedCurve {
 }
 
 export type ProcessSolveMode = 'solve_speed' | 'solve_time';
+export type CalculationMode = 'solve_solids' | 'solve_process';
 
 export interface ProcessConditions {
   spinSpeed: number; // rpm
@@ -163,4 +164,10 @@ export interface ProcessSolveResult {
   referenceConditions: ProcessConditions | null;
   warnings: PredictionWarning[];
   exponentsCalibrated: false; // β、γ 維持材料預設值
+}
+
+/** 顯示與匯出時的材料、設備資訊；不改變 runProcessSolve 的原始回傳結構。 */
+export interface ProcessPredictionResult extends ProcessSolveResult {
+  resin: ResinConfig;
+  equipmentLimits: EquipmentLimits;
 }
