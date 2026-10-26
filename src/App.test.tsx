@@ -57,7 +57,7 @@ describe('App 基本畫面', () => {
   it('預設畫面（SOC 官方範例）顯示建議固含量 9.1874 wt%', () => {
     render(<App />);
     expect(screen.getAllByText('9.1874').length).toBeGreaterThan(0);
-    expect(screen.getByText(/S_target = 9\.1874 wt%/)).toBeTruthy();
+    expect(screen.getByLabelText('建議固含量').textContent).toContain('9.1874');
     // 預設情境沒有任何警告
     expect(screen.queryByRole('alert')).toBeNull();
     expect(document.getElementById('status-warning-badge')).toBeNull();
@@ -347,7 +347,7 @@ describe('儲存與匯入校正曲線', () => {
     expect(box.textContent).toContain('「壞掉的曲線」：spinSpeed 必須為大於 0 的有限數值');
     expect(box.textContent).toContain('第 3 筆：name 必須為非空字串');
     // 匯入的曲線出現在清單中
-    expect(screen.getByText('合格曲線')).toBeTruthy();
+    expect(screen.getByText('合格曲線', {selector: 'span'})).toBeTruthy();
   });
 
   it('匯入檔案不是有效 JSON 時顯示具體錯誤訊息', async () => {

@@ -67,7 +67,7 @@ h = C * (S ^ alpha) * (w ^ -beta) * (t ^ -gamma)
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80  flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/25  flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-sm shadow-black/90 border border-slate-200">
         {/* Header */}
         <div className="sticky top-0 bg-slate-50 text-slate-900 px-6 py-4 flex items-center justify-between border-b border-slate-200 rounded-t-2xl z-10">

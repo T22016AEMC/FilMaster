@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { SavedCalibratedCurve, ResinType, PredictionResult, MeasuredPoint } from '../types';
 import { describeRSquared } from '../utils/format';
 import { RESIN_CONFIGS } from '../utils/resinConfigs';
@@ -34,6 +34,7 @@ interface SavedCurvesModalProps {
   currentPrediction: PredictionResult;
   /** 目前畫面上的實測點；儲存校正曲線時一併存入 */
   measuredPoints: MeasuredPoint[];
+  saveDisabled?: boolean;
 }
 
 export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
@@ -44,6 +45,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
   onApplyCurve,
   currentPrediction,
   measuredPoints,
+  saveDisabled = false,
 }) => {
   const [activeTab, setActiveTab] = useState<'save_current' | 'manage_list'>('save_current');
   const [curveName, setCurveName] = useState<string>(
@@ -54,6 +56,9 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
   const [importError, setImportError] = useState<string | null>(null);
   const [importResult, setImportResult] = useState<{ importedCount: number; skipped: ImportSkippedItem[] } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (isOpen && saveDisabled) setActiveTab('manage_list');
+  }, [isOpen, saveDisabled]);
 
   if (!isOpen) return null;
 
@@ -61,7 +66,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
 
   const handleSaveCurrent = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!curveName.trim()) return;
+    if (!curveName.trim() || saveDisabled) return;
 
     const newCurve: SavedCalibratedCurve = {
       id: `curve-${Date.now()}`,
@@ -132,7 +137,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80  flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/25  flex items-center justify-center p-4">
       <div
         className="bg-white rounded-2xl max-w-2xl w-full shadow-sm shadow-black/80 border border-slate-200 overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200"
         onClick={e => e.stopPropagation()}
@@ -165,6 +170,8 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
           <div className="flex space-x-4">
             <button
               onClick={() => setActiveTab('save_current')}
+              disabled={saveDisabled}
+              title={saveDisabled ? '請在求固含量模式儲存' : undefined}
               className={`pb-3 text-xs font-bold border-b-2 flex items-center gap-1.5 transition-all  ${
                 activeTab === 'save_current'
                   ? 'border-blue-200 text-blue-700'
@@ -303,7 +310,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
                 </button>
                 <button
                   type="submit"
-                  disabled={saveSuccess}
+                  disabled={saveSuccess || saveDisabled}
                   className="px-5 py-2 text-xs font-bold text-slate-900      rounded-lg  transition-all flex items-center gap-1.5 "
                 >
                   <Save className="w-4 h-4" />
