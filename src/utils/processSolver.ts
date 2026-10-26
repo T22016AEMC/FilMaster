@@ -66,7 +66,7 @@ export function calculateRequiredSpinTime(
 }
 
 /** 先將實測膜厚換算至第一個有效點的條件，再交由既有 calibrateModel 校正。 */
-function normalizeMeasuredPoints(
+export function normalizeMeasuredPoints(
   resin: ResinConfig,
   points: MeasuredPoint[],
   fallbackConditions?: ProcessConditions

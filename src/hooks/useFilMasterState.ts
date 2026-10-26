@@ -11,8 +11,8 @@ import {
   generateCSV,
   generateCurvePoints,
   generateStructuredReport,
-  runPrediction,
 } from '../utils/meyerhofer';
+import {runPredictionWithConditions} from '../utils/predictionWithConditions';
 import {getSavedCurves} from '../utils/customCurves';
 
 // 預設（官方測試範例）：SOC、2000 RPM、30 s、1 個實測點 (8.0 wt%, 180 nm)、目標 220 nm
@@ -78,7 +78,7 @@ export function useFilMasterState() {
 
   // Run calculation and calibration engine
   const prediction = useMemo(
-    () => runPrediction(currentResin, spinSpeed, spinTime, targetThickness, measuredPoints, tolerancePercent),
+    () => runPredictionWithConditions(currentResin, spinSpeed, spinTime, targetThickness, measuredPoints, tolerancePercent),
     [currentResin, spinSpeed, spinTime, targetThickness, measuredPoints, tolerancePercent],
   );
 

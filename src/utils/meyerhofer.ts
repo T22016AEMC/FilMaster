@@ -321,6 +321,19 @@ export function runPrediction(
 ): PredictionResult {
   const calibration = calibrateModel(resin, spinSpeed, spinTime, measuredPoints);
 
+  return predictionFromCalibration(resin, spinSpeed, spinTime, targetThickness, calibration, tolerancePercent);
+}
+
+/** 共用校正完成後的反算流程，保留原有數值運算與警告規則。 */
+export function predictionFromCalibration(
+  resin: ResinConfig,
+  spinSpeed: number,
+  spinTime: number,
+  targetThickness: number,
+  calibration: CalibrationResult,
+  tolerancePercent: number = 5.0
+): PredictionResult {
+
   // Clamp tolerance to valid range 0.1% ~ 10.0%
   const validTolerance = Math.min(10.0, Math.max(0.1, tolerancePercent || 5.0));
   const tolFraction = validTolerance / 100.0;
