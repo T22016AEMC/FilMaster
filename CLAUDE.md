@@ -1,3 +1,5 @@
+本檔不再維護，請以 AGENTS.md 為準。
+
 # CLAUDE.md — FilMaster 專案規則
 
 ## 專案
