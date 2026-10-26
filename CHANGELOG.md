@@ -7,6 +7,15 @@
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-10-26
+
+### Added
+- 擬合品質檢視：新增可收合的殘差表與殘差圖，以及 RMSE、平均絕對誤差百分比與最大絕對誤差摘要。
+- 殘差依實際採用的校正模型與各點量測條件計算，不影響任何既有計算結果、報告或 CSV 輸出。
+
+### Fixed
+- 恢復 Header 的 LOGO（Cpu 裝飾圖示）；此圖示於 C2 改版的 `0761408` 提交中被移除，現在以淺色主題配色呈現。
+
 ## [2.1.0] - 2026-10-26
 
 ### Added
@@ -60,6 +69,7 @@ FilMaster 重建版的第一個正式版本。以原本由 Google AI Studio 產�
 - 移除原程式中未使用的套件：`@google/genai`、`express`、`@types/express`、`dotenv`、`motion`、`clsx`、`tailwind-merge`、`tsx`、`esbuild`、`autoprefixer`
 - 移除 AI Studio 專用的開發伺服器設定（`DISABLE_HMR`）與未使用的 `@` 路徑別名
 
-[Unreleased]: https://github.com/T22016AEMC/FilMaster/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/T22016AEMC/FilMaster/compare/v2.2.0...HEAD
+[2.2.0]: https://github.com/T22016AEMC/FilMaster/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/T22016AEMC/FilMaster/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/T22016AEMC/FilMaster/releases/tag/v2.0.0
