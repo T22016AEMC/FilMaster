@@ -123,9 +123,9 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
                 formatter={(val: any) => [`${Number(val).toFixed(3)} nm`, '預估膜厚']}
                 labelFormatter={label => `轉速: ${label} RPM`}
                 contentStyle={{
-                  backgroundColor: '#030712',
+                  backgroundColor: '#ffffff',
                   borderColor: '#e2e8f0',
-                  color: '#38bdf8',
+                  color: '#1d4ed8',
                   borderRadius: '0.75rem',
                   fontSize: '12px',
                   fontFamily: 'monospace',
@@ -149,14 +149,14 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
                 label={{
                   value: `目標膜厚 ${targetThickness.toFixed(3)} nm`,
                   position: 'insideTopRight',
-                  fill: '#38bdf8',
+                  fill: '#1d4ed8',
                   fontSize: 12,
                 }}
               />
               <Line
                 type="monotone"
                 dataKey="thickness"
-                stroke="#10b981"
+                stroke="#2563eb"
                 strokeWidth={2.5}
                 dot={false}
                 name="膜厚反應"
@@ -193,9 +193,9 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
                 formatter={(val: any) => [`${Number(val).toFixed(3)} nm`, '預估膜厚']}
                 labelFormatter={label => `時間: ${label} 秒`}
                 contentStyle={{
-                  backgroundColor: '#030712',
+                  backgroundColor: '#ffffff',
                   borderColor: '#e2e8f0',
-                  color: '#38bdf8',
+                  color: '#1d4ed8',
                   borderRadius: '0.75rem',
                   fontSize: '12px',
                   fontFamily: 'monospace',
@@ -219,14 +219,14 @@ export const SensitivityExplorer: React.FC<SensitivityExplorerProps> = ({ predic
                 label={{
                   value: `目標膜厚 ${targetThickness.toFixed(3)} nm`,
                   position: 'insideTopRight',
-                  fill: '#38bdf8',
+                  fill: '#1d4ed8',
                   fontSize: 12,
                 }}
               />
               <Line
                 type="monotone"
                 dataKey="thickness"
-                stroke="#3b82f6"
+                stroke="#2563eb"
                 strokeWidth={2.5}
                 dot={false}
                 name="膜厚反應"
