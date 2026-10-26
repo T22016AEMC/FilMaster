@@ -7,6 +7,9 @@
 
 ## [Unreleased]
 
+### Added
+- A3 反算轉速與時間的計算核心（含設備範圍警告）。
+
 ## [2.0.0] - 2026-10-19
 
 FilMaster 重建版的第一個正式版本。以原本由 Google AI Studio 產生的 FilmMaster Studio 為基礎重新建立：計算邏輯與預設數值維持原版，另外補上測試、警告機制與多項修正，並改以 GitHub Pages 自動部署。

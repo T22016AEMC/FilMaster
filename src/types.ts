@@ -36,6 +36,10 @@ export interface MeasuredPoint {
 export type WarningCode =
   | 'ALPHA_OUT_OF_RANGE'
   | 'FIT_DEGENERATE'
+  | 'PROCESS_OUT_OF_RANGE'
+  | 'PROCESS_UNSOLVABLE'
+  | 'POINT_CONDITIONS_ASSUMED'
+  | 'POINT_CONDITIONS_MISSING'
   | 'SOLIDS_OUT_OF_RANGE';
 
 export interface PredictionWarning {
@@ -116,4 +120,47 @@ export interface SavedCalibratedCurve {
   scaleFactor: number;
   rSquared: number | null;
   measuredPoints: MeasuredPoint[];
+}
+
+export type ProcessSolveMode = 'solve_speed' | 'solve_time';
+
+export interface ProcessConditions {
+  spinSpeed: number; // rpm
+  spinTime: number;  // s
+}
+
+export interface EquipmentLimits {
+  minSpeed: number;
+  maxSpeed: number;
+  minTime: number;
+  maxTime: number;
+}
+
+export interface ProcessSolveParams {
+  solids: number; // wt%
+  targetThickness: number; // nm
+  tolerancePercent?: number;
+  fixedTime?: number;  // solve_speed 使用
+  fixedSpeed?: number; // solve_time 使用
+  measuredPoints: MeasuredPoint[];
+  fallbackConditions?: ProcessConditions;
+  limits?: Partial<EquipmentLimits>;
+}
+
+export interface ProcessSolveResult {
+  mode: ProcessSolveMode;
+  solids: number;
+  targetThickness: number;
+  tolerancePercent: number;
+  lowerThickness: number;
+  upperThickness: number;
+  fixedSpeed?: number;
+  fixedTime?: number;
+  recommended: number | null;
+  rangeMin: number | null; // 對應 upperThickness
+  rangeMax: number | null; // 對應 lowerThickness
+  calibration: CalibrationResult;
+  referenceConditions: ProcessConditions | null;
+  warnings: PredictionWarning[];
+  exponentsCalibrated: false; // β、γ 維持材料預設值
 }
