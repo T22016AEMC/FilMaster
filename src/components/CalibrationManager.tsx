@@ -88,7 +88,7 @@ export const CalibrationManager: React.FC<CalibrationManagerProps> = ({
   };
 
   const missingCount = measuredPoints.filter(p => p.spinSpeed === undefined || p.spinTime === undefined).length;
-  return <section className="card space-y-4" aria-label="實測點">
+  return <section className="card space-y-5" aria-label="實測點">
     <div className="flex flex-wrap items-center justify-between gap-2">
       <h2 className="font-semibold text-base">實測點</h2>
       <div className="flex gap-2">

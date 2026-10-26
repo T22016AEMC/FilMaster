@@ -14,7 +14,7 @@ export const WarningPanel: React.FC<WarningPanelProps> = ({ warnings }) => {
     <div
       role="alert"
       id="prediction-warning-panel"
-      className="bg-amber-50 border border-amber-200 rounded-2xl p-4  text-xs"
+      className="warning-card"
     >
       <div className="flex items-center gap-2 font-bold text-amber-700  mb-2">
         <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0" />

@@ -68,9 +68,9 @@ h = C * (S ^ alpha) * (w ^ -beta) * (t ^ -gamma)
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/25  flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-sm shadow-black/90 border border-slate-200">
+      <div className="bg-white rounded-card max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-sm shadow-black/90 border border-slate-200">
         {/* Header */}
-        <div className="sticky top-0 bg-slate-50 text-slate-900 px-6 py-4 flex items-center justify-between border-b border-slate-200 rounded-t-2xl z-10">
+        <div className="sticky top-0 bg-slate-50 text-slate-900 px-8 py-4 flex items-center justify-between border-b border-slate-200 rounded-t-2xl z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-blue-50 rounded-xl border border-blue-200 text-blue-700">
               <BookOpen className="w-5 h-5" />
@@ -89,7 +89,7 @@ h = C * (S ^ alpha) * (w ^ -beta) * (t ^ -gamma)
         </div>
 
         {/* Content Body */}
-        <div className="p-6 space-y-6 text-slate-700 text-sm">
+        <div className="p-8 space-y-6 text-slate-700 text-sm">
           {/* Section 1: Fundamental Equation */}
           <div className="space-y-3">
             <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2 border-b border-slate-200 pb-2 ">
@@ -239,7 +239,7 @@ h = C * (S ^ alpha) * (w ^ -beta) * (t ^ -gamma)
         </div>
 
         {/* Footer */}
-        <div className="bg-slate-50 px-6 py-3 border-t border-slate-200 rounded-b-2xl flex items-center justify-end ">
+        <div className="bg-slate-50 px-8 py-3 border-t border-slate-200 rounded-b-2xl flex items-center justify-end ">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-slate-100 hover:bg-slate-100 text-slate-900 text-xs font-semibold rounded-lg transition-colors border border-slate-200"

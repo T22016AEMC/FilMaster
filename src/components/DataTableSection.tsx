@@ -42,7 +42,7 @@ export const DataTableSection: React.FC<DataTableSectionProps> = ({
   );
 
   return (
-    <div className="bg-white  rounded-2xl shadow-sm shadow-sm border border-slate-200 p-5 space-y-4">
+    <div className="card space-y-5">
       {/* Header & Export Actions */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-3">
         <div className="flex items-center gap-2.5">

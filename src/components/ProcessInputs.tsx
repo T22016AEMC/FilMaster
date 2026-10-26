@@ -20,7 +20,7 @@ export function ProcessInputs(p: ProcessInputsProps) {
   const process = p.calculationMode === 'solve_process';
   const resin = RESIN_CONFIGS[p.selectedResin];
   const active = p.savedCurves.find(c => c.id === p.activeCustomCurveId);
-  return <section className="card space-y-5" aria-label="計算輸入">
+  return <section className="card space-y-6" aria-label="計算輸入">
     <h2 className="font-semibold text-base">材料與製程</h2>
     <div className="space-y-2">
       <label htmlFor="material-select-dropdown" className="block text-sm font-medium">材料</label>

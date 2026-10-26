@@ -66,6 +66,8 @@
   --text-base--line-height: 1.65;
   --text-card-title: 1.25rem;
   --text-brand-title: 2.5rem;
+  --text-result: 3.5rem;
+  --spacing-panel: 1.125rem;
 }
 
 @layer base {
@@ -82,13 +84,13 @@
 }
 
 @layer components {
-  .card { @apply rounded-xl border border-slate-200 bg-white p-5 shadow-xs; }
+  .card { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-card); padding: var(--spacing-card); box-shadow: var(--shadow-card); }
   .numeric-input { @apply block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900; font-variant-numeric: tabular-nums; }
   .button-secondary { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50; }
   .button-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700; }
-  .segmented { @apply inline-flex flex-wrap gap-1 rounded-xl bg-slate-200/70 p-1; }
-  .segment { @apply rounded-lg px-4 py-2 text-sm font-medium text-slate-600; }
-  .segment[aria-pressed="true"] { @apply bg-white text-blue-700 shadow-xs; }
+  .segmented { @apply inline-flex flex-wrap gap-1 p-1; border-radius: var(--radius-panel); background: var(--color-inset); }
+  .segment { @apply px-4 py-2 text-sm font-medium; border-radius: var(--radius-control); color: var(--color-muted); }
+  .segment[aria-pressed="true"] { background: var(--color-brand-soft); color: var(--color-brand); }
 }
 
 .tech-grid-bg { background: var(--color-page); }
@@ -102,3 +104,11 @@
 .button-text { display: inline-flex; align-items: center; justify-content: center; padding: var(--spacing-control-y) var(--spacing-control-x); color: var(--color-muted); border-radius: var(--radius-control); font-size: var(--text-sm); font-weight: 500; }
 .button-text:hover { background: var(--color-brand-soft); color: var(--color-brand); }
 .brand-header #header-reset-btn { margin-inline-start: .75rem; }
+
+.workspace { padding-block: .5rem var(--spacing-page-block); }
+.mode-card { padding: var(--spacing-panel); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-card); }
+.card > summary, .card h2 { color: var(--color-ink); font-size: var(--text-card-title); font-weight: 650; line-height: 1.45; letter-spacing: -.02em; }
+.card .card { background: var(--color-inset); border-radius: var(--radius-panel); padding: var(--spacing-panel); box-shadow: none; }
+.result-number { font-size: var(--text-result); color: var(--color-brand); line-height: 1.15; }
+.result-window { background: var(--color-inset); border-radius: var(--radius-panel); padding: var(--spacing-panel); }
+.warning-card { border: 1px solid var(--color-warning-line); border-radius: var(--radius-card); background: var(--color-warning-soft); color: var(--color-warning); padding: var(--spacing-card); font-size: var(--text-xs); }

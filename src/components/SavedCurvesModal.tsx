@@ -139,11 +139,11 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/25  flex items-center justify-center p-4">
       <div
-        className="bg-white rounded-2xl max-w-2xl w-full shadow-sm shadow-black/80 border border-slate-200 overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200"
+        className="bg-white rounded-card max-w-2xl w-full shadow-sm shadow-black/80 border border-slate-200 overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200"
         onClick={e => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="bg-slate-50 text-slate-900 px-6 py-4 flex items-center justify-between border-b border-slate-200">
+        <div className="bg-slate-50 text-slate-900 px-8 py-4 flex items-center justify-between border-b border-slate-200">
           <div className="flex items-center space-x-3">
             <div className="p-2 rounded-xl bg-blue-50 border border-blue-200 text-blue-700">
               <Layers className="w-5 h-5" />
@@ -166,7 +166,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
         </div>
 
         {/* Tab Selection */}
-        <div className="bg-slate-50 border-b border-slate-200 px-6 pt-3 flex items-center justify-between">
+        <div className="bg-slate-50 border-b border-slate-200 px-8 pt-3 flex items-center justify-between">
           <div className="flex space-x-4">
             <button
               onClick={() => setActiveTab('save_current')}
@@ -225,7 +225,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
 
         {/* Tab 1: Save Current Formulation */}
         {activeTab === 'save_current' && (
-          <div className="p-6 overflow-y-auto space-y-5 flex-1 bg-white">
+          <div className="p-8 overflow-y-auto space-y-5 flex-1 bg-white">
             {/* Snapshot of Current Calibration */}
             <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
               <div className="flex items-center justify-between text-xs font-bold text-slate-700 ">
@@ -323,7 +323,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
 
         {/* Tab 2: Manage Saved Curves List */}
         {activeTab === 'manage_list' && (
-          <div className="p-6 overflow-y-auto space-y-4 flex-1 bg-white">
+          <div className="p-8 overflow-y-auto space-y-4 flex-1 bg-white">
             {importError && (
               <div className="p-3 bg-rose-50 border border-rose-500 rounded-lg text-xs text-rose-700 flex items-center gap-2 ">
                 <AlertCircle className="w-4 h-4 text-rose-700" />
@@ -448,7 +448,7 @@ export const SavedCurvesModal: React.FC<SavedCurvesModalProps> = ({
         )}
 
         {/* Modal Footer */}
-        <div className="bg-slate-50 border-t border-slate-200 px-6 py-3 flex items-center justify-between text-xs text-slate-600 ">
+        <div className="bg-slate-50 border-t border-slate-200 px-8 py-3 flex items-center justify-between text-xs text-slate-600 ">
           <span>支援隨機存取、JSON 格式無縫匯出/匯入</span>
           <button
             onClick={onClose}

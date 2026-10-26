@@ -24,19 +24,19 @@ export default function App() {
     spinSpeed: s.processSolveMode === 'solve_speed' ? s.processPrediction.recommended ?? s.spinSpeed : s.spinSpeed,
     spinTime: s.processSolveMode === 'solve_time' ? s.processPrediction.recommended ?? s.spinTime : s.spinTime,
   } : s.prediction;
-  return <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+  return <div className="min-h-screen flex flex-col bg-page text-slate-900">
     <Header onSelectPreset={s.handleSelectPreset} activePresetId={s.activePresetId}
       onOpenFormula={() => s.setIsFormulaOpen(true)} onOpenCurves={() => s.setIsCurvesModalOpen(true)} onReset={s.handleReset} />
-    <main className="flex-1 mx-auto max-w-7xl w-full px-4 sm:px-6 py-6 space-y-5">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <main className="workspace flex-1 mx-auto max-w-7xl w-full px-4 sm:px-6 space-y-7">
+      <div className="mode-card flex flex-wrap items-center justify-between gap-4">
         <div className="segmented" role="group" aria-label="計算模式">
           <button className="segment" aria-pressed={!process} onClick={() => s.setCalculationMode('solve_solids')}>求固含量</button>
           <button className="segment" aria-pressed={process} onClick={() => s.setCalculationMode('solve_process')}>求製程</button>
         </div>
         <p className="text-sm text-slate-600">{process ? '固定固含量，求達到目標膜厚的轉速或時間' : '固定轉速與時間，求達到目標膜厚的固含量'}</p>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.35fr)] gap-5 items-start">
-        <div className="space-y-5">
+      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.35fr)] gap-7 items-start">
+        <div className="space-y-7">
           <ProcessInputs selectedResin={s.selectedResin} onSelectResin={s.handleSelectResin}
             savedCurves={s.savedCurves} activeCustomCurveId={s.activeCustomCurveId} onSelectCustomCurve={s.handleSelectCustomCurve}
             onOpenSaveCurveModal={() => s.setIsCurvesModalOpen(true)} onOpenManageCurvesModal={() => s.setIsCurvesModalOpen(true)}
@@ -53,7 +53,7 @@ export default function App() {
           {process && <EquipmentSettings limits={s.equipmentLimits} onChange={s.handleEquipmentLimitsChange}
             onReset={s.resetEquipmentLimits} storageError={s.equipmentStorageError} />}
         </div>
-        <div className="space-y-5 min-w-0">
+        <div className="space-y-7 min-w-0">
           {result.warnings.length > 0 && <div id="status-warning-badge" className="text-xs text-amber-800">警告 {result.warnings.length}</div>}
           <WarningPanel warnings={result.warnings} />
           <PredictionSummary prediction={s.prediction} processResult={process ? s.processPrediction : undefined}
