@@ -7,6 +7,8 @@
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-10-26
+
 ### Added
 - A3 反算轉速與時間的計算核心（含設備範圍警告）。
 - 求製程模式：固定固含量反算轉速或時間，包含製程曲線、容差範圍、報告複製與 CSV 匯出。
@@ -58,5 +60,6 @@ FilMaster 重建版的第一個正式版本。以原本由 Google AI Studio 產�
 - 移除原程式中未使用的套件：`@google/genai`、`express`、`@types/express`、`dotenv`、`motion`、`clsx`、`tailwind-merge`、`tsx`、`esbuild`、`autoprefixer`
 - 移除 AI Studio 專用的開發伺服器設定（`DISABLE_HMR`）與未使用的 `@` 路徑別名
 
-[Unreleased]: https://github.com/T22016AEMC/FilMaster/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/T22016AEMC/FilMaster/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/T22016AEMC/FilMaster/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/T22016AEMC/FilMaster/releases/tag/v2.0.0
